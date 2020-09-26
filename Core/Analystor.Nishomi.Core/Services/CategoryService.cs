@@ -1,0 +1,141 @@
+﻿namespace Analystor.Nishomi.Core
+{
+    using Analystor.Nishomi.Domain;
+    using Analystor.Nishomi.Persistence;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    /// <summary>
+    /// CategoryService
+    /// </summary>
+    /// <seealso cref="Analystor.Nishomi.Core.ServiceBase" />
+    public class CategoryService : ServiceBase, ICategory
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CategoryService"/> class.
+        /// </summary>
+        /// <param name="contextProvider">The context provider.</param>
+        /// <param name="logger">The logger.</param>
+        public CategoryService(NishomiDbContextProvider contextProvider, ILogger<ServiceBase> logger) : base(contextProvider, logger)
+        {
+        }
+
+        /// <summary>
+        /// Gets the categories.
+        /// </summary>
+        /// <returns></returns>
+        public List<CategoryDTO> GetCategories()
+        {
+            return this.CurrentDbContext.Categories
+                                        .Select(it => new CategoryDTO()
+                                        {
+                                            CategoryId = it.Id,
+                                            Name = it.Name,
+                                            Caption = it.Caption,
+                                            Description = it.Description,
+                                            Url = it.Url
+                                        }).ToList();
+        }
+
+        /// <summary>
+        /// Gets the category products.
+        /// </summary>
+        /// <returns></returns>
+        public List<CategoryDTO> GetCategoryProducts()
+        {
+            return this.CurrentDbContext.Categories
+                                        .Include(it=>it.Products)
+                                        .ThenInclude(it=>it.ProductImages)
+                                        .Select(it => new CategoryDTO()
+                                        {
+                                            CategoryId = it.Id,
+                                            Name = it.Name,
+                                            Caption = it.Caption,
+                                            Description = it.Description,
+                                            Url = it.Url,
+                                            Products=it.Products.Select(pc=> new ProductDTO()
+                                            {
+                                                ProductId=pc.Id,
+                                                Name=pc.Name,
+                                                Type=pc.Type,
+                                                Color=pc.Color,
+                                                Cost=pc.Cost,
+                                                Images=pc.ProductImages.Select(im=> new ImagesListDTO()
+                                                {
+                                                    ImageUrl=im.Url,
+                                                }).ToList()
+                                            }).ToList()
+                                        }).ToList();
+        }
+
+        /// <summary>
+        /// Creates the specified category.
+        /// </summary>
+        /// <param name="category">The category.</param>
+        /// <returns></returns>
+        public bool Create(CategoryDTO category)
+        {
+            Category entry = new Category()
+            {
+                Name=category.Name,
+                Caption=category.Caption,
+                Description=category.Description,
+                Url=category.Url
+            };
+
+            this.CurrentDbContext.Categories.Add(entry);
+            this.CurrentDbContext.SaveChanges();
+
+            return true;
+        }
+
+        /// <summary>
+        /// Updates the specified category.
+        /// </summary>
+        /// <param name="category">The category.</param>
+        /// <returns></returns>
+        public bool Update(CategoryDTO category)
+        {
+            bool status = false;
+            var item = this.CurrentDbContext.Categories.FirstOrDefault(it => it.Id == category.CategoryId);
+
+            if (item != null)
+            {
+                item.Name = category.Name;
+                item.Caption = category.Caption;
+                item.Description=category.Description;
+                item.Url = category.Url != "" ? category.Url : item.Url;
+
+                this.CurrentDbContext.Categories.Update(item);
+                this.CurrentDbContext.SaveChanges();
+                status = true;
+            }
+
+            return status;
+        }
+
+        /// <summary>
+        /// Deletes the specified category identifier.
+        /// </summary>
+        /// <param name="categoryId">The category identifier.</param>
+        /// <returns></returns>
+        public bool Delete(Guid categoryId)
+        {
+            bool status = false;
+            var category = this.CurrentDbContext.Categories.FirstOrDefault(it => it.Id == categoryId);
+
+            if (category != null)
+            {
+                this.CurrentDbContext.Categories.Remove(category);
+                this.CurrentDbContext.SaveChanges();
+
+                status = true;
+            }
+
+            return status;
+        }
+    }
+}
