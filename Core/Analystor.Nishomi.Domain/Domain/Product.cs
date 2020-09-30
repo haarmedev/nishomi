@@ -82,6 +82,30 @@
         }
 
         /// <summary>
+        /// Gets or sets the caption.
+        /// </summary>
+        /// <value>
+        /// The caption.
+        /// </value>
+        public string Caption
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is featured.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is featured; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsFeatured
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets the product images.
         /// </summary>
         /// <value>

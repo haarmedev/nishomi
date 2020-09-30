@@ -2,10 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Analystor.Nishomi.Core;
+using Analystor.Nishomi.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +29,24 @@ namespace Analystor.Nishomi.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<NishomiDbContextProvider, NishomiDbContextProvider>();
+            services.AddDbContext<NishomiDbContext>(options =>
+                options.UseMySql(
+                    Configuration.GetConnectionString("NishomiDbContext")));
             services.AddControllers();
+            services.AddSingleton<ICategory, CategoryService>();
+            services.AddSingleton<IProduct, ProductService>();
+            services.AddSingleton<ICustomerRequest, CustomerService>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  "CorsPolicy",
+                  builder => builder.WithOrigins("http://localhost:4200")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +58,10 @@ namespace Analystor.Nishomi.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("CorsPolicy");
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 

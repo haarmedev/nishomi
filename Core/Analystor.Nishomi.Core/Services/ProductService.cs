@@ -5,6 +5,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -50,6 +51,32 @@
             };
 
             return item;
+        }
+
+        /// <summary>
+        /// Featureds the products.
+        /// </summary>
+        /// <returns></returns>
+        public List<ProductDTO> FeaturedProducts()
+        {
+            return this.CurrentDbContext.Products
+                                        .Include(it => it.Category)
+                                        .Include(it => it.ProductImages)
+                                        .Where(it => it.IsFeatured)
+                                        .Select(it => new ProductDTO()
+                                        {
+                                            ProductId = it.Id,
+                                            Name = it.Name,
+                                            CategoryName = it.Category.Name,
+                                            Caption = it.Category.Caption,
+                                            Type = it.Type,
+                                            Color = it.Color,
+                                            Cost = it.Cost,
+                                            Images = it.ProductImages.Select(pt => new ImagesListDTO()
+                                            {
+                                                ImageUrl = pt.Url
+                                            }).ToList()
+                                        }).ToList();
         }
 
         /// <summary>

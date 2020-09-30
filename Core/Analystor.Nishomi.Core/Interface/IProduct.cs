@@ -1,6 +1,7 @@
 ﻿namespace Analystor.Nishomi.Core
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// IProduct
@@ -21,5 +22,11 @@
         /// <param name="url">The URL.</param>
         /// <returns></returns>
         bool SaveProductImage(Guid productId, string url);
+
+        /// <summary>
+        /// Featureds the products.
+        /// </summary>
+        /// <returns></returns>
+        List<ProductDTO> FeaturedProducts();
     }
 }
