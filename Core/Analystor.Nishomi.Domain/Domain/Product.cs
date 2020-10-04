@@ -34,6 +34,18 @@
         }
 
         /// <summary>
+        /// Gets or sets the product code.
+        /// </summary>
+        /// <value>
+        /// The product code.
+        /// </value>
+        public string ProductCode
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the type.
         /// </summary>
         /// <value>

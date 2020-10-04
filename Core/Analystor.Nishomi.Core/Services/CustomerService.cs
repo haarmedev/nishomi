@@ -12,7 +12,7 @@
     /// </summary>
     public class CustomerService : ServiceBase, ICustomerRequest
     {
-        public CustomerService(NishomiDbContextProvider contextProvider,ILogger<ServiceBase> logger):base(contextProvider,logger)
+        public CustomerService(NishomiDbContextProvider contextProvider/*,ILogger<ServiceBase> logger*/):base(contextProvider/*,logger*/)
         {
         }
 

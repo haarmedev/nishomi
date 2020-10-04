@@ -19,7 +19,7 @@
         /// </summary>
         /// <param name="contextProvider">The context provider.</param>
         /// <param name="logger">The logger.</param>
-        public CategoryService(NishomiDbContextProvider contextProvider, ILogger<ServiceBase> logger) : base(contextProvider, logger)
+        public CategoryService(NishomiDbContextProvider contextProvider/*, ILogger<ServiceBase> logger*/) : base(contextProvider/*, logger*/)
         {
         }
 
@@ -59,10 +59,13 @@
                                             Products=it.Products.Select(pc=> new ProductDTO()
                                             {
                                                 ProductId=pc.Id,
+                                                ProductCode=pc.ProductCode,
                                                 Name=pc.Name,
                                                 Type=pc.Type,
                                                 Color=pc.Color,
                                                 Cost=pc.Cost,
+                                                Description=pc.Description,
+                                                CategoryName=it.Name,
                                                 Images=pc.ProductImages.Select(im=> new ImagesListDTO()
                                                 {
                                                     ImageUrl=im.Url,

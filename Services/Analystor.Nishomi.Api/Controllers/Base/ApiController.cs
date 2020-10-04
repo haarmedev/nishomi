@@ -14,16 +14,16 @@
         /// <summary>
         /// The logger
         /// </summary>
-        protected readonly ILogger<ApiController> _logger;
+        //protected readonly ILogger<ApiController> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiController"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public ApiController(ILogger<ApiController> logger)
-        {
-            this._logger = logger;
-        }
+        //public ApiController(ILogger<ApiController> logger)
+        //{
+        //    this._logger = logger;
+        //}
 
         /// <summary>
         /// Oks the specified data.

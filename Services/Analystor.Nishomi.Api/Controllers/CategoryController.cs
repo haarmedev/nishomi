@@ -21,14 +21,14 @@
         /// <summary>
         /// The logger
         /// </summary>
-        private readonly ILogger<ApiController> _logger;
+        //private readonly ILogger<CategoryController> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CategoryController"/> class.
         /// </summary>
-        public CategoryController(ICategory categoryService,ILogger<ApiController> logger) : base(logger)
+        public CategoryController(ICategory categoryService)
         {
-            this._logger = logger;
+            //this._logger = logger;
             this._categoryService = categoryService;
         }
 

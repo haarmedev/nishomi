@@ -15,7 +15,7 @@
         /// <summary>
         /// The logger
         /// </summary>
-        private readonly ILogger<ProductController> _logger;
+        //private readonly ILogger<ProductController> _logger;
 
         /// <summary>
         /// The product service
@@ -28,15 +28,21 @@
         private readonly ICustomerRequest _customerService;
 
         /// <summary>
+        /// The mail service
+        /// </summary>
+        private readonly IMailService mailService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ProductController"/> class.
         /// </summary>
         /// <param name="productService">The product service.</param>
         /// <param name="logger">The logger.</param>
-        public ProductController(IProduct productService, ICustomerRequest customerService, ILogger<ProductController> logger) : base(logger)
+        public ProductController(IMailService mailService, IProduct productService, ICustomerRequest customerService /*ILogger<ProductController> logger*/) /*: base(logger)*/
         {
-            this._logger = logger;
+            //this._logger = logger;
             this._productService = productService;
             this._customerService = customerService;
+            this.mailService = mailService;
         }
 
         /// <summary>
@@ -70,6 +76,14 @@
         [HttpPost("SaveRequest")]
         public IActionResult SaveCustomerRequest([FromForm] CustomerRequestDTO details)
         {
+            var product = this._productService.GetProductDetails(details.ProductId);
+            MailRequest mailRequest = new MailRequest()
+            {
+                ToEmail="fawaskallayi@gmail.com",
+                Subject="Customer Requested Your Product",
+                Body="<b>Product Details:<b><br/> Product Name: "+product.Name+"<br/> Product Cost: "+product.Cost+"<br/> Description: "+product.Description+" <br/> <b>Customer Details:<b><br/> Customer Name:"+details.Name+"<br/> Phone:"+details.ContactNumber+"<br/> Email:"+details.Email+" <br/> Address:"+details.Address+"<br/> Message:"+details.Message+"",
+            };
+            mailService.SendEmailAsync(mailRequest);
             var status = this._customerService.CreateCustomerRequest(details);
             return Ok<object>(status, "Succsfully placed the request");
         }

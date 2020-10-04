@@ -20,7 +20,7 @@
         /// </summary>
         /// <param name="contextProvider">The context provider.</param>
         /// <param name="logger">The logger.</param>
-        public ProductService(NishomiDbContextProvider contextProvider, ILogger<ServiceBase> logger) : base(contextProvider, logger)
+        public ProductService(NishomiDbContextProvider contextProvider/*, ILogger<ServiceBase> logger*/) : base(contextProvider/*, logger*/)
         {
         }
 
@@ -38,12 +38,14 @@
             var item = new ProductDTO()
             {
                 ProductId = product.Id,
+                ProductCode=product.ProductCode,
                 Name = product.Name,
                 CategoryName = product.Category.Name,
                 Caption = product.Category.Caption,
                 Type = product.Type,
                 Color = product.Color,
                 Cost = product.Cost,
+                Description=product.Description,
                 Images = product.ProductImages.Select(it => new ImagesListDTO()
                 {
                     ImageUrl = it.Url
@@ -66,12 +68,14 @@
                                         .Select(it => new ProductDTO()
                                         {
                                             ProductId = it.Id,
+                                            ProductCode=it.ProductCode,
                                             Name = it.Name,
                                             CategoryName = it.Category.Name,
                                             Caption = it.Category.Caption,
                                             Type = it.Type,
                                             Color = it.Color,
                                             Cost = it.Cost,
+                                            Description=it.Description,
                                             Images = it.ProductImages.Select(pt => new ImagesListDTO()
                                             {
                                                 ImageUrl = pt.Url
@@ -109,6 +113,7 @@
             Product entry = new Product()
             {
                 CategoryId = product.CategoryId,
+                ProductCode=product.ProductCode,
                 Name = product.Name,
                 Color = product.Color,
                 Type = product.Type,
@@ -135,6 +140,7 @@
             if (item != null)
             {
                 item.CategoryId = product.CategoryId;
+                item.ProductCode = product.ProductCode;
                 item.Name = product.Name;
                 item.Color = product.Color;
                 item.Type = product.Type;

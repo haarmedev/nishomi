@@ -8,17 +8,17 @@
         /// <summary>
         /// The logger
         /// </summary>
-        protected readonly ILogger<ServiceBase> _logger;
+        //protected readonly ILogger<ServiceBase> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceBase"/> class.
         /// </summary>
         /// <param name="contextProvider">The context provider.</param>
         /// <param name="logger">The logger.</param>
-        public ServiceBase(NishomiDbContextProvider contextProvider, ILogger<ServiceBase> logger)
+        public ServiceBase(NishomiDbContextProvider contextProvider /*ILogger<ServiceBase> logger*/)
         {
             this.ContextProvider = contextProvider;
-            this._logger = logger;
+            //this._logger = logger;
         }
 
         /// <summary>
