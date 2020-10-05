@@ -1,0 +1,5 @@
+  export const API_ENDPOINT='https://localhost:44380';
+  export const CATEGORIESAPI=API_ENDPOINT+'/api/Category';
+  export const FEATUREDPRODUCTSAPI=API_ENDPOINT+'/api/Product/FeaturedProducts';
+  export const CATEGORYPRODUCTS=API_ENDPOINT+'/api/Category/CategoryProducts';
+  export const CUSTOMERREQUEST=API_ENDPOINT+'/api/Product/SaveRequest';

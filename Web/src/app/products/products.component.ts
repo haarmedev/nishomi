@@ -1,0 +1,159 @@
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CATEGORYPRODUCTS, CUSTOMERREQUEST } from '../core/constants/constant';
+import { SwiperOptions } from 'swiper';
+import { SwiperComponent } from 'ngx-useful-swiper';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl } from '@angular/forms';
+
+@Component({
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css'],
+})
+export class ProductsComponent implements OnInit {
+  profileForm = new FormGroup({
+    name: new FormControl(''),
+    cusmail: new FormControl(''),
+    phone: new FormControl(''),
+    address: new FormControl(''),
+    message: new FormControl(''),
+  });
+
+  email: string;
+  constructor(
+    private httpClient: HttpClient,
+    public dialog: MatDialog,
+    private modalService: NgbModal
+  ) {}
+  category: [];
+  closeResult: string;
+  isRequest: boolean;
+  showModal:boolean;
+  selectedproduct: [];
+
+  config: SwiperOptions = {
+    loop: false,
+    centeredSlides: false,
+    autoplay: false,
+    breakpoints: {
+      767: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        slidesPerGroup: 1,
+      },
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 0,
+        slidesPerGroup: 2,
+      },
+      1920: {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        slidesPerGroup: 3,
+      },
+    },
+    //keyboardControl: true,
+    //nextButton: '.colcar1-next',
+    //prevButton: '.colcar1-prev',
+  };
+
+  config1: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    effect: 'fade',
+    speed: 1500,
+    //spaceBetween: 100,
+    slidesPerGroup: 1,
+    centeredSlides: true,
+    //autoplay: 5000,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    //keyboardControl: true,
+    //pagination: '.bannpage',
+    //paginationClickable: true,
+  };
+
+  @ViewChild('usefulSwiper', { static: false }) usefulSwiper: SwiperComponent;
+
+  open(content) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+  }
+
+  ngOnInit(): void {
+    this.showModal=true;
+    this.httpClient.get<any>(CATEGORYPRODUCTS).subscribe((data: any) => {
+      console.log(data);
+      this.category = data.data;
+    });
+  }
+
+  selectProduct(pro) {
+    console.log(pro);
+    this.selectedproduct = pro;
+  }
+
+  onRequest() {
+    this.isRequest = true;
+  }
+
+  closeModal() {
+    this.isRequest = false;
+  }
+
+  buyProduct(product) {
+    console.log("d"+this.profileForm.value);
+    var formData: any = new FormData();
+    formData.append('ProductId', product.productId);
+    formData.append('Name', this.profileForm.value.name);
+    formData.append('Email', this.profileForm.value.cusmail);
+    formData.append('ContactNumber', this.profileForm.value.phone);
+    formData.append('Address', this.profileForm.value.address);
+    formData.append('Message', this.profileForm.value.message);
+    console.log('cus' + formData);
+    this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
+      (response: any) => {
+        console.log(response);
+        if(response.data){
+          this.isRequest=false;
+          this.showModal=false;
+          alert("success");
+          this.profileForm.reset();
+        }
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '300px',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.email = result;
+    });
+  }
+}

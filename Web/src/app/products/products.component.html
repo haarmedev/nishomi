@@ -1,0 +1,148 @@
+<app-header></app-header>
+<section id="collections" *ngFor="let item of category; index as i; first as isFirst">
+    <div class="collblk collbg1">
+      <div class="container">
+        <div class="prodflex">
+          <div class="prodleft">
+            <img src="assets/images/bg01.png" alt="">
+          </div>
+          <div class="prodright">
+            <div class="colltitle">
+              <h6>{{item.caption}}</h6>
+              <h3>{{item.name}}</h3>
+            </div>
+            <div class="carorelative">
+              <div class="swiper-container collcaro colcar1" [swiper]="config">
+                <div class="swiper-wrapper">
+                  <!-- <div class="swiper-slide" *ngFor="let pro of item.products;index as i;first as is">
+                    {{pro.type}}
+                  </div> -->
+                  <div class="swiper-slide" *ngFor="let pro of item.products;index as i;first as is">
+                    <div class="collimg"> 
+                      <a href=""><img src={{pro.images[0].imageUrl}} alt=""></a>
+
+                    </div>
+                    <div class="colldtls">
+                      <h6><a href="">{{pro.name}}</a></h6>
+                      <h5>{{pro.type}} - {{pro.color}}</h5>
+                      <div class="price-box">
+                        <span class="old">SR {{pro.cost.toFixed(2)}}</span>
+                        <span class="new">SR {{pro.cost.toFixed(2)}}</span>
+                      </div>
+                      <div class="quickview">
+                        <a (click)="open(mymodal);selectProduct(pro)">View Details</a>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="collpage">
+                  <div class="swiper-button-next colcar1-next"></div>
+                  <div class="swiper-button-prev colcar1-prev"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ </section>
+ <ng-template #mymodal let-modal>
+  <div *ngIf="!isRequest" class="modal-body">
+    <button type="button" class="close"(click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="swiper-container" [swiper]="config">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let img of selectedproduct.images;index as i;first as is">
+              <img src={{img.imageUrl}} alt="">
+            </div>
+          </div>
+          <div class="prodpage"></div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="prodpop">
+          <h5>{{selectedproduct.categoryName}}</h5>
+          <h2>{{selectedproduct.name}}</h2>
+          <div class="price-box">
+            <span class="new">SR {{selectedproduct.cost.toFixed(2)}}</span>
+          </div>
+          <p>{{selectedproduct.description}}</p>
+          <!-- <div class="pr_switch_wrap">
+            <span class="switch_lable">Color</span>
+            <div class="product_color_switch">
+              <span class="active" data-color="#87554B" style="background-color:#8f8583;"></span>
+              <span data-color="#333333" style="background-color: #9cb5b9"></span>
+              <span data-color="#DA323F" style="background-color: #000"></span>
+            </div>
+          </div>
+          <div class="pr_switch_wrap">
+            <span class="switch_lable">Size</span>
+            <div class="product_size_switch">
+              <span>m</span>
+              <span>l</span>
+              <span>xl</span>
+              <span>xxl</span>
+            </div>
+          </div> -->
+          <div class="interestbtn">
+            <button class="btn btn-fill-out btn-addtocart" type="button" (click)="onRequest()">Request Interest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isRequest" class="modal-body">
+    <button type="button" class="close" (click)="modal.dismiss('Cross click');closeModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="row">
+      <div class="col-md-6 bggrey">
+        <h6>Selected Abaya</h6>
+        <div class="selectprod">
+          <img src={{selectedproduct.images[0].imageUrl}} alt="">
+          <h2>{{selectedproduct.name}}</h2>
+          <p>Color: {{selectedproduct.color}}</p>
+          <p>Type: {{selectedproduct.categoryName}}</p>
+          <span class="new">SR {{selectedproduct.cost.toFixed(2)}}</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="buyform">
+          <h2>Contact Details</h2>
+          <form [formGroup]="profileForm" (ngSubmit)="buyProduct(selectedproduct);modal.dismiss('Cross click')">
+            <div class="form-group">
+              <input formControlName="name" type="text" required="required"/>
+              <label for="input" class="control-label">Full Name</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+              <input formControlName="cusmail" type="text" required="required"/>
+              <label for="input" class="control-label">Email</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+              <input formControlName="phone" type="text" required="required"/>
+              <label for="input" class="control-label">Contact Number</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+              <textarea formControlName="address" required="required"></textarea>
+              <label for="textarea" class="control-label">Address</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+              <textarea formControlName="message" required="required"></textarea>
+              <label for="textarea" class="control-label">Message</label><i class="bar"></i>
+            </div>
+          
+          <div class="button-container">
+            <button class="button" type="submit"><span>Buy Now</span></button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+ <app-footer></app-footer>
