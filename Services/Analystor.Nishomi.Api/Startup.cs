@@ -8,8 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog.Core;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace Analystor.Nishomi.Api
 {
@@ -27,10 +32,14 @@ namespace Analystor.Nishomi.Api
 
         public IConfiguration Configuration { get; }
 
+        //public ILoggerFactory loggerFactory { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            this._container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+            //services.RegisterFrameworkDependencies(this.Configuration);
+            //services.RegisterApplicationDependencies(this.Configuration);
+            //this._container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
             this._container.RegisterFrameworkDependencies(services,this.Configuration);
             this._container.RegisterApplicationDependencies(services, this.Configuration);
@@ -40,11 +49,11 @@ namespace Analystor.Nishomi.Api
             services.AddDbContext<NishomiDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("NishomiDbContext")));
-            services.AddControllers();
-            //services.AddSingleton<ICategory, CategoryService>();
-            //services.AddSingleton<IProduct, ProductService>();
-            //services.AddSingleton<ICustomerRequest, CustomerService>();
-            //services.AddSingleton<IMailService, MailService>();
+            //services.AddControllers();
+            //services.AddLogging();
+            ////services.AddSingleton<ICategory, CategoryService>();
+            ////services.AddSingleton<IProduct, ProductService>();
+            ////services.AddSingleton<ICustomerRequest, CustomerService>();
             services.AddCors(options =>
             {
                 options.AddPolicy(
@@ -55,18 +64,18 @@ namespace Analystor.Nishomi.Api
                   .AllowCredentials());
             });
             // Mail Service
-            //services.AddScoped<SmtpClient>((serviceProvider) =>
-            //{
-            //    var config = serviceProvider.GetRequiredService<IConfiguration>();
-            //    return new SmtpClient()
-            //    {
-            //        Host = config.GetValue<string>("Email:Smtp:Host"),
-            //        Port = config.GetValue<int>("Email:Smtp:Port"),
-            //        Credentials = new NetworkCredential(
-            //                config.GetValue<string>("Email:Smtp:Username"),
-            //                config.GetValue<string>("Email:Smtp:Password"))
-            //    };
-            //});
+            services.AddScoped<SmtpClient>((serviceProvider) =>
+            {
+                var config = serviceProvider.GetRequiredService<IConfiguration>();
+                return new SmtpClient()
+                {
+                    Host = config.GetValue<string>("Email:Smtp:Host"),
+                    Port = config.GetValue<int>("Email:Smtp:Port"),
+                    Credentials = new NetworkCredential(
+                            config.GetValue<string>("Email:Smtp:Username"),
+                            config.GetValue<string>("Email:Smtp:Password"))
+                };
+            });
             //services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
         }
 
@@ -77,21 +86,28 @@ namespace Analystor.Nishomi.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseSimpleInjector(this._container, options =>
+            else
             {
-                options.AutoCrossWireFrameworkComponents = false;
-            });
+                app.UseHsts();
+            }
 
-            app.UseHttpsRedirection();
+            app.UseCors("AllowOrigin");
 
-            app.UseCors("CorsPolicy");
+            app.UseRouting();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.UseStaticFiles();
 
-            app.UseRouting();
+            //app.UseStaticFiles(new StaticFileOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, CommonConstants.ResourcesFolder)),
+            //    RequestPath = new PathString(CommonConstants.ResourcesProviderUrl)
+            //});
 
-            app.UseAuthorization();
+            //app.UseResponseWrapper();
+
+            app.UseApiExceptionHandler();
 
             app.UseEndpoints(endpoints =>
             {

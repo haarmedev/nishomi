@@ -49,6 +49,7 @@
             return this.CurrentDbContext.Categories
                                         .Include(it=>it.Products)
                                         .ThenInclude(it=>it.ProductImages)
+                                        .AsEnumerable()
                                         .Select(it => new CategoryDTO()
                                         {
                                             CategoryId = it.Id,

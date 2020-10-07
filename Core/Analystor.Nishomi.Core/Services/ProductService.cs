@@ -34,6 +34,7 @@
             var product = this.CurrentDbContext.Products
                                         .Include(it => it.Category)
                                         .Include(it => it.ProductImages)
+                                        .AsEnumerable()
                                         .FirstOrDefault(it => it.Id == ProductId);
             var item = new ProductDTO()
             {

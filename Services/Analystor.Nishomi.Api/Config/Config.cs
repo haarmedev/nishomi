@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Analystor.Nishomi.Persistence;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleInjector;
 using System;
@@ -16,13 +17,19 @@ namespace Analystor.Nishomi.Api.Config
             container.RegisterCommonApplicationDependencies(services, configuration);
         }
 
+        public static void InitializeDatabase(this IServiceScope serviceScope)
+        {
+            var context = serviceScope.ServiceProvider.GetService<NishomiDbContext>();
+            context.UpdateToLatestVersion();
+        }
+
         /// <summary>
         /// Registers the framework dependencies.
         /// </summary>
         /// <param name="container">The container.</param>
         /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void RegisterFrameworkDependencies(this Container container, IServiceCollection services, IConfiguration configuration)
+        public static void RegisterFrameworkDependencies(this Container container, IServiceCollection services, IConfiguration configuration )
         {
             // Cookie Policy
             //services.Configure<CookiePolicyOptions>(options =>
