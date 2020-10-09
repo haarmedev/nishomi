@@ -1,0 +1,95 @@
+﻿@model Analystor.Nishomi.Core.ProductDTO
+<!-- Main Content -->
+<div class="content-wrapper">
+    <!-- Title Top Block -->
+    <div class="titleblk clearfix">
+        <h1>Edit Product</h1>
+        <div class="btnBlk">
+            <a asp-controller="Product" asp-action="Index" class="btnGrey btnSmall"><i class="mdi mdi-arrow-left"></i>Back to List</a>
+        </div>
+    </div>
+    <div class="contentWrap">
+        <h3 id="editgeneral">Product Details</h3>
+        <form asp-action="Edit" asp-controller="Product" data-ajax="true" data-ajax-method="post" data-ajax-failure="onAjaxFailure" data-ajax-success="onAjaxSuccess" enctype="multipart/form-data">
+            <div class="formBlk">
+                <div class="row">
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Product Code</label>
+                        <input type="text" asp-for="ProductCode" id="productCode" placeholder="Product Code">
+                    </div>
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Product Name</label>
+                        <input type="text" asp-for="Name" id="productName" placeholder="Product name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Type</label>
+                        <input type="text" asp-for="Type" id="localName" placeholder="Type">
+                    </div>
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Is Featured</label>
+                        @if (Model.IsFeatured)
+                        {
+                            <input type="checkbox" checked asp-for="IsFeatured" id="productName">
+                        }
+                        else
+                        {
+                            <input type="checkbox" asp-for="IsFeatured" id="productName">
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Product Category</label>
+                        <select id="cat-field" asp-for="CategoryId"
+                                asp-items="@(new SelectList(Model.Categories,"CategoryId","Name"))">
+                            <option value="" disabled>-Select Category-</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Color</label>
+                        <input type="text" asp-for="Color" id="productPrice" placeholder="Color">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Product Cost</label>
+                        <input type="number" asp-for="Cost" id="productPrice" placeholder="Cost">
+                    </div>
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Images</label>
+                        <input type="file" multiple="mutiple" asp-for="Files" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 formsingle">
+                        <label class="mandatory">Caption</label>
+                        <input type="text" asp-for="Caption" id="productPrice" placeholder="Caption">
+                    </div>
+                    <div class="col-md-6 formsingle">
+                        <label>Description</label>
+                        <textarea type="text" class="md-textarea form-control" asp-for="Description" id="description" placeholder="Description" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="mandatory">Images Uploaded</label>
+                    @foreach (var item in Model.Images)
+                    {
+                        <div class="col-md-2 formsingle">
+                            <img height="150" width="150" src="@item.ImageUrl" />
+                        </div>
+                    }
+                </div>
+                <div class="col-md-12 formsingle">
+                    <button class="btnRed btnSmall" name="" id="saveButton"><i class="mdi mdi-content-save-outline"></i>Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    @section Scripts {
+        <script>
+        </script>
+    }

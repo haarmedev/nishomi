@@ -6,6 +6,7 @@
     using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
 
     /// <summary>
@@ -13,15 +14,19 @@
     /// </summary>
     public class ProductService : ServiceBase, IProduct
     {
-        private object ProductImagge;
+        /// <summary>
+        /// The file manager
+        /// </summary>
+        private readonly IFileManager _fileManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductService"/> class.
         /// </summary>
         /// <param name="contextProvider">The context provider.</param>
         /// <param name="logger">The logger.</param>
-        public ProductService(NishomiDbContextProvider contextProvider/*, ILogger<ServiceBase> logger*/) : base(contextProvider/*, logger*/)
+        public ProductService(NishomiDbContextProvider contextProvider, IFileManager fileManager/*, ILogger<ServiceBase> logger*/) : base(contextProvider/*, logger*/)
         {
+            this._fileManager = fileManager;
         }
 
         /// <summary>
@@ -29,24 +34,24 @@
         /// </summary>
         /// <param name="ProductId">The product identifier.</param>
         /// <returns></returns>
-        public ProductDTO GetProductDetails(Guid ProductId)
+        public ProductAPIDTO GetProductDetails(Guid ProductId)
         {
             var product = this.CurrentDbContext.Products
                                         .Include(it => it.Category)
                                         .Include(it => it.ProductImages)
                                         .AsEnumerable()
                                         .FirstOrDefault(it => it.Id == ProductId);
-            var item = new ProductDTO()
+            var item = new ProductAPIDTO()
             {
                 ProductId = product.Id,
-                ProductCode=product.ProductCode,
+                ProductCode = product.ProductCode,
                 Name = product.Name,
                 CategoryName = product.Category.Name,
-                Caption = product.Category.Caption,
+                Caption = product.Caption,
                 Type = product.Type,
                 Color = product.Color,
                 Cost = product.Cost,
-                Description=product.Description,
+                Description = product.Description,
                 Images = product.ProductImages.Select(it => new ImagesListDTO()
                 {
                     ImageUrl = it.Url
@@ -60,23 +65,23 @@
         /// Featureds the products.
         /// </summary>
         /// <returns></returns>
-        public List<ProductDTO> FeaturedProducts()
+        public List<ProductAPIDTO> FeaturedProducts()
         {
             return this.CurrentDbContext.Products
                                         .Include(it => it.Category)
                                         .Include(it => it.ProductImages)
                                         .Where(it => it.IsFeatured)
-                                        .Select(it => new ProductDTO()
+                                        .Select(it => new ProductAPIDTO()
                                         {
                                             ProductId = it.Id,
-                                            ProductCode=it.ProductCode,
+                                            ProductCode = it.ProductCode,
                                             Name = it.Name,
                                             CategoryName = it.Category.Name,
-                                            Caption = it.Category.Caption,
+                                            Caption = it.Caption,
                                             Type = it.Type,
                                             Color = it.Color,
                                             Cost = it.Cost,
-                                            Description=it.Description,
+                                            Description = it.Description,
                                             Images = it.ProductImages.Select(pt => new ImagesListDTO()
                                             {
                                                 ImageUrl = pt.Url
@@ -99,7 +104,7 @@
             };
 
             this.CurrentDbContext.ProductImages.Add(entry);
-            this.CurrentDbContext.SaveChanges();
+            //this.CurrentDbContext.SaveChanges();
 
             return true;
         }
@@ -114,13 +119,30 @@
             Product entry = new Product()
             {
                 CategoryId = product.CategoryId,
-                ProductCode=product.ProductCode,
+                ProductCode = product.ProductCode,
                 Name = product.Name,
                 Color = product.Color,
                 Type = product.Type,
+                Caption=product.Caption,
                 Cost = product.Cost,
-                Description = product.Description
+                Description = product.Description,
+                IsFeatured=product.IsFeatured
             };
+            if (product.Files.Count > 0)
+            {
+                foreach (var file in product.Files)
+                {
+                    byte[] fileBytes;
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        fileBytes = ms.ToArray();
+                    }
+                    string relativePath = string.Format(CommonConstants.ProductImagePath, entry.Id);
+                    var path = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, file.FileName);
+                    this.SaveProductImage(entry.Id, path);
+                }
+            }
 
             this.CurrentDbContext.Products.Add(entry);
             this.CurrentDbContext.SaveChanges();
@@ -145,13 +167,30 @@
                 item.Name = product.Name;
                 item.Color = product.Color;
                 item.Type = product.Type;
+                item.Caption = product.Caption;
                 item.Cost = product.Cost;
                 item.Description = product.Description;
+                item.IsFeatured = product.IsFeatured;
 
                 this.CurrentDbContext.Products.Update(item);
                 this.CurrentDbContext.SaveChanges();
 
                 status = true;
+            }
+            if (product.Files.Count > 0)
+            {
+                foreach (var file in product.Files)
+                {
+                    byte[] fileBytes;
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        fileBytes = ms.ToArray();
+                    }
+                    string relativePath = string.Format(CommonConstants.ProductImagePath, item.Id);
+                    var path = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, file.FileName);
+                    this.SaveProductImage(item.Id, path);
+                }
             }
 
             return status;
@@ -179,6 +218,52 @@
             }
 
             return true;
+        }
+
+        public List<ProductDetailsDTO> GetProducts(out int totalRecords, string keyword, int skip, int pageSize, string sortBy, string sortHow)
+        {
+            var query = this.CurrentDbContext.Products.AsQueryable();
+
+            totalRecords = query.Count();
+
+            if (keyword != null)
+            {
+                query = query.Where(it => it.Name.ToLower().StartsWith(keyword.ToLower()));
+                totalRecords = query.Count();
+            }
+
+            return query.Skip(skip).Take(pageSize).Select(it => new ProductDetailsDTO()
+            {
+                ProductId = it.Id,
+                //CategoryId = it.CategoryId,
+                ProductCode = it.ProductCode,
+                ProductName = it.Name,
+                Caption = it.Caption,
+                Description = it.Description,
+                Type = it.Type,
+                Color = it.Color,
+                Cost = it.Cost
+            }).ToList();
+        }
+
+        /// <summary>
+        /// Determines whether the specified name is duplicate.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified name is duplicate; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsDuplicate(string name, string code, Guid id)
+        {
+            if (id != Guid.Empty)
+            {
+                return this.CurrentDbContext.Products.Where(it => it.Id != id && it.Name == name && it.ProductCode == code).Count() > 0;
+            }
+            else
+            {
+                return this.CurrentDbContext.Products.Where(it => it.Name == name && it.ProductCode == code).Count() > 0;
+            }
         }
     }
 }

@@ -7,23 +7,6 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -67,5 +50,56 @@ body {
   bottom: 0;
   width: 100%;
   white-space: nowrap;
+  /* Set the fixed height of the footer here */
+  height: 60px;
   line-height: 60px; /* Vertically center the text there */
+}
+#actions {
+    margin: 2em;
+    float: right;
+}
+
+/* Mimic table appearance */
+div.table {
+    display: table;
+}
+
+    div.table .file-row {
+        display: table-row;
+    }
+
+        div.table .file-row > div {
+            display: table-cell;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        div.table .file-row:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+
+
+/* The total progress gets shown by event listeners */
+#total-progress {
+    opacity: 0;
+    transition: opacity 0.3s linear;
+}
+
+/* Hide the progress bar when finished */
+#previews .file-row.dz-success .progress {
+    opacity: 0;
+    transition: opacity 0.3s linear;
+}
+
+/* Hide the start and cancel buttons and show the delete button */
+
+#previews .file-row.dz-success .start,
+#previews .file-row.dz-success .cancel {
+    display: none;
+}
+
+#previews .file-row.dz-success .delete {
+    display: block;
 }

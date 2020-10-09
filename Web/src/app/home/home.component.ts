@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {CATEGORIESAPI, FEATUREDPRODUCTSAPI} from '../core/constants/constant';
+import {CATEGORIESAPI, FEATUREDPRODUCTSAPI,IMAGE_ENDPOINT} from '../core/constants/constant';
 import { SwiperOptions } from 'swiper';
 
 @Component({
@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   //mySwiper:Swiper;
   categories=[];
   featuredproducts:[];
+  imageurl:string;
 
   config: SwiperOptions = {
     //autoplay: 6000,
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
 			slidesPerGroup: 2,
 		},
 		1024: {
-			slidesPerView: 3,
+			slidesPerView: 5,
 			spaceBetween: 10,
 			slidesPerGroup: 3,
 		},
@@ -45,7 +46,27 @@ export class HomeComponent implements OnInit {
 	}
   };
 
+  catconfig: SwiperOptions = {
+	//pagination: '.swiper-pagination',
+	//paginationClickable: true,
+	effect: 'coverflow',
+	loop: true,
+	centeredSlides: true,
+	slidesPerView: 'auto',
+	// coverflow: {
+	// 	rotate: 0,
+	// 	stretch: 100,
+	// 	depth: 100,
+	// 	modifier: 2.5,
+	// 	slideShadows : false,
+	// },
+	//keyboardControl: true,
+	//nextButton: '.swiper-button-next',
+	//prevButton: '.swiper-button-prev',
+  };
+
   ngOnInit(): void {
+	  this.imageurl=IMAGE_ENDPOINT;
     this.httpClient.get<any>(CATEGORIESAPI).subscribe((data: any)=>{
       console.log(data);
       this.categories = data.data;

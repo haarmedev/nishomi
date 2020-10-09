@@ -1,7 +1,8 @@
 ﻿using Analystor.Nishomi.Core;
 using Analystor.Nishomi.Persistence;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.Extensions.Logging;
 using SimpleInjector;
 using System.Net.Mail;
@@ -21,7 +22,11 @@ namespace Analystor.Nishomi.Api
             container.Register<IProduct, ProductService>(Lifestyle.Singleton);
             container.Register<ICustomerRequest, CustomerService>(Lifestyle.Singleton);
             container.Register<IMailService, MailService>(Lifestyle.Singleton);
+            container.Register<IFileManager, FileManager>(Lifestyle.Singleton);
+            //container.Register<Microsoft.Extensions.Hosting.IHostingEnvironment>(Lifestyle.Singleton);
+            container.Register<IHostEnvironment,HostingEnvironment>(Lifestyle.Singleton);
             container.RegisterInstance<ILoggerFactory>(loggerFactory);
+            //container.RegisterInstance<IHostingEnvironment>();
             container.RegisterSingleton(typeof(ILogger<>), typeof(Logger<>));
             //container.Register<ILoggerFactory>();
             //container.Register(typeof(ILogger<>), typeof(Logger<>), Lifestyle.Singleton);

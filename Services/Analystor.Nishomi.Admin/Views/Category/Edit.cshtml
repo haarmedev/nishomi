@@ -1,0 +1,51 @@
+﻿@model Analystor.Nishomi.Core.CategoryDTO
+<div class="titleblk clearfix">
+    <h1>Edit Category</h1>
+    <div class="btnBlk">
+        <a href="@Url.Action("Index", "Category")" class="btnGrey btnSmall"><i class="mdi mdi-arrow-left"></i>Back to List</a>
+    </div>
+</div>
+
+<div class="contentWrap">
+    <h3 id="editgeneral">Category Details</h3>
+    <!-- Form BLock -->
+    <form asp-action="Edit" asp-controller="Category" data-ajax="true" data-ajax-method="post" data-ajax-failure="onAjaxFailure" data-ajax-success="onAjaxSuccess" enctype="multipart/form-data">
+        <div class="formBlk">
+            <div class="row">
+                <div class="col-md-6 formsingle">
+                    <label class="mandatory">Name</label>
+                    <input type="text" id="unitName" asp-for="Name" autofocus required placeholder="Name">
+                </div>
+            </div>
+
+            <div class="row" id="parentCategoryDiv">
+                <div class="col-md-6 formsingle">
+                    <label>Caption</label>
+                    <input type="text" id="unitName" asp-for="Caption" autofocus required placeholder="Name">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 formsingle">
+                    <label>Description</label>
+                    <textarea placeholder="Description" id="unitDescription" asp-for="Description"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 formsingle">
+                    <label class="mandatory">Image Uploaded</label>
+                    <img height="200" width="200" src="@Model.Url" />
+                </div>
+                <div class="col-md-6 formsingle">
+                    <label class="mandatory">Image</label>
+                    <input type="file" asp-for="File" />
+                </div>
+            </div>
+            <div class="col-md-12 formsingle">
+                <button class="btnRed btnSmall" name=""><i class="mdi mdi-content-save-outline"></i>Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

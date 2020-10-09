@@ -1,5 +1,6 @@
 ﻿namespace Analystor.Nishomi.Core
 {
+    using Microsoft.AspNetCore.Http;
     using System;
     using System.Collections.Generic;
 
@@ -69,12 +70,24 @@
         }
 
         /// <summary>
+        /// Gets or sets the file.
+        /// </summary>
+        /// <value>
+        /// The file.
+        /// </value>
+        public IFormFile File
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the products.
         /// </summary>
         /// <value>
         /// The products.
         /// </value>
-        public ICollection<ProductDTO> Products
+        public ICollection<ProductAPIDTO> Products
         {
             get;
             set;

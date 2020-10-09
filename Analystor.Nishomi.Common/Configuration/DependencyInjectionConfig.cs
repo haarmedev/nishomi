@@ -13,6 +13,7 @@ namespace Analystor.Nishomi.Common
             services.AddSingleton<IProduct, ProductService>();
             services.AddSingleton<ICustomerRequest, CustomerService>();
             services.AddSingleton<IMailService, MailService>();
+            services.AddSingleton<IFileManager, FileManager>();
             services.AddSingleton<SmtpProvider, SmtpProvider>();
         }
     }

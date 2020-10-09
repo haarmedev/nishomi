@@ -1,10 +1,10 @@
 <app-header></app-header>
 <section id="collections" *ngFor="let item of category; index as i; first as isFirst">
-    <div class="collblk collbg1">
+    <div [className]="i%2==0? 'collblk collbg1':'collblk collbg2'">
       <div class="container">
         <div class="prodflex">
           <div class="prodleft">
-            <img src="assets/images/bg01.png" alt="">
+            <img src="{{imageurl+item.url}}" alt="">
           </div>
           <div class="prodright">
             <div class="colltitle">
@@ -14,12 +14,10 @@
             <div class="carorelative">
               <div class="swiper-container collcaro colcar1" [swiper]="config">
                 <div class="swiper-wrapper">
-                  <!-- <div class="swiper-slide" *ngFor="let pro of item.products;index as i;first as is">
-                    {{pro.type}}
-                  </div> -->
+                  
                   <div class="swiper-slide" *ngFor="let pro of item.products;index as i;first as is">
                     <div class="collimg"> 
-                      <a href=""><img src={{pro.images[0].imageUrl}} alt=""></a>
+                      <a href=""><img src="{{imageurl+pro.images[0].imageUrl}}" alt=""></a>
 
                     </div>
                     <div class="colldtls">
@@ -53,10 +51,10 @@
     </button>
     <div class="row">
       <div class="col-md-6">
-        <div class="swiper-container" [swiper]="config">
+        <div class="swiper-container topprod" [swiper]="config1">
           <div class="swiper-wrapper">
             <div class="swiper-slide" *ngFor="let img of selectedproduct.images;index as i;first as is">
-              <img src={{img.imageUrl}} alt="">
+              <img src="{{imageurl+img.imageUrl}}" alt="">
             </div>
           </div>
           <div class="prodpage"></div>
@@ -103,7 +101,7 @@
       <div class="col-md-6 bggrey">
         <h6>Selected Abaya</h6>
         <div class="selectprod">
-          <img src={{selectedproduct.images[0].imageUrl}} alt="">
+          <img src="{{imageurl+selectedproduct.images[0].imageUrl}}" alt="">
           <h2>{{selectedproduct.name}}</h2>
           <p>Color: {{selectedproduct.color}}</p>
           <p>Type: {{selectedproduct.categoryName}}</p>

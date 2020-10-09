@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using System;
     using System.IO;
@@ -21,14 +22,14 @@
         /// <summary>
         /// The hosting environment
         /// </summary>
-        protected readonly IHostingEnvironment _hostingEnvironment;
+        protected readonly IHostEnvironment _hostingEnvironment;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileManager" /> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
         /// <param name="hostingEnvironment">The hosting environment.</param>
-        public FileManager(ILogger<FileManager> logger, IHostingEnvironment hostingEnvironment)
+        public FileManager(ILogger<FileManager> logger, IHostEnvironment hostingEnvironment)
         {
             this._logger = logger;
             this._hostingEnvironment = hostingEnvironment;
@@ -50,7 +51,7 @@
 
             try
             {
-                var absolutePath = Path.Combine(this._hostingEnvironment.WebRootPath, absolutePathPrefix, relativePath);
+                var absolutePath = this._hostingEnvironment.ContentRootPath+"/wwwroot" + absolutePathPrefix + relativePath;//Path.Combine(this._hostingEnvironment.WebRootPath, absolutePathPrefix, relativePath);
 
                 if (!Directory.Exists(absolutePath))
                 {
@@ -97,7 +98,7 @@
 
             try
             {
-                var absolutePath = Path.Combine(this._hostingEnvironment.WebRootPath, absolutePathPrefix, relativePath);
+                var absolutePath = this._hostingEnvironment.ContentRootPath+"/wwwroot"+absolutePathPrefix+relativePath;//Path.Combine(this._hostingEnvironment.WebRootPath, absolutePathPrefix, relativePath);
 
                 if (!Directory.Exists(absolutePath))
                 {
@@ -113,7 +114,7 @@
 
                 File.WriteAllBytes(absolutePath, fileBuffer);
 
-                path = absolutePath;
+                path = absolutePathPrefix+relativePath+"/"+fileName;
             }
             catch (Exception ex)
             {

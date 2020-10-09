@@ -1,7 +1,7 @@
 <body>
     <app-header></app-header>
     <section class="mainbanner">
-      <div class="swiper-container topprod">
+      <div class="swiper-container topprod" [swiper]="catconfig">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <img src="assets/images/slid01.jpg" alt="">
@@ -26,10 +26,10 @@
      </div>
      <div class="caroprod">
       <div class="swiper-container one" [swiper]="config">
-        <div class="swiper-wrapper" *ngFor="let item of featuredproducts; index as i; first as isFirst">
-          <div class="swiper-slide">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let item of featuredproducts; index as i; first as isFirst">
             <div class="hmeprsing">
-              <a href=""><img src={{item.images[0].imageUrl}} alt=""><span class="limited">Limited</span></a>
+              <a href=""><img src="{{imageurl+item.images[0].imageUrl}}" alt=""><span class="limited">{{item.caption}}</span></a>
               <div class="hmeprsingdtl">
                 <h6><a href="">{{item.caption}}</a></h6>
                 <h3><a href="">{{item.name}}</a></h3>
@@ -37,105 +37,6 @@
               </div>
             </div>
           </div>
-    
-          <!-- <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/02.jpg" alt=""><span class="new">New</span></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">multishades</a></h6>
-                <h3><a href="">Noora</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/03.jpg" alt=""><span class="best">Bestseller</span></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">coloured abaya</a></h6>
-                <h3><a href="">Najma Marriyah</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/04.jpg" alt=""></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">Front Open Cuff</a></h6>
-                <h3><a href="">Asma</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/05.jpg" alt=""></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">Front Open Cuff</a></h6>
-                <h3><a href="">Tasneem Sultana</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/06.jpg" alt=""></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">Plain Nida Abaya</a></h6>
-                <h3><a href="">Tasneem Sultana</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/07.jpg" alt=""></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">Umbrella Cut Abaya</a></h6>
-                <h3><a href="">Tasneem Sultana</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/08.jpg" alt=""></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">Umbrella Cut Abaya</a></h6>
-                <h3><a href="">Tasneem Sultana</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/09.jpg" alt=""></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">Umbrella Cut Abaya</a></h6>
-                <h3><a href="">Tasneem Sultana</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="swiper-slide">
-            <div class="hmeprsing">
-              <a href=""><img src="assets/images/products/07.jpg" alt=""></a>
-              <div class="hmeprsingdtl">
-                <h6><a href="">Umbrella Cut Abaya</a></h6>
-                <h3><a href="">Tasneem Sultana</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh.</p>
-              </div>
-            </div>
-          </div> -->
     
         </div>
         <div class="prodpage"></div>
@@ -146,15 +47,15 @@
     <div class="container">
       <div class="hmecaro">
         <div class="caroblk">
-          <div class="swiper-container two" [swiper]="config">
-            <div class="swiper-wrapper" *ngFor="let item of categories; index as i; first as isFirst"> 
-              <div class="swiper-slide">
+          <div class="swiper-container two" [swiper]="catconfig">
+            <div class="swiper-wrapper"> 
+              <div class="swiper-slide" *ngFor="let item of categories; index as i; first as isFirst">
                 <div class="prosingle">
-                  <img src={{item.url}} alt={{item.caption}}>
+                  <img src="{{imageurl+item.url}}" alt={{item.caption}}>
                   <div class="caroftls">
                     <h4>{{item.name}}</h4>
                     <p>{{item.description}}</p>
-                    <a href="">Checkout</a>
+                    <a routerLink="/products">Checkout</a>
                   </div>
                 </div>
               </div>
@@ -168,7 +69,7 @@
           <h6>Product Categories</h6>
           <h1>Wide range of products to <span>choose from.</span></h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla quis lorem ut libero malesuada feugiat. </p>
-          <a href="">View Products</a>
+          <a routerLink="/products">View Products</a>
         </div>
       </div>
     </div>
@@ -180,7 +81,7 @@
         <h6>Our Story</h6>
         <h1>Say yes to <span>conscious style.</span></h1>
         <p>Abaya reflects the personality, pride and sense of fashion of Arabic women which now has emerged to create a space of its own globally. Drawing inspiration from these aspects, NishOmi explores the untapped creativity and aesthetics that could add more to this piece of clothing. The aim is to capture the heritage, global appeal, and modesty through details, novel cuts, and styles.</p>
-        <a href="story.html">Read More</a>
+        <a routerLink="/story">Read More</a>
       </div>
     </div>
     <!-- </div> -->

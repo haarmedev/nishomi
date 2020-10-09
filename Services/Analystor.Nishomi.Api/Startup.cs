@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.Extensions.Logging;
 using Serilog.Core;
 using SimpleInjector;
@@ -49,6 +50,7 @@ namespace Analystor.Nishomi.Api
             services.AddDbContext<NishomiDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("NishomiDbContext")));
+            //services.AddSingleton<Microsoft.AspNetCore.Hosting.IHostingEnvironment, Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
             //services.AddControllers();
             //services.AddLogging();
             ////services.AddSingleton<ICategory, CategoryService>();
@@ -91,7 +93,7 @@ namespace Analystor.Nishomi.Api
                 app.UseHsts();
             }
 
-            app.UseCors("AllowOrigin");
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
             //app.UseAuthentication();

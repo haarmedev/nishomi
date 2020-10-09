@@ -1,5 +1,6 @@
 ﻿namespace Analystor.Nishomi.Core
 {
+    using Microsoft.AspNetCore.Http;
     using System;
     using System.Collections.Generic;
 
@@ -129,12 +130,48 @@
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this instance is featured.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is featured; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsFeatured
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the files.
+        /// </summary>
+        /// <value>
+        /// The files.
+        /// </value>
+        public List<IFormFile> Files
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the images.
         /// </summary>
         /// <value>
         /// The images.
         /// </value>
         public List<ImagesListDTO> Images
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the categories.
+        /// </summary>
+        /// <value>
+        /// The categories.
+        /// </value>
+        public List<CategoryDTO> Categories
         {
             get;
             set;

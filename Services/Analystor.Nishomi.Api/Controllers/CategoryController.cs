@@ -45,7 +45,7 @@
         [HandleException("Unable to get categories")]
         public IActionResult GetCategories()
         {
-            var categories = _categoryService.GetCategories();
+            var categories = _categoryService.Categories();
             return Ok(categories, "Successfully retrieved categories.");
         }
 

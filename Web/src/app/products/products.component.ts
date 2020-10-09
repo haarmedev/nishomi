@@ -6,7 +6,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CATEGORYPRODUCTS, CUSTOMERREQUEST } from '../core/constants/constant';
+import { CATEGORYPRODUCTS, CUSTOMERREQUEST,IMAGE_ENDPOINT } from '../core/constants/constant';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'ngx-useful-swiper';
 import {
@@ -43,6 +43,7 @@ export class ProductsComponent implements OnInit {
   isRequest: boolean;
   showModal:boolean;
   selectedproduct: [];
+  imageurl:string;
 
   config: SwiperOptions = {
     loop: false,
@@ -55,15 +56,19 @@ export class ProductsComponent implements OnInit {
         slidesPerGroup: 1,
       },
       1024: {
-        slidesPerView: 2,
+        slidesPerView: 3,
         spaceBetween: 0,
-        slidesPerGroup: 2,
+        slidesPerGroup: 3,
       },
       1920: {
         slidesPerView: 3,
         spaceBetween: 0,
         slidesPerGroup: 3,
       },
+    },
+    navigation: {
+      nextEl: '.colcar1-next',
+      prevEl: '.colcar1-prev',
     },
     //keyboardControl: true,
     //nextButton: '.colcar1-next',
@@ -102,6 +107,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.imageurl=IMAGE_ENDPOINT;
     this.showModal=true;
     this.httpClient.get<any>(CATEGORYPRODUCTS).subscribe((data: any) => {
       console.log(data);

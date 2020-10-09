@@ -2,47 +2,237 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Analystor.Nishomi.Admin</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <title>Nishomi</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+        <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/assets/css/plugins.css" />
+        <link rel="stylesheet" href="~/assets/css/theme.css">
+        <link rel="stylesheet" href="~/css/sweetalert.css">
+        @*<link rel="stylesheet" href="~/css/multi.css">*@
+        <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        @*<link href="~/assets/images/favicon.png" rel="shortcut icon" />*@
+        <link href="~/assets/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    </environment>
+
+    <environment include="Production">
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+        <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/assets/css/plugins.css" />
+        <link rel="stylesheet" href="~/assets/css/theme.css">
+        <link rel="stylesheet" href="~/css/sweetalert.css">
+        @*<link rel="stylesheet" href="~/css/multi.css">*@
+        <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        <link href="~/assets/images/favicon.png" rel="shortcut icon" />
+        <link href="~/assets/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    </environment>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Analystor.Nishomi.Admin</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                <!--Header -->
+
+                <header class="header-main clearfix">
+                    <!-- Logo -->
+                    <div class="logo">
+
+                    </div>
+                    <!-- Profile -->
+                    <div class="profile clearfix">
+                        <div class="profimg">
+                            <div class="dropdown">
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a asp-controller="Account" asp-action="Profile" class="dropdown-item"><i class="fas fa-user"></i> &nbsp; Profile</a>
+                                    <a asp-controller="Account" asp-action="Logout" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> &nbsp; Log out</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/Home/Notification">
+                            <div class="headnotify">
+                                <div class="my-btn">
+                                    <div class="my-btn-border"></div>
+                                    <span id="notificationCount"></span>
+                                </div>
+                                <div class="bellicon"><i class="fas fa-bell btn-bell"></i></div>
+                            </div>
+                        </a>
+
+
+
+
+
+
+
+
+                        <!--<div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Enter your search term" type="search" value="" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"><i class="fas fa-search"></i></span>
+                            </form>
+                        </div>-->
+                    </div>
+                </header>
+
+                <!-- Main Content -->
+                <div class="content-wrapper">
+                    @RenderBody()
                 </div>
+                <!-- Footer -->
+
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+        </div>
+
+        <!--slider menu-->
+        <div class="sidebar-menu">
+            <div class="logo">
+                @*<div class="logoimg">
+                    <img src="~/assets/images/logo.png" />
+                </div>*@
+                <a href="#" class="sidebar-icon">
+                    <img src="~/assets/images/icons/burger.svg">
+                </a>
+            </div>
+            <div class="menu">
+                <ul id="menu">
+                    <li><a asp-controller="Home" asp-action="Index"><i><img src="~/assets/images/icons/dashboard.svg"></i><span>Dashboard</span></a></li>
+                    <li class="dropdown">
+                        <a>
+                            <i><img src="~/assets/images/icons/storage.svg"></i><span>Inventory</span>
+                            <i class="fas fa-angle-down"></i>
+                        </a>
+                        <ul>
+
+                            <li><a asp-controller="Category" asp-action="Index">Category</a></li>
+                            <li><a asp-controller="Product" asp-action="Index">Product </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="clearfix"> </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Analystor.Nishomi.Admin - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/multiselect.min.js"></script>
+        <script src="~/assets/js/jquery.min.js"></script>
+        <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/js/jquery.easy-autocomplete.min.js"></script>
+        <script src="~/assets/js/common.js"></script>
+        <script src="~/assets/js/plugins.js"></script>
+        <script src="~/js/common/common.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+        <script src="~/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/js/uuid.js"></script>
+        <script src="~/js/site.js"></script>
+        <script src="~/js/sweetalert.js"></script>
+        <script src="~/js/dropzone.js"></script>
+        <script src="~/assets/js/Chart.min.js"></script>
+        <script src="~/assets/js/chartjs-plugin-labels.js"></script>
+        <script src="~/assets/js/moment.min.js"></script>
+        <script src="~/assets/js/daterangepicker.min.js"></script>
+        <script src="~/assets/js/gauge.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+        <script src="~/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="~/assets/js/jsgantt.js"></script>
+        <script src="~/js/dash-board/dashboard.js?v=1"></script>
+        <script src="~/js/highstock.js"></script>
+        <script src="~/js/datatablemin.js"></script>
+        <script src="~/js/datatablebutton.js"></script>
+        <script src="~/js/datatableprint.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.0/JsBarcode.all.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYeY_HmCNQd_06xfkZ0ukys2Zs3P4-_iQ"></script>
+    </environment>
+
+    <environment include="Production">
+        <script src="~/js/multiselect.min.js"></script>
+        <script src="~/assets/js/jquery.min.js"></script>
+        <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/js/jquery.easy-autocomplete.min.js"></script>
+        <script src="~/assets/js/common.js"></script>
+        <script src="~/assets/js/plugins.js"></script>
+        <script src="~/js/common/common.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+        <script src="~/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/js/uuid.js"></script>
+        <script src="~/js/site.js"></script>
+        <script src="~/js/sweetalert.js"></script>
+        <script src="~/js/dropzone.js"></script>
+        <script src="~/assets/js/Chart.min.js"></script>
+        <script src="~/assets/js/chartjs-plugin-labels.js"></script>
+        <script src="~/assets/js/moment.min.js"></script>
+        <script src="~/assets/js/daterangepicker.min.js"></script>
+        <script src="~/assets/js/gauge.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+        <script src="~/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="~/assets/js/jsgantt.js"></script>
+        <script src="~/js/dash-board/dashboard.js?v=1"></script>
+        <script src="~/js/highstock.js"></script>
+        <script src="~/js/datatablemin.js"></script>
+        <script src="~/js/datatablebutton.js"></script>
+        <script src="~/js/datatableprint.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYeY_HmCNQd_06xfkZ0ukys2Zs3P4-_iQ"></script>
+    </environment>
+
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        getNotificationCount();
+    });
+    function getNotificationCount() {
+        $.ajax({
+            type: "POST",
+            url: "/Home/NotificationCount",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                $("#notificationCount").text(response);
+            },
+            failure: function (response) {
+                //alert("FAIL::"+response);
+            },
+            error: function (response) {
+                //alert("ERROR::" +response);
+            }
+        });
+    }
+    $('#menu .dropdown > a').click(function (e) {
+        e.preventDefault();
+
+        var $this = $(this);
+
+        if ($this.next().hasClass('show')) {
+            $this.next().removeClass('show');
+            $('#menu .dropdown > a').removeClass('icorotate');
+            $this.next().slideUp(350);
+        } else {
+            $this.parent().parent().find('li ul').removeClass('show');
+            $this.parent().parent().find('li ul').slideUp(350);
+            $this.next().toggleClass('show');
+            $this.next().slideToggle(350);
+            $('#menu .dropdown > a').removeClass('icorotate');
+            $this.addClass('icorotate');
+        }
+    });
+    new UISearch(document.getElementById('sb-search'));
+
+
+</script>

@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analystor.Nishomi.Api", "Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analystor.Nishomi.Admin", "Services\Analystor.Nishomi.Admin\Analystor.Nishomi.Admin.csproj", "{DF9BD74F-10E6-46B1-83D3-5617B6CFAE43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analystor.Nishomi.Common", "Analystor.Nishomi.Common\Analystor.Nishomi.Common.csproj", "{D9194A4D-4C1B-4452-8519-E83F2B87F1C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analystor.Nishomi.Common", "Analystor.Nishomi.Common\Analystor.Nishomi.Common.csproj", "{D9194A4D-4C1B-4452-8519-E83F2B87F1C5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0DB7F633-E8C3-43D3-8ED5-419F2D6E840E}"
 EndProject
