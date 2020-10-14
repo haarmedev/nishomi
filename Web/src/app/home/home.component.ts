@@ -53,6 +53,10 @@ export class HomeComponent implements OnInit {
 	loop: true,
 	centeredSlides: true,
 	slidesPerView: 'auto',
+	navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
+	  },
 	// coverflow: {
 	// 	rotate: 0,
 	// 	stretch: 100,

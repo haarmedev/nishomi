@@ -72,5 +72,12 @@
         ///   <c>true</c> if the specified name is duplicate; otherwise, <c>false</c>.
         /// </returns>
         bool IsDuplicate(string name, string code, Guid id);
+
+        /// <summary>
+        /// Products the detail.
+        /// </summary>
+        /// <param name="ProductId">The product identifier.</param>
+        /// <returns></returns>
+        ProductDTO ProductDetail(Guid ProductId);
     }
 }

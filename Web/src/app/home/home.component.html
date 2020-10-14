@@ -27,17 +27,16 @@
      <div class="caroprod">
       <div class="swiper-container one" [swiper]="config">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" *ngFor="let item of featuredproducts; index as i; first as isFirst">
+          <div class="swiper-slide" *ngFor="let item of featuredproducts">
             <div class="hmeprsing">
-              <a href=""><img src="{{imageurl+item.images[0].imageUrl}}" alt=""><span class="limited">{{item.caption}}</span></a>
+              <a href=""><img src="{{imageurl+item.images[0].imageUrl}}" alt=""><span  [className]="!item.caption?'':item.caption=='Limited'?'limited':item.caption=='New'?'new':'best'">{{item.caption}}</span></a>
               <div class="hmeprsingdtl">
-                <h6><a href="">{{item.caption}}</a></h6>
+                <h6><a href="">{{item.categoryName}}</a></h6>
                 <h3><a href="">{{item.name}}</a></h3>
                 <p>{{item.description}}</p>
               </div>
             </div>
           </div>
-    
         </div>
         <div class="prodpage"></div>
       </div>

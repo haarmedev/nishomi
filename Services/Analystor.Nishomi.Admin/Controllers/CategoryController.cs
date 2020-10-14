@@ -106,7 +106,7 @@ namespace Analystor.Nishomi.Admin.Controllers
                     else
                     {
                         status = this._categoryService.Update(category);
-                        return Json(new { message = CommonConstants.SuccessfullyCreated, status = true });
+                        return Json(new { message = CommonConstants.SuccessfullyUpdated, status = true });
                     }
                 }
                 catch (Exception ex)

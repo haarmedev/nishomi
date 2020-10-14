@@ -98,7 +98,7 @@ namespace Analystor.Nishomi.Admin.Controllers
         /// <returns></returns>
         public IActionResult Edit(Guid id)
         {
-            var product = this._productService.GetProductDetails(id);
+            var product = this._productService.ProductDetail(id);
             product.Categories = this._categoryService.Categories();
             return View("~/Views/Product/Edit.cshtml", product);
         }

@@ -62,6 +62,41 @@
         }
 
         /// <summary>
+        /// Products the detail.
+        /// </summary>
+        /// <param name="ProductId">The product identifier.</param>
+        /// <returns></returns>
+        public ProductDTO ProductDetail(Guid ProductId)
+        {
+            var product = this.CurrentDbContext.Products
+                                        .Include(it => it.Category)
+                                        .Include(it => it.ProductImages)
+                                        .AsEnumerable()
+                                        .FirstOrDefault(it => it.Id == ProductId);
+        /// <summary>
+        /// The item
+        /// </summary>
+        var item = new ProductDTO()
+        {
+            ProductId = product.Id,
+            ProductCode = product.ProductCode,
+            Name = product.Name,
+            CategoryName = product.Category.Name,
+            Caption = product.Caption,
+            Type = product.Type,
+            Color = product.Color,
+            Cost = product.Cost,
+            Description = product.Description,
+            Images = product.ProductImages.Select(it => new ImagesListDTO()
+            {
+                ImageUrl = it.Url
+            }).ToList()
+        };
+
+            return item;
+        }
+
+        /// <summary>
         /// Featureds the products.
         /// </summary>
         /// <returns></returns>
@@ -177,7 +212,7 @@
 
                 status = true;
             }
-            if (product.Files.Count > 0)
+            if (product.Files!=null && product.Files.Count > 0)
             {
                 foreach (var file in product.Files)
                 {
