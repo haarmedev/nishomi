@@ -48,7 +48,7 @@
           <div class="quantity">
             <h6 >Quantity: </h6>
             <input type="button" value="-" class="minus" (click)="(changeQuantity('decrement'))">
-            <input type="text" name="quantity" value="{{quantity}}" title="Qty" class="qty" size="4">
+            <input type="text" name="quantity" disabled value="{{quantity}}" title="Qty" class="qty" size="4">
             <input type="button" value="+" class="plus" (click)="(changeQuantity('increment'))">
           </div>
           <div class="cart-product-quantity">
@@ -56,20 +56,20 @@
               <h6>Size:</h6>
               <ul class="size-list">
                 <li>
-                  <a role="button" class="size_item" data-value="54">54</a>
+                  <a role="button" class="size_item" [ngClass]="selectedSize=='54'?'selected':''" (click)="selectSize('54')" data-value="54">54</a>
                 </li>
                 <li>
-                  <a role="button" class="size_item" data-value="56">56</a>
+                  <a role="button" class="size_item" [ngClass]="selectedSize=='56'?'selected':''" (click)="selectSize('56')" data-value="56">56</a>
                 </li>
                 <li>
-                  <a role="button" class="size_item" data-value="58">58</a>
+                  <a role="button" class="size_item" [ngClass]="selectedSize=='58'?'selected':''" (click)="selectSize('58')" data-value="58">58</a>
                 </li>
                 <li>
-                  <a role="button" class="size_item" data-value="60">60</a>
+                  <a role="button" class="size_item" [ngClass]="selectedSize=='60'?'selected':''" (click)="selectSize('60')" data-value="60">60</a>
                 </li>
               </ul>
-              <div class="customsize">
-                <h6 class="custombtm"><span>CUSTOM SIZE</span></h6>
+              <div class="customsize" [ngClass]="showCustomsize ? 'show' : ''">
+                <h6 class="custombtm" (click)="toggleCustomeSize()"><span>CUSTOM SIZE</span></h6>
                 <ul>
                   <li>
                     <img src="assets/images/size/01.jpg" alt="">

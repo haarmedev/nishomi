@@ -42,36 +42,22 @@
       </div>
     </div>
     </section>
-    <section class="prodcaro">
-    <div class="container">
-      <div class="hmecaro">
-        <div class="caroblk">
-          <div class="swiper-container two" [swiper]="catconfig">
-            <div class="swiper-wrapper"> 
-              <div class="swiper-slide" *ngFor="let item of categories; index as i; first as isFirst">
-                <div class="prosingle">
-                  <img src="{{imageurl+item.url}}" alt={{item.caption}}>
-                  <div class="caroftls">
-                    <h4>{{item.name}}</h4>
-                    <p>{{item.description}}</p>
-                    <a routerLink="/products">Checkout</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-          </div> 
-        </div>
-        <div class="titleblk carodtls">
-          <h6>Product Categories</h6>
-          <h1>Wide range of products to <span>choose from.</span></h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla quis lorem ut libero malesuada feugiat. </p>
-          <a routerLink="/products">View Products</a>
+    <section id="hmecatynew">
+      <div class="half" *ngFor="let item of categories">
+        <a href=""><img src="{{imageurl+item.url}}" alt=""></a>
+        <div class="caroblkdtls">
+          <h3>{{item.name}}</h3>
+          <a routerLink="/products">Explore The Category</a>
         </div>
       </div>
-    </div>
+      <!-- <div class="half">
+        <a href=""><img src="assets/images/hmecate2.png" alt=""></a>
+        <div class="caroblkdtls">
+          <h3>Party Wear</h3>
+          <a href="">Explore The Category</a>
+        </div>
+      </div> -->
+      
     </section>
     
     <section class="story">
@@ -88,53 +74,36 @@
     <canvas id="particles"></canvas>
     </section>
     <section class="hmeblog">
-    <div class="container">
-      <div class="titleblk">
-        <h6>Blogposts</h6>
-        <h1 class="inline">Blossom by blossom <span>spring begins.</span></h1>
+      <div class="container">
+        <div class="titleblk">
+          <h6>Blogposts</h6>
+          <h1 class="inline">Blossom by blossom <span>spring begins.</span></h1>
+        </div>
+        <ul>
+          <li>
+            <div class="hmeblksg">
+              <img src="assets/images/blog01.jpg" alt="">
+              <a routerLink="/abaya" class="linkblog"></a>
+              <div class="blkgdtl">
+                <h6>blogpost</h6>
+                <a routerLink="/abaya"><h3>ABAYA: THEN AND NOW</h3></a>
+                <p>A long cloak or robe, popularly known as Abaya, also referred to as Aba, Abah, all represent this everyday clothing that effortlessly covers the entire body.</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="hmeblksg">
+              <img src="assets/images/blog02.jpg" alt="">
+              <a routerLink="/sleeves" class="linkblog"></a>
+              <div class="blkgdtl">
+                <h6>blogpost</h6>
+                <a routerLink="/sleeves"><h3>ALL ABOUT SLEEVES</h3></a>
+                <p>The sleeves are an important part of detailing in abaya designs. It could be a bell sleeve, a loose, plain sleeve, or one that fits your arm. Understanding the sleeve patterns will help you choose rightly depending on the occasion.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
-      <ul>
-        <li>
-          <div class="hmeblksg">
-            <img src="assets/images/blog01.jpg" alt="">
-            <div class="blkgdtl">
-              <a href=""></a>
-              <h6>blogpost</h6>
-              <h3>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar.</h3>
-              <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. </p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="twohalf">
-            <div class="hmeblksg">
-              <img src="assets/images/blog02.jpg" alt="">
-              <div class="blkgdtl">
-                <a href=""></a>
-                <h6>blogpost</h6>
-                <h3>NishOmi Designer Abayas</h3>
-              </div>
-            </div>
-            <div class="hmeblksg">
-              <img src="assets/images/blog02.jpg" alt="">
-              <div class="blkgdtl">
-                <a href=""></a>
-                <h6>blogpost</h6>
-                <h3>NishOmi Designer Abayas</h3>
-              </div>
-            </div>
-          </div>
-          <div class="hmeblksg">
-            <img src="assets/images/blog03.jpg" alt="">
-            <div class="blkgdtl">
-              <a href=""></a>
-              <h6>blogpost</h6>
-              <h3>NishOmi Designer Abayas</h3>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
     </section>
     <app-footer></app-footer>
     </body>

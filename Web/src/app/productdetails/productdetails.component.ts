@@ -42,13 +42,21 @@ export class ProductdetailsComponent implements OnInit {
     private ngxImgZoom: NgxImgZoomService,
     private route: ActivatedRoute
   ) {}
-  product: [];
-  quantity: number;
+  product: {
+    productCode:'',
+    categoryName:'',
+    name:'',
+    cost:0,
+    description:''
+  };
+  quantity: number=1;
   closeResult: string;
   isRequest: boolean;
   selectedproduct: [];
   imageurl: string;
   enableZoom: Boolean = true;
+  showCustomsize:Boolean=false;
+  selectedSize:string='';
   ngOnInit(): void {
     this.quantity = 1;
     this.imageurl = IMAGE_ENDPOINT;
@@ -99,5 +107,13 @@ export class ProductdetailsComponent implements OnInit {
       this.quantity = --this.quantity;
       }
     } 
+  }
+
+  toggleCustomeSize(){
+    this.showCustomsize=!this.showCustomsize;
+  }
+
+  selectSize(size){
+    this.selectedSize=size;
   }
 }
