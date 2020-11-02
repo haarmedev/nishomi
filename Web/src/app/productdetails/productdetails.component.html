@@ -6,50 +6,50 @@
         <div class="product-details-tab product-details-tab2">
           <div class="product-dec-slider-2 product-dec-small-style2">
             <div class="product-dec-small">
-              <img src="assets/images/products/prod_01.jpg" alt="">
+              <img src="assets/images/prod01.jpg" alt="">
             </div>
             <div class="product-dec-small">
-              <img src="assets/images/products/prod_02.jpg" alt="">
+              <img src="assets/images/prod02.jpg" alt="">
             </div>
           </div>
           <div class="pro-dec-big-img-slider">
             <div class="easyzoom-style">
               <div class="easyzoom easyzoom--overlay">
-                <a href="assets/images/products/prod_01.jpg">
-                  <img src="assets/images/products/prod_01.jpg" alt="">
+                <a href="assets/images/prod01.jpg">
+                  <img src="assets/images/prod01.jpg" alt="">
                 </a>
               </div>
-              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/products/prod_01.jpg"></a>
+              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/prod01.jpg"></a>
             </div>
             <div class="easyzoom-style">
               <div class="easyzoom easyzoom--overlay">
-                <a href="assets/images/products/prod_02.jpg">
-                  <img src="assets/images/products/prod_02.jpg" alt="">
+                <a href="assets/images/prod02.jpg">
+                  <img src="assets/images/prod02.jpg" alt="">
                 </a>
               </div>
-              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/products/prod_02.jpg"></a>
+              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/prod02.jpg"></a>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="proddtls">
-          <h5><a href="">Casual Wear</a></h5>
-          <h6>Antique Bezelry Abaya</h6>
+          <h5><a href="">{{product.categoryName}}</a></h5>
+          <h6>{{product.name}}</h6>
           <div class="price">
-            <div class="new">AED 300.00</div>
+            <div class="new">AED {{product.cost.toFixed(2)}}</div>
           </div>
-          <p>This is a timeless piece with antique bezelry work on the sleeves. This piece will add as a traditional piece in your collection, making it fit for any occasion.</p>
+          <p>{{product.description}}</p>
           <ul class="product-meta">
-            <li>Code: <span>BE45VGRT</span></li>
+            <li>Code: <span>{{product.productCode}}</span></li>
             <li>Availability: <span>In stock</span></li>
           </ul>
 
           <div class="quantity">
             <h6 >Quantity: </h6>
-            <input type="button" value="-" class="minus" (click)="(OnClickMinus)">
-            <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
-            <input type="button" value="+" class="plus">
+            <input type="button" value="-" class="minus" (click)="(changeQuantity('decrement'))">
+            <input type="text" name="quantity" value="{{quantity}}" title="Qty" class="qty" size="4">
+            <input type="button" value="+" class="plus" (click)="(changeQuantity('increment'))">
           </div>
           <div class="cart-product-quantity">
             <div class="sizeabaya">

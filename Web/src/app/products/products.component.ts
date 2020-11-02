@@ -17,6 +17,7 @@ import {
 import { ModalComponent } from '../modal/modal.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -36,7 +37,9 @@ export class ProductsComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     public dialog: MatDialog,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   category: [];
   product:[];
@@ -123,6 +126,10 @@ export class ProductsComponent implements OnInit {
 
   onRequest() {
     this.isRequest = true;
+  }
+
+  gotoDetails(id:any){
+      this.router.navigate(['/productdetails'], { queryParams: { id: id } });
   }
 
   closeModal() {
