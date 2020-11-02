@@ -39,6 +39,7 @@ export class ProductsComponent implements OnInit {
     private modalService: NgbModal
   ) {}
   category: [];
+  product:[];
   closeResult: string;
   isRequest: boolean;
   showModal:boolean;

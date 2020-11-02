@@ -1,0 +1,144 @@
+<app-header></app-header>
+<section id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="product-details-tab product-details-tab2">
+          <div class="product-dec-slider-2 product-dec-small-style2">
+            <div class="product-dec-small">
+              <img src="assets/images/products/prod_01.jpg" alt="">
+            </div>
+            <div class="product-dec-small">
+              <img src="assets/images/products/prod_02.jpg" alt="">
+            </div>
+          </div>
+          <div class="pro-dec-big-img-slider">
+            <div class="easyzoom-style">
+              <div class="easyzoom easyzoom--overlay">
+                <a href="assets/images/products/prod_01.jpg">
+                  <img src="assets/images/products/prod_01.jpg" alt="">
+                </a>
+              </div>
+              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/products/prod_01.jpg"></a>
+            </div>
+            <div class="easyzoom-style">
+              <div class="easyzoom easyzoom--overlay">
+                <a href="assets/images/products/prod_02.jpg">
+                  <img src="assets/images/products/prod_02.jpg" alt="">
+                </a>
+              </div>
+              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/products/prod_02.jpg"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="proddtls">
+          <h5><a href="">Casual Wear</a></h5>
+          <h6>Antique Bezelry Abaya</h6>
+          <div class="price">
+            <div class="new">AED 300.00</div>
+          </div>
+          <p>This is a timeless piece with antique bezelry work on the sleeves. This piece will add as a traditional piece in your collection, making it fit for any occasion.</p>
+          <ul class="product-meta">
+            <li>Code: <span>BE45VGRT</span></li>
+            <li>Availability: <span>In stock</span></li>
+          </ul>
+
+          <div class="quantity">
+            <h6 >Quantity: </h6>
+            <input type="button" value="-" class="minus" (click)="(OnClickMinus)">
+            <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
+            <input type="button" value="+" class="plus">
+          </div>
+          <div class="cart-product-quantity">
+            <div class="sizeabaya">
+              <h6>Size:</h6>
+              <ul class="size-list">
+                <li>
+                  <a role="button" class="size_item" data-value="54">54</a>
+                </li>
+                <li>
+                  <a role="button" class="size_item" data-value="56">56</a>
+                </li>
+                <li>
+                  <a role="button" class="size_item" data-value="58">58</a>
+                </li>
+                <li>
+                  <a role="button" class="size_item" data-value="60">60</a>
+                </li>
+              </ul>
+              <div class="customsize">
+                <h6 class="custombtm"><span>CUSTOM SIZE</span></h6>
+                <ul>
+                  <li>
+                    <img src="assets/images/size/01.jpg" alt="">
+                    <p>Full Length</p>
+                    <input type="text" placeholder="in inches">
+                  </li>
+                  <li>
+                    <img src="assets/images/size/02.jpg" alt="">
+                    <p>Sleeve Length</p>
+                    <input type="text" placeholder="in inches">
+                  </li>
+                  <li>
+                    <img src="assets/images/size/03.jpg" alt="">
+                    <p>Bust</p>
+                    <input type="text" placeholder="in inches">
+                  </li>
+                  <li>
+                    <img src="assets/images/size/04.jpg" alt="">
+                    <p>Hip</p>
+                    <input type="text" placeholder="in inches">
+                  </li>
+                </ul>
+                <div class="termsblk">
+                  <input type="checkbox" id="Terms" name="Terms" value="Terms">
+                  <label for="Terms">I accept the <a href=""> Terms & Conditions</a></label><br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-fill-out btn-addtocart" type="button" (click)="onRequest()">Request Interest</button>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="proddesc">
+          <div class="buyform" id="buyform">
+            <h2>Contact Details</h2>
+            <form>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <input type="text" required="required">
+                  <label for="input" class="control-label">Full Name</label><i class="bar"></i>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" required="required">
+                  <label for="input" class="control-label">Email Id</label><i class="bar"></i>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" required="required">
+                  <label for="input" class="control-label">Contact Number</label><i class="bar"></i>
+                </div>
+                <div class="form-group col-md-6">
+                  <textarea required="required"></textarea>
+                  <label for="textarea" class="control-label">Address</label><i class="bar"></i>
+                </div>
+                <div class="form-group col-md-6">
+                  <textarea required="required"></textarea>
+                  <label for="textarea" class="control-label">Message</label><i class="bar"></i>
+                </div>
+
+              </div>
+            </form>
+            <div class="button-container">
+              <button type="button" class="button"><span>Buy Now</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

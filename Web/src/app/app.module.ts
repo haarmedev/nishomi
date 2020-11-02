@@ -19,6 +19,8 @@ import { MaterialModule } from './material.module';
 import { ModalComponent } from './modal/modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import {ProductdetailsComponent} from './productdetails/productdetails.component';
+import{NgxImgZoomModule} from 'ngx-img-zoom';
  
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -34,7 +36,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ContactusComponent,
     ProductsComponent,
     StoryComponent,
-    ModalComponent
+    ModalComponent,
+    ProductdetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MaterialModule,
     NgbModule,
     ReactiveFormsModule,
+    NgxImgZoomModule
   ],
   providers: [
     {

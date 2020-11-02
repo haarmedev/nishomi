@@ -516,6 +516,332 @@ background-size: cover;
   color: #e7b51f;
   text-transform: uppercase;
 }
+.proddtls > p {
+  font-size: 16px;
+  line-height: 28px;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 500;
+}
+.proddtls .price .new {
+  color: #be9b49;
+  font-size: 20px;
+  font-weight: 700;
+  display: inline-block;
+}
+.proddtls h5 a {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 0 0 8px;
+  font-weight: 600;
+  color: rgba(0,0,0,.5);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.proddtls h6 {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  color: #222529;
+  font-size: 25px;
+  font-weight: 700;
+}
+.product-meta li {
+    list-style: none;
+    margin-top: 10px;
+    color: #333;
+    font-size: 15px;
+    font-weight: 400;
+}
+.product-meta li {
+  list-style: none;
+  margin-top: 10px;
+  color: #333;
+  font-size: 15px;
+  font-weight: 400;
+}
+.product-meta li:last-child span {
+  color: #2ea349;
+}
+.proddtls .price {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+ul {
+  list-style: none;
+}
+.product-meta {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+.proddtls h6 {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  color: #222529;
+  font-size: 25px;
+  font-weight: 700;
+}
+.sizeabaya h6, .quantity h6 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+}
+.sizeabaya h6, .quantity h6 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+}
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button, input {
+  overflow: visible;
+}
+.quantity .minus, .quantity .plus {
+  width: 40px;
+  border: 1px solid #dae2e6;
+  height: 40px;
+  text-align: center;
+  background: #ccc;
+  outline: 0;
+  font-size: 22px;
+  font-weight: 500;
+}
+a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+}
+.size-list .size_item {
+  background: #ffffff;
+  color: #8F8F8F;
+  border: 2px solid #E6E6E6;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  margin: 0 15px 0 0;
+  width: 40px;
+  height: 40px;
+  line-height: 37px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+}
+a, a:hover, a:focus {
+  text-decoration: none;
+  -moz-transition: all .200s ease-in-out;
+  -webkit-transition: all .200s ease-in-out;
+  transition: all .200s ease-in-out;
+}
+.h6, h6 {
+  font-size: 1rem;
+}
+.custombtm span {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  border-bottom: 2px solid #f1a32e;
+  padding-bottom: 3px;
+  margin: 10px 0;
+}
+.btncart, .btncart:hover {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 12px 25px;
+  margin-top: 0px;
+  display: inline-block;
+}
+.customsize ul li {
+  width: 25%;
+  padding: 10px;
+  text-align: center;
+}
+.customsize ul li img {
+  width: 80%;
+  display: inline-block;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+img:not([draggable]), embed, object, video {
+  max-width: 100%;
+  height: auto;
+}
+audio, canvas, iframe, img, svg, video {
+  vertical-align: middle;
+}
+img {
+  border-style: none;
+}
+.customsize ul li p {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 5px;
+}
+button, input {
+  overflow: visible;
+}
+.quantity .qty {
+  width: 80px;
+  border: 1px solid #dae2e6;
+  height: 40px;
+  text-align: center;
+}
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+.size-list li {
+  display: inline-block;
+}
+.size-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul {
+  list-style: none;
+}
+.size-list .size_item.selected {
+  border-color: #be9b49;
+}
+.size-list .size_item {
+  background: #ffffff;
+  color: #8F8F8F;
+  border: 2px solid #E6E6E6;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  margin: 0 15px 0 0;
+  width: 40px;
+  height: 40px;
+  line-height: 37px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+}
+.termsblk {
+  padding-bottom: 15px;
+  font-size: 14px;
+  padding-top: 15px;
+}
+.btncart:hover {
+  background-color: #d1992f;
+}
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
+}
+.quantity .minus, .quantity .plus {
+  width: 40px;
+  border: 1px solid #dae2e6;
+  height: 40px;
+  text-align: center;
+  background: #ccc;
+  outline: 0;
+  font-size: 22px;
+  font-weight: 500;
+}
+input[type="text" i] {
+  padding: 1px 2px;
+}
+user agent stylesheet
+input {
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: -internal-light-dark(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: textfield;
+  background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+  padding: 1px 2px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-image: initial;
+}
+.customsize ul li {
+  width: 25%;
+  padding: 10px;
+  text-align: center;
+}
+.customsize ul li p {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 5px;
+}
+.customsize ul li input {
+  width: 100%;
+  font-size: 13px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #ccc;
+  outline: 0;
+}
+button, input {
+  overflow: visible;
+}
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button, input {
+  overflow: visible;
+}
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
+}
+.customsize {
+  margin: 15px 0 5px 0;
+  padding: 0 15px;
+  background-color: #eee;
+  height: 50px;
+  overflow: hidden;
+  -moz-transition: all .600s ease-in-out;
+  -webkit-transition: all .600s ease-in-out;
+  transition: all .600s ease-in-out;
+}
+
 .hmeblog ul li .blkgdtl h3 {
   font-size: 30px;
   font-weight: 600;
