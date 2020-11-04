@@ -20,8 +20,9 @@
         /// </summary>
         /// <param name="productId">The product identifier.</param>
         /// <param name="url">The URL.</param>
+        /// <param name="isMainImage">The is main image.</param>
         /// <returns></returns>
-        bool SaveProductImage(Guid productId, string url);
+        bool SaveProductImage(Guid productId, string url,bool isMainImage);
 
         /// <summary>
         /// Creates the specified product.

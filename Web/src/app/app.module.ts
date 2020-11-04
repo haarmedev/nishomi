@@ -20,10 +20,12 @@ import { ModalComponent } from './modal/modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import {ProductdetailsComponent} from './productdetails/productdetails.component';
-import{NgxImgZoomModule} from 'ngx-img-zoom';
 import { BlogsComponent } from './blogs/blogs.component';
 import { Blog1Component } from './blog1/blog1.component';
 import { Blog2Component } from './blog2/blog2.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { NgxImgZoomModule } from 'ngx-img-zoom';
+
  
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -55,7 +57,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MaterialModule,
     NgbModule,
     ReactiveFormsModule,
-    NgxImgZoomModule
+    NgxImgZoomModule,
+    SlickCarouselModule,
   ],
   providers: [
     {

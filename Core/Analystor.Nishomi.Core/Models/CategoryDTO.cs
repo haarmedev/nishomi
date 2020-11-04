@@ -57,6 +57,19 @@
             set;
         }
 
+
+        /// <summary>
+        /// Gets or sets the image.
+        /// </summary>
+        /// <value>
+        /// The image.
+        /// </value>
+        public string Image
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -76,6 +89,18 @@
         /// The file.
         /// </value>
         public IFormFile File
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the file1.
+        /// </summary>
+        /// <value>
+        /// The file1.
+        /// </value>
+        public IFormFile ModelImage
         {
             get;
             set;

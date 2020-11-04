@@ -45,6 +45,18 @@ namespace Analystor.Nishomi.Domain
         }
 
         /// <summary>
+        /// Gets or sets the image.
+        /// </summary>
+        /// <value>
+        /// The image.
+        /// </value>
+        public string Image
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets the products.
         /// </summary>
         /// <value>

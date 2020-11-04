@@ -54,7 +54,8 @@
                 Description = product.Description,
                 Images = product.ProductImages.Select(it => new ImagesListDTO()
                 {
-                    ImageUrl = it.Url
+                    ImageUrl = it.Url,
+                    IsMainImage=it.IsMainImage
                 }).ToList()
             };
 
@@ -89,7 +90,8 @@
             Description = product.Description,
             Images = product.ProductImages.Select(it => new ImagesListDTO()
             {
-                ImageUrl = it.Url
+                ImageUrl = it.Url,
+                IsMainImage=it.IsMainImage
             }).ToList()
         };
 
@@ -119,7 +121,8 @@
                                             Description = it.Description,
                                             Images = it.ProductImages.Select(pt => new ImagesListDTO()
                                             {
-                                                ImageUrl = pt.Url
+                                                ImageUrl = pt.Url,
+                                                IsMainImage=pt.IsMainImage
                                             }).ToList()
                                         }).ToList();
         }
@@ -130,12 +133,13 @@
         /// <param name="productId">The product identifier.</param>
         /// <param name="url">The URL.</param>
         /// <returns></returns>
-        public bool SaveProductImage(Guid productId, string url)
+        public bool SaveProductImage(Guid productId, string url,bool isMainImage)
         {
             ProductImages entry = new ProductImages()
             {
                 ProductId = productId,
-                Url = url
+                Url = url,
+                IsMainImage=isMainImage
             };
 
             this.CurrentDbContext.ProductImages.Add(entry);
@@ -163,6 +167,18 @@
                 Description = product.Description,
                 IsFeatured=product.IsFeatured
             };
+            if (product.MainImage != null)
+            {
+                byte[] fileBytes;
+                using (var ms = new MemoryStream())
+                {
+                    product.MainImage.CopyTo(ms);
+                    fileBytes = ms.ToArray();
+                }
+                string relativePath = string.Format(CommonConstants.ProductImagePath, entry.Id);
+                var path = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, product.MainImage.FileName);
+                this.SaveProductImage(entry.Id, path,true);
+            }
             if (product.Files.Count > 0)
             {
                 foreach (var file in product.Files)
@@ -175,7 +191,7 @@
                     }
                     string relativePath = string.Format(CommonConstants.ProductImagePath, entry.Id);
                     var path = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, file.FileName);
-                    this.SaveProductImage(entry.Id, path);
+                    this.SaveProductImage(entry.Id, path,false);
                 }
             }
 
@@ -195,6 +211,34 @@
             bool status = false;
             var item = this.CurrentDbContext.Products.FirstOrDefault(it => it.Id == product.ProductId);
 
+            if (product.MainImage != null)
+            {
+                byte[] fileBytes;
+                using (var ms = new MemoryStream())
+                {
+                    product.MainImage.CopyTo(ms);
+                    fileBytes = ms.ToArray();
+                }
+                string relativePath = string.Format(CommonConstants.ProductImagePath, item.Id);
+                var path = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, product.MainImage.FileName);
+                this.SaveProductImage(item.Id, path, true);
+            }
+            if (product.Files != null && product.Files.Count > 0)
+            {
+                foreach (var file in product.Files)
+                {
+                    byte[] fileBytes;
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        fileBytes = ms.ToArray();
+                    }
+                    string relativePath = string.Format(CommonConstants.ProductImagePath, item.Id);
+                    var path = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, file.FileName);
+                    this.SaveProductImage(item.Id, path, false);
+                }
+            }
+
             if (item != null)
             {
                 item.CategoryId = product.CategoryId;
@@ -211,21 +255,6 @@
                 this.CurrentDbContext.SaveChanges();
 
                 status = true;
-            }
-            if (product.Files!=null && product.Files.Count > 0)
-            {
-                foreach (var file in product.Files)
-                {
-                    byte[] fileBytes;
-                    using (var ms = new MemoryStream())
-                    {
-                        file.CopyTo(ms);
-                        fileBytes = ms.ToArray();
-                    }
-                    string relativePath = string.Format(CommonConstants.ProductImagePath, item.Id);
-                    var path = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, file.FileName);
-                    this.SaveProductImage(item.Id, path);
-                }
             }
 
             return status;

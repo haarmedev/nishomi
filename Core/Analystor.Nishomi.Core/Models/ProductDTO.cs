@@ -142,6 +142,18 @@
         }
 
         /// <summary>
+        /// Gets or sets the main image.
+        /// </summary>
+        /// <value>
+        /// The main image.
+        /// </value>
+        public IFormFile MainImage
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the files.
         /// </summary>
         /// <value>

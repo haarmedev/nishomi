@@ -78,5 +78,17 @@
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets or sets the size.
+        /// </summary>
+        /// <value>
+        /// The size.
+        /// </value>
+        public string Size
+        {
+            get;
+            set;
+        }
     }
 }

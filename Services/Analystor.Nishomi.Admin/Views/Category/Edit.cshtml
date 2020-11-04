@@ -42,6 +42,16 @@
                     <input type="file" asp-for="File" />
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6 formsingle">
+                    <label class="mandatory">Model Image Uploaded</label>
+                    <img height="200" width="200" src="@Model.Image" />
+                </div>
+                <div class="col-md-6 formsingle">
+                    <label class="mandatory">Model Image</label>
+                    <input type="file" asp-for="ModelImage" />
+                </div>
+            </div>
             <div class="col-md-12 formsingle">
                 <button class="btnRed btnSmall" name=""><i class="mdi mdi-content-save-outline"></i>Update</button>
             </div>
