@@ -5,30 +5,42 @@
       <div class="col-md-6">
         <div class="product-details-tab product-details-tab2">
           <div class="product-dec-slider-2 product-dec-small-style2">
-            <div class="product-dec-small">
-              <img src="assets/images/prod01.jpg" alt="">
+            <div class="product-dec-small" *ngFor="let item of product.images;index as i;first as is">
+              <img src="{{imageurl+item.imageUrl}}" alt="">
+            </div>
+            <!-- <div class="product-dec-small">
+              <img src="assets/images/products/prod_02.jpg" alt="">
             </div>
             <div class="product-dec-small">
-              <img src="assets/images/prod02.jpg" alt="">
-            </div>
+              <img src="assets/images/products/prod_02.jpg" alt="">
+            </div> -->
           </div>
+         
           <div class="pro-dec-big-img-slider">
-            <div class="easyzoom-style">
+            <div class="easyzoom-style" *ngFor="let item of product.images;index as i;first as is">
               <div class="easyzoom easyzoom--overlay">
-                <a href="assets/images/prod01.jpg">
-                  <img src="assets/images/prod01.jpg" alt="">
+                <a href="{{imageurl+item.imageUrl}}">
+                  <img src="{{imageurl+item.imageUrl}}" alt="">
                 </a>
               </div>
-              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/prod01.jpg"></a>
+              <a class="easyzoom-pop-up img-popup popmag" href="{{imageurl+item.imageUrl}}"></a>
+            </div>
+            <!-- <div class="easyzoom-style">
+              <div class="easyzoom easyzoom--overlay">
+                <a href="assets/images/products/prod_02.jpg">
+                  <img src="assets/images/products/prod_02.jpg" alt="">
+                </a>
+              </div>
+              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/products/prod_02.jpg"></a>
             </div>
             <div class="easyzoom-style">
               <div class="easyzoom easyzoom--overlay">
-                <a href="assets/images/prod02.jpg">
-                  <img src="assets/images/prod02.jpg" alt="">
+                <a href="assets/images/products/prod_02.jpg">
+                  <img src="assets/images/products/prod_02.jpg" alt="">
                 </a>
               </div>
-              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/prod02.jpg"></a>
-            </div>
+              <a class="easyzoom-pop-up img-popup popmag" href="assets/images/products/prod_02.jpg"></a>
+            </div> -->
           </div>
         </div>
       </div>
@@ -46,7 +58,7 @@
           </ul>
 
           <div class="quantity">
-            <h6 >Quantity: </h6>
+            <h6>Quantity: </h6>
             <input type="button" value="-" class="minus" (click)="(changeQuantity('decrement'))">
             <input type="text" name="quantity" disabled value="{{quantity}}" title="Qty" class="qty" size="4">
             <input type="button" value="+" class="plus" (click)="(changeQuantity('increment'))">
@@ -56,16 +68,20 @@
               <h6>Size:</h6>
               <ul class="size-list">
                 <li>
-                  <a role="button" class="size_item" [ngClass]="selectedSize=='54'?'selected':''" (click)="selectSize('54')" data-value="54">54</a>
+                  <a role="button" class="size_item" [ngClass]="selectedSize=='54'?'selected':''"
+                    (click)="selectSize('54')" data-value="54">54</a>
                 </li>
                 <li>
-                  <a role="button" class="size_item" [ngClass]="selectedSize=='56'?'selected':''" (click)="selectSize('56')" data-value="56">56</a>
+                  <a role="button" class="size_item" [ngClass]="selectedSize=='56'?'selected':''"
+                    (click)="selectSize('56')" data-value="56">56</a>
                 </li>
                 <li>
-                  <a role="button" class="size_item" [ngClass]="selectedSize=='58'?'selected':''" (click)="selectSize('58')" data-value="58">58</a>
+                  <a role="button" class="size_item" [ngClass]="selectedSize=='58'?'selected':''"
+                    (click)="selectSize('58')" data-value="58">58</a>
                 </li>
                 <li>
-                  <a role="button" class="size_item" [ngClass]="selectedSize=='60'?'selected':''" (click)="selectSize('60')" data-value="60">60</a>
+                  <a role="button" class="size_item" [ngClass]="selectedSize=='60'?'selected':''"
+                    (click)="selectSize('60')" data-value="60">60</a>
                 </li>
               </ul>
               <div class="customsize" [ngClass]="showCustomsize ? 'show' : ''">
@@ -74,22 +90,22 @@
                   <li>
                     <img src="assets/images/size/01.jpg" alt="">
                     <p>Full Length</p>
-                    <input type="text" placeholder="in inches">
+                    <input [formControl]="fullLength" type="text" placeholder="in inches">
                   </li>
                   <li>
                     <img src="assets/images/size/02.jpg" alt="">
                     <p>Sleeve Length</p>
-                    <input type="text" placeholder="in inches">
+                    <input [formControl]="sleeveLength" type="text" placeholder="in inches">
                   </li>
                   <li>
                     <img src="assets/images/size/03.jpg" alt="">
                     <p>Bust</p>
-                    <input type="text" placeholder="in inches">
+                    <input [formControl]="bust" type="text" placeholder="in inches">
                   </li>
                   <li>
                     <img src="assets/images/size/04.jpg" alt="">
                     <p>Hip</p>
-                    <input type="text" placeholder="in inches">
+                    <input [formControl]="hip" type="text" placeholder="in inches">
                   </li>
                 </ul>
                 <div class="termsblk">
@@ -99,40 +115,40 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-fill-out btn-addtocart" type="button" (click)="onRequest()">Request Interest</button>
+          <button class="btn btn-fill-out btn-addtocart btncart" type="button">Request Interest</button>
         </div>
       </div>
       <div class="col-md-12">
         <div class="proddesc">
           <div class="buyform" id="buyform">
             <h2>Contact Details</h2>
-            <form>
+            <form [formGroup]="profileForm">
               <div class="row">
                 <div class="form-group col-md-6">
-                  <input type="text" required="required">
+                  <input formControlName="name" type="text" required="required">
                   <label for="input" class="control-label">Full Name</label><i class="bar"></i>
                 </div>
                 <div class="form-group col-md-6">
-                  <input type="text" required="required">
+                  <input formControlName="cusmail" type="text" required="required">
                   <label for="input" class="control-label">Email Id</label><i class="bar"></i>
                 </div>
                 <div class="form-group col-md-6">
-                  <input type="text" required="required">
+                  <input formControlName="phone" type="text" required="required">
                   <label for="input" class="control-label">Contact Number</label><i class="bar"></i>
                 </div>
                 <div class="form-group col-md-6">
-                  <textarea required="required"></textarea>
+                  <textarea formControlName="address" required="required"></textarea>
                   <label for="textarea" class="control-label">Address</label><i class="bar"></i>
                 </div>
                 <div class="form-group col-md-6">
-                  <textarea required="required"></textarea>
+                  <textarea formControlName="message" required="required"></textarea>
                   <label for="textarea" class="control-label">Message</label><i class="bar"></i>
                 </div>
 
               </div>
             </form>
             <div class="button-container">
-              <button type="button" class="button"><span>Buy Now</span></button>
+              <button type="button" class="button" (click)="buyProduct()"><span>Buy Now</span></button>
             </div>
           </div>
         </div>

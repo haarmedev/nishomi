@@ -46,15 +46,19 @@
                     </div>
                     </div>
                 <div class="row">
-                    <div class="col-md-6 formsingle">
+                    <div class="col-md-4 formsingle">
                         <label class="mandatory">Product Cost</label>
                         <input type="number" asp-for="Cost" id="productPrice" placeholder="Cost">
                     </div>
-                    <div class="col-md-6 formsingle">
+                    <div class="col-md-4 formsingle">
+                        <label class="mandatory">Main Image</label>
+                        <input type="file" asp-for="MainImage" />
+                    </div>
+                    <div class="col-md-4 formsingle">
                         <label class="mandatory">Images</label>
                         <input type="file" multiple="mutiple" asp-for="Files" />
                     </div>
-                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6 formsingle">
                         <label class="mandatory">Caption</label>

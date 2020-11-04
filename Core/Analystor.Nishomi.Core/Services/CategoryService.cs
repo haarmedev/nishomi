@@ -88,7 +88,8 @@
                                             Name = it.Name,
                                             Caption = it.Caption,
                                             Description = it.Description,
-                                            Url = it.Url
+                                            Url = it.Url,
+                                            Image=it.Image
                                         }).FirstOrDefault();
         }
 
@@ -109,6 +110,7 @@
                                             Caption = it.Caption,
                                             Description = it.Description,
                                             Url = it.Url,
+                                            Image=it.Image,
                                             Products=it.Products.Select(pc=> new ProductAPIDTO()
                                             {
                                                 ProductId=pc.Id,
@@ -122,6 +124,7 @@
                                                 Images=pc.ProductImages.Select(im=> new ImagesListDTO()
                                                 {
                                                     ImageUrl=im.Url,
+                                                    IsMainImage=im.IsMainImage
                                                 }).ToList()
                                             }).ToList()
                                         }).ToList();
@@ -150,7 +153,15 @@
             string relativePath = string.Format(CommonConstants.CatogoryImagePath, entry.Id);
             var path = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, category.File.FileName);
 
+            using (var ms = new MemoryStream())
+            {
+                category.ModelImage.CopyTo(ms);
+                fileBytes = ms.ToArray();
+            }
+            var modelImagePath = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, category.ModelImage.FileName);
+
             entry.Url = path;
+            entry.Image = modelImagePath;
 
             this.CurrentDbContext.Categories.Add(entry);
             this.CurrentDbContext.SaveChanges();
@@ -184,6 +195,16 @@
                     }
                     string relativePath = string.Format(CommonConstants.CatogoryImagePath, item.Id);
                     item.Url = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, category.File.FileName);
+                }
+                if (category.ModelImage != null)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        category.ModelImage.CopyTo(ms);
+                        fileBytes = ms.ToArray();
+                    }
+                    string relativePath = string.Format(CommonConstants.CatogoryImagePath, item.Id);
+                    item.Image = this._fileManager.CreateFileAsync(fileBytes, CommonConstants.ResourcesFolder, relativePath, category.ModelImage.FileName);
                 }
 
                 this.CurrentDbContext.Categories.Update(item);
