@@ -53,27 +53,15 @@ namespace Analystor.Nishomi.Admin.Controllers
         public IActionResult Create(CategoryDTO category)
         {
             bool status = false;
-
-            if (ModelState.IsValid)
-            {
                 try
                 {
-                    var duplicate = this._categoryService.IsDuplicate(category.Name,Guid.Empty);
-                    if (duplicate)
-                    {
-                        return Json(new { message = CommonConstants.CategoryDuplicate, status = false });
-                    }
-                    else
-                    {
                         status = this._categoryService.Create(category);
                         return Json(new { message = CommonConstants.SuccessfullyCreated, status = true });
-                    }
                 }
                 catch (Exception ex)
                 {
                     this._logger.LogError(ex, "Error in creating category");
                 }
-            }
 
             return View("~/Views/Category/Index.cshtml");
         }
@@ -94,26 +82,15 @@ namespace Analystor.Nishomi.Admin.Controllers
         {
             bool status = false;
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
-                    var duplicate = this._categoryService.IsDuplicate(category.Name, category.CategoryId);
-                    if (duplicate)
-                    {
-                        return Json(new { message = CommonConstants.CategoryDuplicate, status = false });
-                    }
-                    else
-                    {
                         status = this._categoryService.Update(category);
                         return Json(new { message = CommonConstants.SuccessfullyUpdated, status = true });
-                    }
                 }
                 catch (Exception ex)
                 {
                     this._logger.LogError(ex, "Error in updating category");
                 }
-            }
 
             return View("~/Views/Category/Index.cshtml");
         }

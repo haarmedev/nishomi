@@ -236,24 +236,5 @@
             return status;
         }
 
-        /// <summary>
-        /// Determines whether the specified name is duplicate.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="id">The identifier.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified name is duplicate; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsDuplicate(string name,Guid id)
-        {
-            if (id != Guid.Empty)
-            {
-                return this.CurrentDbContext.Categories.Where(it => it.Id !=id && it.Name == name).Count() > 0;
-            }
-            else
-            {
-                return this.CurrentDbContext.Categories.Where(it => it.Name == name).Count() > 0;
-            }
-        }
     }
 }

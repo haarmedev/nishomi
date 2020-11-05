@@ -42,16 +42,6 @@
         bool Delete(Guid categoryId);
 
         /// <summary>
-        /// Determines whether the specified name is duplicate.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="id">The identifier.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified name is duplicate; otherwise, <c>false</c>.
-        /// </returns>
-        bool IsDuplicate(string name, Guid id);
-
-        /// <summary>
         /// Gets the category.
         /// </summary>
         /// <param name="categoryId">The category identifier.</param>
