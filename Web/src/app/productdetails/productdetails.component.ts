@@ -20,7 +20,6 @@ import {
 } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { NgxImgZoomService } from "ngx-img-zoom";
 declare var $: any;
 @Component({
   selector: 'app-productdetails',
@@ -45,15 +44,7 @@ export class ProductdetailsComponent implements OnInit {
     private httpClient: HttpClient,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private ngxImgZoom: NgxImgZoomService
   ) {
-    this.ngxImgZoom.setZoomBreakPoints([
-      { w: 100, h: 100 },
-      { w: 150, h: 150 },
-      { w: 200, h: 200 },
-      { w: 250, h: 250 },
-      { w: 300, h: 300 }
-    ]);
   }
   product: {
     productCode: '';
@@ -61,10 +52,7 @@ export class ProductdetailsComponent implements OnInit {
     name: '';
     cost: 0;
     description: '';
-    images:[
-      {'imageUrl':'https://nishomi-api.analystortech.com/admin/Resources/Product/02a0a082-a4b0-4ffd-88f0-d5483d5ef8d8/Images/Abaya8176.jpg'},
-      {'imageUrl':'https://nishomi-api.analystortech.com/admin/Resources/Product/02a0a082-a4b0-4ffd-88f0-d5483d5ef8d8/Images/Abaya8176.jpg'}
-    ],
+    images:[]
   };
   productDetails:any=[];
   quantity: number = 1;
@@ -88,15 +76,15 @@ export class ProductdetailsComponent implements OnInit {
       console.log(data);
       this.product = data.data;
       this.productDetails=data.data;
-      for(let i=0;i<this.productDetails.images.length;i++){
-        this.sliderHtml+='<div class="product-dec-small">'+
-                        '<img src='+this.imageurl+this.productDetails.images[i].imageUrl+' alt=""></div>';
+      // for(let i=0;i<this.productDetails.images.length;i++){
+      //   this.sliderHtml+='<div class="product-dec-small">'+
+      //                   '<img src='+this.imageurl+this.productDetails.images[i].imageUrl+' alt=""></div>';
   
-        this.zoomHtml+='<div class="easyzoom-style"><div class="easyzoom easyzoom--overlay">'+
-                  '<a href='+this.imageurl+this.productDetails.images[i].imageUrl+'>'+
-                  '<img src='+this.imageurl+this.productDetails.images[i].imageUrl+' alt=""></a></div>'+
-                  '<a class="easyzoom-pop-up img-popup popmag" href='+this.imageurl+this.productDetails.images[i].imageUrl+'></a></div>';
-      }
+      //   this.zoomHtml+='<div class="easyzoom-style"><div class="easyzoom easyzoom--overlay">'+
+      //             '<a href='+this.imageurl+this.productDetails.images[i].imageUrl+'>'+
+      //             '<img src='+this.imageurl+this.productDetails.images[i].imageUrl+' alt=""></a></div>'+
+      //             '<a class="easyzoom-pop-up img-popup popmag" href='+this.imageurl+this.productDetails.images[i].imageUrl+'></a></div>';
+      // }
     });
     $('.btncart').click(function () {
       $('html, body').animate(
@@ -106,6 +94,51 @@ export class ProductdetailsComponent implements OnInit {
         2000
       );
     });
+    // var $easyzoom = $('.easyzoom').easyZoom();
+
+    //     $('.pro-dec-big-img-slider').slick({
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //       arrows: false,
+    //       draggable: false,
+    //       fade: false,
+    //       asNavFor: '.product-dec-slider , .product-dec-slider-2',
+    //     });
+
+
+
+    // /*---------------------------------
+    //     Product details slider 2 active
+    //     -----------------------------------*/
+    //     $('.product-dec-slider-2').slick({
+    //       slidesToShow: 4,
+    //       slidesToScroll: 1,
+    //       vertical: true,
+    //       asNavFor: '.pro-dec-big-img-slider',
+    //       dots: false,
+    //       focusOnSelect: true,
+    //       fade: false,
+    //       prevArrow: '<span class="pro-dec-icon pro-dec-prev"><i class="icofont-rounded-up"></i></span>',
+    //       nextArrow: '<span class="pro-dec-icon pro-dec-next"><i class="icofont-rounded-down"></i></i></span>',
+    //       responsive: [{
+    //         breakpoint: 767,
+    //         settings: {
+
+    //         }
+    //       },
+    //       {
+    //         breakpoint: 420,
+    //         settings: {
+    //           autoplay: true,
+    //           slidesToShow: 2,
+    //         }
+    //       }
+    //       ]
+    //     });
+  }
+  ngAfterViewInit(): void{
+    //this.slides=this.imageurl+this.productDetails.images[0].imageUrl;
+    //alert(this.slides);
     var $easyzoom = $('.easyzoom').easyZoom();
 
         $('.pro-dec-big-img-slider').slick({
@@ -147,17 +180,6 @@ export class ProductdetailsComponent implements OnInit {
           }
           ]
         });
-
-        // $('.popmag').magnificPopup({
-        //   type: 'image',
-        //   gallery: {
-        //     enabled: true
-        //   }
-        // });
-  }
-  ngAfterViewInit(): void{
-    //this.slides=this.imageurl+this.productDetails.images[0].imageUrl;
-    //alert(this.slides);
   }
   buyProduct() {
     var formData: any = new FormData();

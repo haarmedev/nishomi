@@ -47,7 +47,7 @@
       <div class="col-md-6">
         <div class="proddtls">
           <h5><a href="">{{product.categoryName}}</a></h5>
-          <h6>{{product.name}}</h6>
+          <h6>Nishomi - {{product.categoryName}} {{product.productCode}}</h6>
           <div class="price">
             <div class="new">AED {{product.cost.toFixed(2)}}</div>
           </div>
@@ -57,12 +57,12 @@
             <li>Availability: <span>In stock</span></li>
           </ul>
 
-          <div class="quantity">
+          <!-- <div class="quantity">
             <h6>Quantity: </h6>
             <input type="button" value="-" class="minus" (click)="(changeQuantity('decrement'))">
             <input type="text" name="quantity" disabled value="{{quantity}}" title="Qty" class="qty" size="4">
             <input type="button" value="+" class="plus" (click)="(changeQuantity('increment'))">
-          </div>
+          </div> -->
           <div class="cart-product-quantity">
             <div class="sizeabaya">
               <h6>Size:</h6>

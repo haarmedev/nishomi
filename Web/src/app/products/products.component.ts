@@ -78,6 +78,35 @@ export class ProductsComponent implements OnInit {
     //nextButton: '.colcar1-next',
     //prevButton: '.colcar1-prev',
   };
+  configs: SwiperOptions = {
+    loop: false,
+    centeredSlides: false,
+    autoplay: false,
+    breakpoints: {
+      767: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        slidesPerGroup: 1,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        slidesPerGroup: 3,
+      },
+      1920: {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        slidesPerGroup: 3,
+      },
+    },
+    navigation: {
+      nextEl: '.colcar2-next',
+      prevEl: '.colcar2-prev',
+    },
+    //keyboardControl: true,
+    //nextButton: '.colcar1-next',
+    //prevButton: '.colcar1-prev',
+  };
 
   config1: SwiperOptions = {
     slidesPerView: 1,

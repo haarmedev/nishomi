@@ -4,25 +4,24 @@
     <div class="container">
       <div class="prodflex">
         <div class="prodleft">
-          <img src="{{imageurl+item.image}}" alt="">
+          <img height="50" src="{{imageurl+item.image}}" alt="">
         </div>
         <div class="prodright">
           <div class="colltitle">
-            <h6>{{item.caption}}</h6>
+            <!-- <h6>{{item.caption}}</h6> -->
             <h3>{{item.name}}</h3>
           </div>
           <div class="carorelative">
-            <div class="swiper-container collcaro colcar1" [swiper]="config">
+            <div [className]="i%2==0? 'swiper-container collcaro colcar1':'swiper-container collcaro colcar2'" [swiper]="i%2==0?config:configs">
               <div class="swiper-wrapper">
 
                 <div class="swiper-slide" *ngFor="let pro of item.products;index as i;first as is">
                   <div class="collimg">
                     <a href=""><img src="{{imageurl+pro.images[0].imageUrl}}" alt=""></a>
-
                   </div>
                   <div class="colldtls">
-                    <h6><a href="">{{pro.name}}</a></h6>
-                    <h5>{{pro.type}} - {{pro.color}}</h5>
+                    <h6><a href="">Nishomi- {{item.name}} {{pro.productCode}}</a></h6>
+                    <!-- <h5>{{pro.type}} - {{pro.color}}</h5> -->
                     <div class="price-box">
                       <span class="old">SR {{pro.cost.toFixed(2)}}</span>
                       <span class="new">SR {{pro.cost.toFixed(2)}}</span>
@@ -36,8 +35,8 @@
               </div>
             </div>
             <div class="collpage">
-              <div class="swiper-button-next colcar1-next"></div>
-              <div class="swiper-button-prev colcar1-prev"></div>
+              <div [className]="i%2==0? 'swiper-button-next colcar1-next':'swiper-button-next colcar2-next'"></div>
+              <div [className]="i%2==0? 'swiper-button-next colcar1-prev':'swiper-button-next colcar2-prev'"></div>
             </div>
           </div>
         </div>

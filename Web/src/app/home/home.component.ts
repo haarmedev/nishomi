@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {CATEGORIESAPI, FEATUREDPRODUCTSAPI,IMAGE_ENDPOINT} from '../core/constants/constant';
 import { SwiperOptions } from 'swiper';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { SwiperOptions } from 'swiper';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,private router: Router) {}
   //mySwiper:Swiper;
   categories=[];
   featuredproducts:[];
@@ -81,4 +82,12 @@ export class HomeComponent implements OnInit {
     })  
     //console.log("result"+this.categories);
   }
+
+  ngAfterViewInit(): void{
+	  
+  }
+
+  gotoDetails(id:any){
+	this.router.navigate(['/productdetails'], { queryParams: { id: id } });
+}
 }
