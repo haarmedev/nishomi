@@ -84,8 +84,9 @@
                     (click)="selectSize('60')" data-value="60">60</a>
                 </li>
               </ul>
+              <div class="customizeblk">
+              <h6 class="custombtm" (click)="toggleCustomeSize()"><span>CUSTOM SIZE</span></h6>
               <div class="customsize" [ngClass]="showCustomsize ? 'show' : ''">
-                <h6 class="custombtm" (click)="toggleCustomeSize()"><span>CUSTOM SIZE</span></h6>
                 <ul>
                   <li>
                     <img src="assets/images/size/01.jpg" alt="">
@@ -113,6 +114,7 @@
                   <label for="Terms">I accept the <a href=""> Terms & Conditions</a></label><br>
                 </div>
               </div>
+            </div>
             </div>
           </div>
           <button class="btn btn-fill-out btn-addtocart btncart" type="button">Request Interest</button>

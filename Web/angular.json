@@ -34,7 +34,8 @@
               "node_modules/slick-carousel/slick/slick.min.js",
               "src/assets/js/easyzoom.js",
               "src/assets/js/slick.min.js",
-              "src/assets/js/swiper-bundle.min.js.map"
+              "src/assets/js/swiper-bundle.min.js.map",
+              "src/assets/js/home.js"
             ]
           },
           "configurations": {

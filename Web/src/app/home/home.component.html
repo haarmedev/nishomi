@@ -1,3 +1,4 @@
+<head></head>
 <body>
     <app-header></app-header>
     <section class="mainbanner">
@@ -16,7 +17,7 @@
             <img src="assets/images/slid04.jpg" alt="">
           </div>
         </div>
-        <div class="bannpage"></div>
+        <div class="bannpage swiper-pagination-clickable swiper-pagination-bullets"></div>
       </div>
     </section>
     <section class="hmeproduct">
@@ -25,7 +26,7 @@
        <h1>Your choice for <span>elegance and glamour.</span></h1>
      </div>
      <div class="caroprod">
-      <div class="swiper-container one" [swiper]="config">
+      <div class="swiper-container one">
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let item of featuredproducts">
             <div class="hmeprsing">

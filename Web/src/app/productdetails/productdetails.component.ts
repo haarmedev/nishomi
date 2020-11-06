@@ -180,6 +180,13 @@ export class ProductdetailsComponent implements OnInit {
           }
           ]
         });
+
+        $('.popmag').magnificPopup({
+          type: 'image',
+          gallery: {
+            enabled: true
+          }
+        });
   }
   buyProduct() {
     var formData: any = new FormData();

@@ -74,6 +74,10 @@ export class ProductsComponent implements OnInit {
       nextEl: '.colcar1-next',
       prevEl: '.colcar1-prev',
     },
+    keyboard: {
+      enabled: true,
+      onlyInViewport: false,
+    },
     //keyboardControl: true,
     //nextButton: '.colcar1-next',
     //prevButton: '.colcar1-prev',
@@ -102,6 +106,10 @@ export class ProductsComponent implements OnInit {
     navigation: {
       nextEl: '.colcar2-next',
       prevEl: '.colcar2-prev',
+    },
+    keyboard: {
+      enabled: true,
+      onlyInViewport: false,
     },
     //keyboardControl: true,
     //nextButton: '.colcar1-next',
