@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit {
       let myScript = document.createElement('script');
       myScript.setAttribute('src', './assets/js/home.js');
       document.body.appendChild(myScript);
-    }, 1000);
+    }, 500);
   }
 
   gotoDetails(id: any) {
