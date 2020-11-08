@@ -154,6 +154,11 @@ export class ProductsComponent implements OnInit {
       console.log(data);
       this.category = data.data;
     });
+    setTimeout(() => {
+      let myScript = document.createElement('script');
+      myScript.setAttribute('src', './assets/js/home.js');
+      document.body.appendChild(myScript);
+    }, 500);
   }
 
   selectProduct(pro) {

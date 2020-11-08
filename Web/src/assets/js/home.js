@@ -100,3 +100,55 @@ if($(window).width() < 766){
 		prevButton: '.swiper-button-prev',
 	});
 }
+
+var swiper = new Swiper('.colcar1', {
+	loop: false,
+	centeredSlides: false,
+	autoplay: false,
+	breakpoints: {
+	  767: {
+		slidesPerView: 1,
+		spaceBetween: 0,
+		slidesPerGroup: 1,
+	  },
+	  1024: {
+		slidesPerView: 2,
+		spaceBetween: 0,
+		slidesPerGroup: 1,
+	  },
+	  1920: {
+		slidesPerView: 3,
+		spaceBetween: 0,
+		slidesPerGroup: 1,
+	  },
+	},
+	keyboardControl: true,
+	nextButton: '.colcar1-next',
+	prevButton: '.colcar1-prev',
+  });
+  var swiper = new Swiper('.colcar2', {
+	loop: false,
+	centeredSlides: false,
+	autoplay: false,
+	breakpoints: {
+	  767: {
+		slidesPerView: 1,
+		spaceBetween: 0,
+		slidesPerGroup: 1,
+	  },
+	  1024: {
+		slidesPerView: 2,
+		spaceBetween: 0,
+		slidesPerGroup: 1,
+	  },
+	  1920: {
+		slidesPerView: 3,
+		spaceBetween: 0,
+		slidesPerGroup: 1,
+	  },
+	},
+	keyboardControl: true,
+	nextButton: '.colcar2-next',
+	prevButton: '.colcar2-prev',
+  });
+

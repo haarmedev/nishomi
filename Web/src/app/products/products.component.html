@@ -21,14 +21,12 @@
                   </div>
                   <div class="colldtls">
                     <h6><a>Nishomi- {{item.name}} {{pro.productCode}}</a></h6>
-                    <!-- <h5>{{pro.type}} - {{pro.color}}</h5> -->
                     <div class="price-box">
                       <span class="old">SR {{pro.cost.toFixed(2)}}</span>
                       <span class="new">SR {{pro.cost.toFixed(2)}}</span>
                     </div>
                     <div class="quickview">
                       <a (click)="gotoDetails(pro.productId)">View Details</a>
-                      <!-- <a (click)="open(mymodal);selectProduct(pro)">View Details</a> -->
                     </div>
                   </div>
                 </div>
@@ -36,7 +34,7 @@
             </div>
             <div class="collpage">
               <div [className]="i%2==0? 'swiper-button-next colcar1-next':'swiper-button-next colcar2-next'"></div>
-              <div [className]="i%2==0? 'swiper-button-next colcar1-prev':'swiper-button-next colcar2-prev'"></div>
+              <div [className]="i%2==0? 'swiper-button-prev colcar1-prev':'swiper-button-prev colcar2-prev'"></div>
             </div>
           </div>
         </div>
