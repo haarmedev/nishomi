@@ -25,6 +25,8 @@ import { Blog1Component } from './blog1/blog1.component';
 import { Blog2Component } from './blog2/blog2.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
+import { TermsComponent } from './terms/terms.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
  
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -45,7 +47,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ProductdetailsComponent,
     BlogsComponent,
     Blog1Component,
-    Blog2Component
+    Blog2Component,
+    TermsComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,

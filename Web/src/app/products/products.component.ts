@@ -18,6 +18,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-products',
@@ -48,6 +49,7 @@ export class ProductsComponent implements OnInit {
   showModal:boolean;
   selectedproduct: [];
   imageurl:string;
+  routeId:string;
 
   config: SwiperOptions = {
     loop: false,
@@ -148,6 +150,9 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.routeId = params.id;
+    });
     this.imageurl=IMAGE_ENDPOINT;
     this.showModal=true;
     this.httpClient.get<any>(CATEGORYPRODUCTS).subscribe((data: any) => {
@@ -211,5 +216,11 @@ export class ProductsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.email = result;
     });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      $('html, body').animate({scrollTop:$('#'+this.routeId).position().top}, 'slow');
+    }, 500);
   }
 }

@@ -15,7 +15,7 @@
               <img src="assets/images/products/prod_02.jpg" alt="">
             </div> -->
           </div>
-         
+
           <div class="pro-dec-big-img-slider">
             <div class="easyzoom-style" *ngFor="let item of product.images;index as i;first as is">
               <div class="easyzoom easyzoom--overlay">
@@ -54,7 +54,7 @@
           <p>{{product.description}}</p>
           <ul class="product-meta">
             <li>Code: <span>{{product.productCode}}</span></li>
-            <li>Availability: <span>In stock</span></li>
+            <!-- <li>Availability: <span>In stock</span></li> -->
           </ul>
 
           <!-- <div class="quantity">
@@ -85,72 +85,74 @@
                 </li>
               </ul>
               <div class="customizeblk">
-              <h6 class="custombtm" role="button" (click)="toggleCustomeSize()"><span>CUSTOM SIZE</span></h6>
-              <div class="customsize" [ngClass]="showCustomsize ? 'show' : ''">
-                <ul>
-                  <li>
-                    <img src="assets/images/size/01.jpg" alt="">
-                    <p>Full Length</p>
-                    <input [formControl]="fullLength" type="text" placeholder="in inches">
-                  </li>
-                  <li>
-                    <img src="assets/images/size/02.jpg" alt="">
-                    <p>Sleeve Length</p>
-                    <input [formControl]="sleeveLength" type="text" placeholder="in inches">
-                  </li>
-                  <li>
-                    <img src="assets/images/size/03.jpg" alt="">
-                    <p>Bust</p>
-                    <input [formControl]="bust" type="text" placeholder="in inches">
-                  </li>
-                  <li>
-                    <img src="assets/images/size/04.jpg" alt="">
-                    <p>Hip</p>
-                    <input [formControl]="hip" type="text" placeholder="in inches">
-                  </li>
-                </ul>
-                <div class="termsblk">
-                  <input type="checkbox" id="Terms" name="Terms" value="Terms">
-                  <label for="Terms">I accept the <a href=""> Terms & Conditions</a></label><br>
+                <h6 class="custombtm" role="button" (click)="toggleCustomeSize()"><span>CUSTOM SIZE</span></h6>
+                <div class="customsize" [ngClass]="showCustomsize ? 'show' : ''">
+                  <ul>
+                    <li>
+                      <img src="assets/images/size/01.jpg" alt="">
+                      <p>Full Length</p>
+                      <input [formControl]="fullLength" type="text" placeholder="in inches">
+                    </li>
+                    <li>
+                      <img src="assets/images/size/02.jpg" alt="">
+                      <p>Sleeve Length</p>
+                      <input [formControl]="sleeveLength" type="text" placeholder="in inches">
+                    </li>
+                    <li>
+                      <img src="assets/images/size/03.jpg" alt="">
+                      <p>Bust</p>
+                      <input [formControl]="bust" type="text" placeholder="in inches">
+                    </li>
+                    <li>
+                      <img src="assets/images/size/04.jpg" alt="">
+                      <p>Hip</p>
+                      <input [formControl]="hip" type="text" placeholder="in inches">
+                    </li>
+                  </ul>
+                  <div class="termsblk">
+                    <input type="checkbox" id="Terms" name="Terms" value="Terms">
+                    <label for="Terms">I accept the <a routerLink="/terms"> Terms & Conditions</a></label><br>
+                  </div>
                 </div>
               </div>
             </div>
-            </div>
           </div>
-          <button class="btn btn-fill-out btn-addtocart btncart" type="button">Request Interest</button>
+          <a href="javascript:void(0)" class="btnbuy" (click)="setBuyNow('buy')">Order now</a>
+        <a href="javascript:void(0)" class="btncart" (click)="setBuyNow('intrest')">Show Interest</a>
+          <!-- <button class="btn btn-fill-out btn-addtocart btncart" type="button">Request Interest</button> -->
         </div>
-      </div>
-      <div class="col-md-12">
         <div class="proddesc">
           <div class="buyform" id="buyform">
             <h2>Contact Details</h2>
             <form [formGroup]="profileForm">
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <input formControlName="name" type="text" required="required">
                   <label for="input" class="control-label">Full Name</label><i class="bar"></i>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <input formControlName="cusmail" type="text" required="required">
                   <label for="input" class="control-label">Email Id</label><i class="bar"></i>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <input formControlName="phone" type="text" required="required">
                   <label for="input" class="control-label">Contact Number</label><i class="bar"></i>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <textarea formControlName="address" required="required"></textarea>
                   <label for="textarea" class="control-label">Address</label><i class="bar"></i>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <textarea formControlName="message" required="required"></textarea>
                   <label for="textarea" class="control-label">Message</label><i class="bar"></i>
                 </div>
-
+  
               </div>
             </form>
             <div class="button-container">
-              <button type="button" class="button" (click)="buyProduct()"><span>Buy Now</span></button>
+              <div *ngIf="isBuyNow; else elseBlock"><button type="button" class="button"
+                  (click)="buyProduct()"><span>Place an Order</span></button></div>
+              <ng-template #elseBlock><button type="button" class="button" (click)="buyProduct()"><span>Send a product Interest</span></button></ng-template>
             </div>
           </div>
         </div>

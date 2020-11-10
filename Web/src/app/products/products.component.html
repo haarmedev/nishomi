@@ -1,6 +1,6 @@
 <app-header></app-header>
 <section id="collections" *ngFor="let item of category; index as i; first as isFirst">
-  <div [className]="i%2==0? 'collblk collbg1':'collblk collbg2'">
+  <div id="{{item.categoryId}}" [className]="i%2==0? 'collblk collbg1':'collblk collbg2'">
     <div class="container">
       <div class="prodflex">
         <div class="prodleft">

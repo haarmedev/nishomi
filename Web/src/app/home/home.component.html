@@ -2,7 +2,7 @@
 <body>
     <app-header></app-header>
     <section class="mainbanner">
-      <div class="swiper-container topprod" [swiper]="catconfig">
+      <div class="swiper-container topprod">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <img src="assets/images/slid01.jpg" alt="">
@@ -46,10 +46,10 @@
     </section>
     <section id="hmecatynew">
       <div class="half" *ngFor="let item of categories">
-        <a href=""><img src="{{imageurl+item.url}}" alt=""></a>
+        <a routerLink="/products" fragment={{item.categoryId}}><img src="{{imageurl+item.url}}" alt=""></a>
         <div class="caroblkdtls">
           <h3>{{item.name}}</h3>
-          <a routerLink="/products">Explore The Category</a>
+          <a (click)="gotoCategory(item.categoryId)">Explore The Category</a>
         </div>
       </div>
       <!-- <div class="half">

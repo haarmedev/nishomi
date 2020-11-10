@@ -85,6 +85,11 @@ export class HomeComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    setTimeout(() => {
+      let myScript = document.createElement('script');
+      myScript.setAttribute('src', './assets/js/home.js');
+      document.body.appendChild(myScript);
+    }, 500);
     this.imageurl = IMAGE_ENDPOINT;
     this.httpClient.get<any>(CATEGORIESAPI).subscribe((data: any) => {
       console.log(data);
@@ -107,5 +112,9 @@ export class HomeComponent implements OnInit {
 
   gotoDetails(id: any) {
     this.router.navigate(['/productdetails'], { queryParams: { id: id } });
+  }
+
+  gotoCategory(id: any) {
+    this.router.navigate(['/products'], { queryParams: { id: id } });
   }
 }

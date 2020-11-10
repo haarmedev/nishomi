@@ -24,29 +24,29 @@ var swiper = new Swiper('.one', {
 			slidesPerView: 5,
 			spaceBetween: 15,
 			slidesPerGroup: 4,
-			centeredSlides: true,
-			loop: true,
+			centeredSlides: false,
+			loop: false,
 			loopFillGroupWithBlank: true,
 		},
 	}
 });
 
 
-// var swiper = new Swiper('.topprod', {
-// 	slidesPerView: 1,
-// 	spaceBetween: 0,
-// 	effect: 'fade',
-// 	speed: 1500,
-// 	spaceBetween: 100,
-// 	slidesPerGroup: 1,
-// 	centeredSlides: true,
-// 	autoplay: 5000,
-// 	loop: true,
-// 	loopFillGroupWithBlank: true,
-// 	keyboardControl: true,
-// 	pagination: '.bannpage',
-// 	paginationClickable: true,
-// });
+var swiper = new Swiper('.topprod', {
+	slidesPerView: 1,
+	spaceBetween: 0,
+	effect: 'fade',
+	speed: 1500,
+	spaceBetween: 100,
+	slidesPerGroup: 1,
+	centeredSlides: true,
+	autoplay: 5000,
+	loop: true,
+	loopFillGroupWithBlank: true,
+	keyboardControl: true,
+	pagination: '.bannpage',
+	paginationClickable: true,
+});
 if($(window).width() >= 1200){
 	var swiper = new Swiper('.two', {
 		pagination: '.swiper-pagination',

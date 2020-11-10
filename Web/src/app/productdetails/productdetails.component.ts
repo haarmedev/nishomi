@@ -12,7 +12,7 @@ import {
   IMAGE_ENDPOINT,
   PRODUCTDETAILS,
 } from '../core/constants/constant';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
@@ -28,7 +28,7 @@ declare var $: any;
 })
 export class ProductdetailsComponent implements OnInit {
   profileForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
     cusmail: new FormControl(''),
     phone: new FormControl(''),
     address: new FormControl(''),
@@ -64,6 +64,7 @@ export class ProductdetailsComponent implements OnInit {
   selectedSize: string = '';
   sliderHtml: string = '';
   zoomHtml: string = '';
+  isBuyNow: Boolean = false;
   ngOnInit(): void {
     this.quantity = 1;
     this.imageurl = IMAGE_ENDPOINT;
@@ -85,53 +86,20 @@ export class ProductdetailsComponent implements OnInit {
       //             '<a class="easyzoom-pop-up img-popup popmag" href='+this.imageurl+this.productDetails.images[i].imageUrl+'></a></div>';
       // }
     });
-    $('.btncart').click(function () {
-      $('html, body').animate(
-        {
-          scrollTop: $('.btncart').offset().top,
-        },
-        2000
-      );
-    });
-    // var $easyzoom = $('.easyzoom').easyZoom();
-
-    //     $('.pro-dec-big-img-slider').slick({
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //       arrows: false,
-    //       draggable: false,
-    //       fade: false,
-    //       asNavFor: '.product-dec-slider , .product-dec-slider-2',
-    //     });
-
-    // /*---------------------------------
-    //     Product details slider 2 active
-    //     -----------------------------------*/
-    //     $('.product-dec-slider-2').slick({
-    //       slidesToShow: 4,
-    //       slidesToScroll: 1,
-    //       vertical: true,
-    //       asNavFor: '.pro-dec-big-img-slider',
-    //       dots: false,
-    //       focusOnSelect: true,
-    //       fade: false,
-    //       prevArrow: '<span class="pro-dec-icon pro-dec-prev"><i class="icofont-rounded-up"></i></span>',
-    //       nextArrow: '<span class="pro-dec-icon pro-dec-next"><i class="icofont-rounded-down"></i></i></span>',
-    //       responsive: [{
-    //         breakpoint: 767,
-    //         settings: {
-
-    //         }
-    //       },
-    //       {
-    //         breakpoint: 420,
-    //         settings: {
-    //           autoplay: true,
-    //           slidesToShow: 2,
-    //         }
-    //       }
-    //       ]
-    //     });
+    // $('.btncart').click(function () {
+    //   $('html, body').animate(
+    //     {
+    //       scrollTop: $('.btncart').offset().top,
+    //     },
+    //     2000
+    //   );
+    // });
+    // $(".btnbuy").click(function(){
+    //   $(".proddesc").toggleClass("show");
+    // });
+    // $(".btncart").click(function(){
+    //   $(".proddesc").toggleClass("show");
+    // });
   }
   ngAfterViewInit(): void {
     //this.slides=this.imageurl+this.productDetails.images[0].imageUrl;
@@ -185,6 +153,29 @@ export class ProductdetailsComponent implements OnInit {
     });
   }
   buyProduct() {
+    var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+    if(this.profileForm.value.name===''){
+      Swal.fire('Name is Mandatory');
+      return;
+    }
+    if (this.profileForm.value.cusmail === '') {
+      Swal.fire('Email Id is Mandatory');
+      return;
+    } else {
+      if (!testEmail.test(this.profileForm.value.cusmail)) {
+        Swal.fire('Enter Valid Email Id');
+        return;
+      }
+    }
+    if(this.profileForm.value.phone===''){
+      Swal.fire('Contact Number is Mandatory');
+      return;
+    }
+    if(this.profileForm.value.address===''){
+      Swal.fire('Address is Mandatory');
+      return;
+    }
+
     var formData: any = new FormData();
     formData.append('ProductId', this.productId);
     formData.append('Name', this.profileForm.value.name);
@@ -217,13 +208,12 @@ export class ProductdetailsComponent implements OnInit {
         console.log(response);
         if (response.data) {
           this.isRequest = false;
-          Swal.fire(
-            'Thank you ' +
-              this.profileForm.value.name +
-              ' for your interest on ' +
-              this.product.name +
-              '. We will contact you soon!!!'
-          );
+          if(this.isBuyNow){
+            Swal.fire('Thanks for placing this order. We will connect you shortly and deliver this product to  your address');
+          }
+          else{
+            Swal.fire('Thanks for your interest on this product. We will connect you shortly to know more about your interest and help you with your purchase');
+          }
           this.profileForm.reset();
         }
       },
@@ -245,7 +235,7 @@ export class ProductdetailsComponent implements OnInit {
   }
 
   toggleCustomeSize() {
-    this.selectedSize='';
+    this.selectedSize = '';
     this.showCustomsize = !this.showCustomsize;
   }
 
@@ -254,5 +244,41 @@ export class ProductdetailsComponent implements OnInit {
       this.toggleCustomeSize();
     }
     this.selectedSize = size;
+  }
+
+  setBuyNow(status) {
+    if (status == 'buy') {
+      if (this.isBuyNow) {
+        $('.proddesc').toggleClass('show');
+        this.isBuyNow = false;
+      } else {
+        if ($('.proddesc').hasClass('show')) {
+          this.isBuyNow = true;
+        } else {
+          $('.proddesc').toggleClass('show');
+          this.isBuyNow = true;
+        }
+        this.scrollDiv();
+      }
+    } else {
+      if (this.isBuyNow) {
+        this.isBuyNow = false;
+        this.scrollDiv();
+      } else {
+        $('.proddesc').toggleClass('show');
+        this.isBuyNow = false;
+        if ($('.proddesc').hasClass('show')) {
+          this.scrollDiv();
+        }
+      }
+    }
+  }
+  scrollDiv() {
+    $('html, body').animate(
+      {
+        scrollTop: $('.btncart').offset().top,
+      },
+      2000
+    );
   }
 }
