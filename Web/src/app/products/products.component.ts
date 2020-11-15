@@ -220,7 +220,10 @@ export class ProductsComponent implements OnInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-    document.getElementById(this.routeId).scrollIntoView();
+      const selectedCategory = document.getElementById(this.routeId);
+      if (selectedCategory) {
+        selectedCategory.scrollIntoView();
+      }
     }, 1000);
   }
 }
