@@ -50,6 +50,7 @@
             {
                 CategoryId = it.Id,
                 Name = it.Name,
+                NameAr = it.NameAr,
                 Caption = it.Caption,
                 Description = it.Description,
                 Url = it.Url
@@ -67,6 +68,7 @@
                                         {
                                             CategoryId = it.Id,
                                             Name = it.Name,
+                                            NameAr = it.NameAr,
                                             Caption = it.Caption,
                                             Description = it.Description,
                                             Url = it.Url
@@ -86,6 +88,7 @@
                                         {
                                             CategoryId = it.Id,
                                             Name = it.Name,
+                                            NameAr = it.NameAr,
                                             Caption = it.Caption,
                                             Description = it.Description,
                                             Url = it.Url,
@@ -107,6 +110,7 @@
                                         {
                                             CategoryId = it.Id,
                                             Name = it.Name,
+                                            NameAr = it.NameAr,
                                             Caption = it.Caption,
                                             Description = it.Description,
                                             Url = it.Url,
@@ -115,12 +119,14 @@
                                             {
                                                 ProductId=pc.Id,
                                                 ProductCode=pc.ProductCode,
-                                                Name=pc.Name,
+                                                ProductCodeAr=pc.ProductCodeAr,
+                                                Name =pc.Name,
                                                 Type=pc.Type,
                                                 Color=pc.Color,
                                                 Cost=pc.Cost,
                                                 Description=pc.Description,
-                                                CategoryName=it.Name,
+                                                DescriptionAr=pc.DescriptionAr,
+                                                CategoryName =it.Name,
                                                 Images=pc.ProductImages.Select(im=> new ImagesListDTO()
                                                 {
                                                     ImageUrl=im.Url,
@@ -141,6 +147,7 @@
             Category entry = new Category()
             {
                 Name = category.Name,
+                NameAr = category.NameAr,
                 Caption = category.Caption,
                 Description = category.Description,
                 Url = category.Url
@@ -183,6 +190,7 @@
             if (item != null)
             {
                 item.Name = category.Name;
+                item.NameAr = category.NameAr;
                 item.Caption = category.Caption;
                 item.Description=category.Description;
                 //item.Url = category.Url != "" ? category.Url : item.Url;

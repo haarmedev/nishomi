@@ -46,6 +46,18 @@
         }
 
         /// <summary>
+        /// Gets or sets the product code in arabic.
+        /// </summary>
+        /// <value>
+        /// The product code in arabic.
+        /// </value>
+        public string ProductCodeAr
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the type.
         /// </summary>
         /// <value>
@@ -88,6 +100,18 @@
         /// The description.
         /// </value>
         public string Description
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the description in arabic.
+        /// </summary>
+        /// <value>
+        /// The description in arabic.
+        /// </value>
+        public string DescriptionAr
         {
             get;
             set;

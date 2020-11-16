@@ -45,6 +45,7 @@
             {
                 ProductId = product.Id,
                 ProductCode = product.ProductCode,
+                ProductCodeAr = product.ProductCodeAr,
                 Name = product.Name,
                 CategoryName = product.Category.Name,
                 Caption = product.Caption,
@@ -52,6 +53,7 @@
                 Color = product.Color,
                 Cost = product.Cost,
                 Description = product.Description,
+                DescriptionAr = product.DescriptionAr,
                 Images = product.ProductImages.Select(it => new ImagesListDTO()
                 {
                     ImageUrl = it.Url,
@@ -81,6 +83,7 @@
         {
             ProductId = product.Id,
             ProductCode = product.ProductCode,
+            ProductCodeAr = product.ProductCodeAr,
             Name = product.Name,
             CategoryName = product.Category.Name,
             Caption = product.Caption,
@@ -88,6 +91,7 @@
             Color = product.Color,
             Cost = product.Cost,
             Description = product.Description,
+            DescriptionAr = product.DescriptionAr,
             Images = product.ProductImages.Select(it => new ImagesListDTO()
             {
                 ImageUrl = it.Url,
@@ -112,6 +116,7 @@
                                         {
                                             ProductId = it.Id,
                                             ProductCode = it.ProductCode,
+                                            ProductCodeAr = it.ProductCodeAr,
                                             Name = it.Name,
                                             CategoryName = it.Category.Name,
                                             Caption = it.Caption,
@@ -119,6 +124,7 @@
                                             Color = it.Color,
                                             Cost = it.Cost,
                                             Description = it.Description,
+                                            DescriptionAr = it.DescriptionAr,
                                             Images = it.ProductImages.Select(pt => new ImagesListDTO()
                                             {
                                                 ImageUrl = pt.Url,
@@ -159,13 +165,15 @@
             {
                 CategoryId = product.CategoryId,
                 ProductCode = product.ProductCode,
+                ProductCodeAr = product.ProductCodeAr,
                 Name = product.Name,
                 Color = product.Color,
                 Type = product.Type,
                 Caption=product.Caption,
                 Cost = product.Cost,
                 Description = product.Description,
-                IsFeatured=product.IsFeatured
+                DescriptionAr = product.DescriptionAr,
+                IsFeatured =product.IsFeatured
             };
             if (product.MainImage != null)
             {
@@ -243,12 +251,14 @@
             {
                 item.CategoryId = product.CategoryId;
                 item.ProductCode = product.ProductCode;
+                item.ProductCodeAr = product.ProductCodeAr;
                 item.Name = product.Name;
                 item.Color = product.Color;
                 item.Type = product.Type;
                 item.Caption = product.Caption;
                 item.Cost = product.Cost;
                 item.Description = product.Description;
+                item.DescriptionAr = product.DescriptionAr;
                 item.IsFeatured = product.IsFeatured;
 
                 this.CurrentDbContext.Products.Update(item);
@@ -301,9 +311,11 @@
                 ProductId = it.Id,
                 //CategoryId = it.CategoryId,
                 ProductCode = it.ProductCode,
+                ProductCodeAr = it.ProductCodeAr,
                 ProductName = it.Name,
                 Caption = it.Caption,
                 Description = it.Description,
+                DescriptionAr = it.DescriptionAr,
                 Type = it.Type,
                 Color = it.Color,
                 Cost = it.Cost

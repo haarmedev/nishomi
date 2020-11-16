@@ -18,21 +18,27 @@
                         <input type="text" asp-for="ProductCode" id="productCode" placeholder="Product Code">
                     </div>
                     <div class="col-md-6 formsingle">
+                        <label class="mandatory">Arabic Product Code</label>
+                        <input type="text" asp-for="ProductCodeAr" id="productCodeAr" placeholder="Arabic Product Code">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 formsingle">
                         <label class="mandatory">Product Name</label>
                         <input type="text" asp-for="Name" id="productName" placeholder="Product name">
                     </div>
-                </div>
-                    <div class="row">
                     <div class="col-md-6 formsingle">
                         <label class="mandatory">Type</label>
                         <input type="text" asp-for="Type" id="localName" placeholder="Type">
                     </div>
+
+                </div>
+                <div class="row">
                     <div class="col-md-6 formsingle">
                         <label class="mandatory">Is Featured</label>
                         <input type="checkbox" asp-for="IsFeatured" id="productName">
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6 formsingle">
                         <label class="mandatory">Product Category</label>
                         <select id="cat-field" asp-for="CategoryId"
@@ -40,12 +46,13 @@
                             <option value="" disabled>-Select Category-</option>
                         </select>
                     </div>
+
+                </div>
+                <div class="row">
                     <div class="col-md-6 formsingle">
                         <label class="mandatory">Color</label>
                         <input type="text" asp-for="Color" id="productPrice" placeholder="Color">
                     </div>
-                    </div>
-                <div class="row">
                     <div class="col-md-4 formsingle">
                         <label class="mandatory">Product Cost</label>
                         <input type="number" asp-for="Cost" id="productPrice" placeholder="Cost">
@@ -64,9 +71,17 @@
                         <label class="mandatory">Caption</label>
                         <input type="text" asp-for="Caption" id="productPrice" placeholder="Caption">
                     </div>
+                   
+                </div>
+                <div class="row">
+
                     <div class="col-md-6 formsingle">
                         <label>Description</label>
                         <textarea type="text" class="md-textarea form-control" asp-for="Description" id="description" placeholder="Description" rows="3"></textarea>
+                    </div>
+                    <div class="col-md-6 formsingle">
+                        <label>Arabic Description</label>
+                        <textarea type="text" class="md-textarea form-control" asp-for="DescriptionAr" id="description" placeholder="Arabic Description" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="col-md-12 formsingle">
