@@ -22,8 +22,8 @@
     </section>
     <section class="hmeproduct">
       <div class="titleblk txtcenter">
-       <h6>Featured Products</h6>
-       <h1>Your choice for <span>elegance and glamour.</span></h1>
+       <h6>{{ 'featured_products' | translate }}</h6>
+       <h1>{{ 'choice_for' | translate }} <span>{{ 'elegance_and_glamour' | translate }}</span></h1>
      </div>
      <div class="caroprod">
       <div class="swiper-container one">
@@ -34,8 +34,8 @@
               <div class="hmeprsingdtl">
                 <!-- <h6><a href="">{{item.categoryName}}</a></h6>
                 <h3><a href="">{{item.name}}</a></h3> -->
-                <h3><a (click)="gotoDetails(item.productId)">Nishomi - {{item.categoryName}} {{item.productCode}}</a></h3>
-                <p>{{item.description}}</p>
+                <h3><a (click)="gotoDetails(item.productId)">{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}} {{ item['productCode' + langKey]}}</a></h3>
+                <p>{{item['description' + langKey]}}</p>
               </div>
             </div>
           </div>
@@ -48,8 +48,8 @@
       <div class="half" *ngFor="let item of categories">
         <a routerLink="/products" fragment={{item.categoryId}}><img src="{{imageurl+item.url}}" alt=""></a>
         <div class="caroblkdtls">
-          <h3>{{item.name}}</h3>
-          <a (click)="gotoCategory(item.categoryId)">Explore The Category</a>
+          <h3>{{item['name' + langKey]}}</h3>
+          <a (click)="gotoCategory(item.categoryId)">{{ 'explore_category' | translate }}</a>
         </div>
       </div>
       <!-- <div class="half">
@@ -59,16 +59,16 @@
           <a href="">Explore The Category</a>
         </div>
       </div> -->
-      
+
     </section>
-    
+
     <section class="story">
     <div class="container">
       <div class="banntxt">
-        <h6>Our Story</h6>
-        <h1>Say yes to <span>conscious style.</span></h1>
-        <p>Abaya reflects the personality, pride and sense of fashion of Arabic women which now has emerged to create a space of its own globally. Drawing inspiration from these aspects, NishOmi explores the untapped creativity and aesthetics that could add more to this piece of clothing. The aim is to capture the heritage, global appeal, and modesty through details, novel cuts, and styles.</p>
-        <a routerLink="/story">Read More</a>
+        <h6>{{ 'our_story' | translate }}</h6>
+        <h1>{{ 'say_yes_to' | translate }} <span>{{ 'concious_style' | translate }}</span></h1>
+        <p>{{ 'our_story_draft' | translate }}</p>
+        <a routerLink="/story">{{ 'read_more' | translate }}</a>
       </div>
     </div>
     <!-- </div> -->
@@ -78,8 +78,8 @@
     <section class="hmeblog">
       <div class="container">
         <div class="titleblk">
-          <h6>Blogposts</h6>
-          <h1 class="inline">Blossom by blossom <span>spring begins.</span></h1>
+          <h6>{{ 'blog_posts' | translate }}</h6>
+          <h1 class="inline">{{ 'blossom_by_blossom' | translate }} <span>{{ 'spring_begins' | translate }}</span></h1>
         </div>
         <ul>
           <li>
@@ -87,9 +87,9 @@
               <img src="assets/images/blog01.jpg" alt="">
               <a routerLink="/abaya" class="linkblog"></a>
               <div class="blkgdtl">
-                <h6>blogpost</h6>
-                <a routerLink="/abaya"><h3>ABAYA: THEN AND NOW</h3></a>
-                <p>A long cloak or robe, popularly known as Abaya, also referred to as Aba, Abah, all represent this everyday clothing that effortlessly covers the entire body.</p>
+                <h6>{{ 'blog_post' | translate | uppercase }}</h6>
+                <a routerLink="/abaya"><h3>{{ 'abaya_then_and_now' | translate | uppercase }}</h3></a>
+                <p>{{ 'abaya_then_and_now_desc1' | translate }}</p>
               </div>
             </div>
           </li>
@@ -98,9 +98,9 @@
               <img src="assets/images/blog02.jpg" alt="">
               <a routerLink="/sleeves" class="linkblog"></a>
               <div class="blkgdtl">
-                <h6>blogpost</h6>
-                <a routerLink="/sleeves"><h3>ALL ABOUT SLEEVES</h3></a>
-                <p>The sleeves are an important part of detailing in abaya designs. It could be a bell sleeve, a loose, plain sleeve, or one that fits your arm. Understanding the sleeve patterns will help you choose rightly depending on the occasion.</p>
+                <h6>{{ 'blog_post' | translate | uppercase }}</h6>
+                <a routerLink="/sleeves"><h3>{{ 'about_sleeves' | translate | uppercase }}</h3></a>
+                <p>{{ 'about_sleeves_desc1' | translate }}</p>
               </div>
             </div>
           </li>

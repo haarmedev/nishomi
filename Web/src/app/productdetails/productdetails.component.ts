@@ -4,6 +4,7 @@ import {
   AfterViewInit,
   ViewChild,
   ElementRef,
+  OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -20,13 +21,15 @@ import {
 } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 declare var $: any;
 @Component({
   selector: 'app-productdetails',
   templateUrl: './productdetails.component.html',
   styleUrls: ['./productdetails.component.css'],
 })
-export class ProductdetailsComponent implements OnInit {
+export class ProductdetailsComponent implements OnInit, OnDestroy {
   profileForm = new FormGroup({
     acceptTAC: new FormControl(false, [Validators.requiredTrue]),
     name: new FormControl('', [Validators.required]),
@@ -47,8 +50,13 @@ export class ProductdetailsComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     public dialog: MatDialog,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private translate: TranslateService) {
+    this.langSubscription = this.translate.onLangChange.subscribe(() => { this.setLangKey(); });
+  }
+  langKey = '';
+  currentLang: string;
+  langSubscription: Subscription;
   product: {
     productCode: '';
     categoryName: '';
@@ -70,6 +78,7 @@ export class ProductdetailsComponent implements OnInit {
   zoomHtml: string = '';
   isBuyNow: Boolean = false;
   ngOnInit(): void {
+    this.setLangKey();
     this.quantity = 1;
     this.imageurl = IMAGE_ENDPOINT;
     this.route.queryParams.subscribe((params) => {
@@ -80,6 +89,7 @@ export class ProductdetailsComponent implements OnInit {
       console.log(data);
       this.product = data.data;
       this.productDetails = data.data;
+      setTimeout(() => this.initSlider(), 500);
       // for(let i=0;i<this.productDetails.images.length;i++){
       //   this.sliderHtml+='<div class="product-dec-small">'+
       //                   '<img src='+this.imageurl+this.productDetails.images[i].imageUrl+' alt=""></div>';
@@ -105,7 +115,8 @@ export class ProductdetailsComponent implements OnInit {
     //   $(".proddesc").toggleClass("show");
     // });
   }
-  ngAfterViewInit(): void {
+  ngAfterViewInit(): void {}
+  initSlider(): void {
     //this.slides=this.imageurl+this.productDetails.images[0].imageUrl;
     //alert(this.slides);
     var $easyzoom = $('.easyzoom').easyZoom();
@@ -293,5 +304,14 @@ export class ProductdetailsComponent implements OnInit {
       },
       1000
     );
+  }
+
+  setLangKey(): void {
+    this.currentLang = this.translate.currentLang;
+    this.langKey = 'ar' === this.currentLang ? 'Ar' : '';
+  }
+
+  ngOnDestroy(): void {
+    this.langSubscription.unsubscribe();
   }
 }

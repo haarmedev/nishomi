@@ -5,7 +5,7 @@
       <div class="col-md-6">
         <div class="product-details-tab product-details-tab2">
           <div class="product-dec-slider-2 product-dec-small-style2">
-            <div class="product-dec-small" *ngFor="let item of product.images;index as i;first as is">
+            <div class="product-dec-small" *ngFor="let item of product?.images;index as i;first as is">
               <img src="{{imageurl+item.imageUrl}}" alt="">
             </div>
             <!-- <div class="product-dec-small">
@@ -17,7 +17,7 @@
           </div>
 
           <div class="pro-dec-big-img-slider">
-            <div class="easyzoom-style" *ngFor="let item of product.images;index as i;first as is">
+            <div class="easyzoom-style" *ngFor="let item of product?.images;index as i;first as is">
               <div class="easyzoom easyzoom--overlay">
                 <a href="{{imageurl+item.imageUrl}}">
                   <img src="{{imageurl+item.imageUrl}}" alt="">
@@ -45,16 +45,16 @@
         </div>
       </div>
       <div class="col-md-6">
-        <form [formGroup]="profileForm" (ngSubmit)="buyProduct()">
+        <form [formGroup]="profileForm" (ngSubmit)="buyProduct()" *ngIf="product">
           <div class="proddtls">
-            <h5><a href="">{{product.categoryName}}</a></h5>
-            <h6>Nishomi - {{product.categoryName}} {{product.productCode}}</h6>
+            <h5><a href="">{{product['categoryName' + langKey]}}</a></h5>
+            <h6>{{ 'nishomi' | translate }} - {{product['categoryName' + langKey]}} {{product['productCode' + langKey]}}</h6>
             <div class="price">
-              <div class="new">AED {{product.cost.toFixed(2)}}</div>
+              <div class="new">{{product?.cost | aedcurrency}}</div>
             </div>
-            <p>{{product.description}}</p>
+            <p>{{product['description' + langKey]}}</p>
             <ul class="product-meta">
-              <li>Code: <span>{{product.productCode}}</span></li>
+              <li><span>{{ 'code' | translate }}: </span><span class="value">{{product['productCode' + langKey]}}</span></li>
               <!-- <li>Availability: <span>In stock</span></li> -->
             </ul>
 
@@ -66,7 +66,7 @@
             </div> -->
             <div class="cart-product-quantity">
               <div class="sizeabaya">
-                <h6>Size:</h6>
+                <h6>{{ 'size' | translate }}:</h6>
                 <ul class="size-list">
                   <li>
                     <a role="button" class="size_item" [ngClass]="selectedSize=='54'?'selected':''"
@@ -86,27 +86,27 @@
                   </li>
                 </ul>
                 <div class="customizeblk">
-                  <h6 class="custombtm" role="button" (click)="toggleCustomeSize()"><span>CUSTOM SIZE</span></h6>
+                  <h6 class="custombtm" role="button" (click)="toggleCustomeSize()"><span>{{ 'custom_size' | translate | uppercase }}</span></h6>
                   <div class="customsize" [ngClass]="showCustomsize ? 'show' : ''">
                     <ul>
                       <li>
                         <img src="assets/images/size/01.jpg" alt="">
-                        <p>Full Length</p>
+                        <p>{{ 'full_length' | translate }}</p>
                         <input [formControl]="fullLength" type="text" placeholder="in inches">
                       </li>
                       <li>
                         <img src="assets/images/size/02.jpg" alt="">
-                        <p>Sleeve Length</p>
+                        <p>{{ 'sleeve_length' | translate }}</p>
                         <input [formControl]="sleeveLength" type="text" placeholder="in inches">
                       </li>
                       <li>
                         <img src="assets/images/size/03.jpg" alt="">
-                        <p>Bust</p>
+                        <p>{{ 'bust' | translate }}</p>
                         <input [formControl]="bust" type="text" placeholder="in inches">
                       </li>
                       <li>
                         <img src="assets/images/size/04.jpg" alt="">
-                        <p>Hip</p>
+                        <p>{{ 'hip' | translate }}</p>
                         <input [formControl]="hip" type="text" placeholder="in inches">
                       </li>
                     </ul>
@@ -116,61 +116,68 @@
             </div>
             <div class="termsblk">
               <input type="checkbox" id="Terms" name="Terms" value="Terms" formControlName="acceptTAC">
-              <label for="Terms">I accept the <a routerLink="/terms"> Terms & Conditions</a></label><br>
-              <span class="error" *ngIf="orderClicked && !profileForm.controls.acceptTAC.valid">Accept terms and conditions</span>
+              <label for="Terms">{{ 'label.accept_label' | translate }}<a routerLink="/terms">{{ 'terms_and_conditions' | translate }}</a></label><br>
+              <span class="error" *ngIf="orderClicked && !profileForm.controls.acceptTAC.valid">
+                {{ 'error.tac_mandatory' | translate }}
+              </span>
             </div>
-            <a href="javascript:void(0)" class="btnbuy" (click)="setBuyNow('buy')">Order now</a>
-            <a href="javascript:void(0)" class="btncart" (click)="setBuyNow('intrest')">Show Interest</a>
+            <a href="javascript:void(0)" class="btnbuy" (click)="setBuyNow('buy')">
+              {{ 'button.order_now' | translate }}
+            </a>
+            <a href="javascript:void(0)" class="btncart" (click)="setBuyNow('intrest')">
+              {{ 'button.show_interest' | translate }}
+            </a>
             <!-- <button class="btn btn-fill-out btn-addtocart btncart" type="button">Request Interest</button> -->
           </div>
           <div class="proddesc" [ngClass]="{'show': (showContactForm && profileForm.controls.acceptTAC.value) }">
             <div class="buyform" id="buyform">
-              <h2>Contact Details</h2>
-
+              <h2>{{ 'contact_details' | translate }}</h2>
                 <div class="row">
                   <div class="form-group col-md-12">
                     <input formControlName="name" type="text" required="required">
-                    <label for="input" class="control-label">Full Name</label><i class="bar"></i>
-                    <span class="error" *ngIf="(submitted || profileForm.controls.name.touched) && !profileForm.controls.name.valid">Name is Mandatory</span>
+                    <label for="input" class="control-label">{{ 'label.full_name' | translate }}</label><i class="bar"></i>
+                    <span class="error" *ngIf="(submitted || profileForm.controls.name.touched) && !profileForm.controls.name.valid">
+                      {{ 'error.full_name_mandatory' | translate }}
+                    </span>
                   </div>
                   <div class="form-group col-md-12">
                     <input formControlName="cusmail" type="text" required="required">
-                    <label for="input" class="control-label">Email Id</label><i class="bar"></i>
+                    <label for="input" class="control-label">{{ 'label.email_id' | translate }}</label><i class="bar"></i>
                     <span class="error" *ngIf="(submitted || profileForm.controls.cusmail.touched) && !profileForm.controls.cusmail.valid">
-                      {{ profileForm.controls.cusmail.errors.required ? 'Email Id is Mandatory' : 'Enter Valid Email Id' }}
+                      {{ (profileForm.controls.cusmail.errors.required ? 'error.email_id_mandatory' : 'error.email_id_invalid') | translate }}
                     </span>
                   </div>
                   <div class="form-group col-md-12">
                     <input formControlName="phone" type="text" required="required" appNumberOnly [maxlen]="11">
-                    <label for="input" class="control-label">Contact Number</label><i class="bar"></i>
+                    <label for="input" class="control-label">{{ 'label.contact_number' | translate }}</label><i class="bar"></i>
                     <span class="error" *ngIf="(submitted || profileForm.controls.phone.touched) && !profileForm.controls.phone.valid">
-                      {{ profileForm.controls.phone.errors.required ? 'Contact Number is Mandatory' : 'Enter Valid Contact Number' }}
+                      {{ (profileForm.controls.phone.errors.required ? 'error.contact_number_mandatory' : 'error.contact_number_invalid') | translate }}
                     </span>
                   </div>
                   <div class="form-group col-md-12">
                     <textarea formControlName="address" required="required"></textarea>
-                    <label for="textarea" class="control-label">Address</label><i class="bar"></i>
-                    <span class="error" *ngIf="(submitted || profileForm.controls.address.touched) && !profileForm.controls.address.valid">Address is Mandatory</span>
+                    <label for="textarea" class="control-label">{{ 'label.address' | translate }}</label><i class="bar"></i>
+                    <span class="error" *ngIf="(submitted || profileForm.controls.address.touched) && !profileForm.controls.address.valid">
+                      {{ 'error.address_mandatory' | translate }}
+                    </span>
                   </div>
                   <div class="form-group col-md-12">
-                    <textarea formControlName="message" required="required"></textarea>
-                    <label for="textarea" class="control-label">Message</label><i class="bar"></i>
+                    <textarea formControlName="message"></textarea>
+                    <label for="textarea" class="control-label">{{ 'label.message' | translate }}</label><i class="bar"></i>
                   </div>
-
                 </div>
                 <div class="button-container">
                   <div *ngIf="isBuyNow; else elseBlock">
-                    <button type="submit" class="button"><span>Place an Order</span></button>
+                    <button type="submit" class="button"><span>{{ 'button.place_order' | translate }}</span></button>
                   </div>
                   <ng-template #elseBlock>
-                    <button type="submit" class="button"><span>Send a product Interest</span></button>
+                    <button type="submit" class="button"><span>{{ 'button.send_product_interest' | translate }}</span></button>
                   </ng-template>
                 </div>
             </div>
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </section>

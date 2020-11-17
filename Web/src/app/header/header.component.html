@@ -8,19 +8,18 @@
           <a routerLink="/"><img src="assets/images/logo.jpg" alt=""></a>
         </div>
         <ul class="main">
-          <li><a routerLink="/story">Our Story</a></li>
-          <li><a routerLink="/blogs">Blogs</a></li>
-          <li><a routerLink="/contactus">Stay in touch</a></li>
-          <li><a routerLink="/products">View Products</a></li>
+          <li><a routerLink="/products">{{ 'our_products' | translate }}</a></li>
+          <li><a routerLink="/story">{{ 'our_story' | translate }}</a></li>
+          <li><a routerLink="/blogs">{{ 'blogs' | translate }}</a></li>
+          <li><a routerLink="/contactus">{{ 'stay_in_touch' | translate }}</a></li>
+          <li><a routerLink="/products">{{ 'view_products' | translate }}</a></li>
         </ul>
         <div class="social">
           <a href="https://www.facebook.com/nishomiabayas/" target="_blank"><i class="icofont-facebook"></i></a>
           <a href="https://www.instagram.com/nishomiabayas/" target="_blank"><i class="icofont-instagram"></i></a>
           <a href="https://twitter.com/nish_omi" target="_blank"><i class="icofont-twitter"></i></a>
+          <a href="javascript:void(0)" (click)="changeLanguage(switchLang)" class="lang">{{ switchLang | translate }}</a>
         </div>
-        <ul class="sub">
-          <li><a routerLink="/products">View Products</a></li>
-        </ul>
       </nav>
     </div>
     <div class="burger">

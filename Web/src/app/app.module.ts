@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { ProductsComponent } from './products/products.component';
 import { StoryComponent } from './story/story.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
@@ -29,6 +29,9 @@ import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { DirectivesModule } from './shared/directives/directives.module';
 import { PipesModule } from './shared/pipes/pipes.module';
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -66,6 +69,13 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SlickCarouselModule,
     DirectivesModule,
     PipesModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     {
@@ -77,3 +87,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   entryComponents: [ModalComponent]
 })
 export class AppModule { }
+
+export function httpTranslateLoader(http: HttpClient): any {
+  return new TranslateHttpLoader(http);
+}
