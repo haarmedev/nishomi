@@ -1,8 +1,8 @@
-/* ------------------------------------------------------------------------------ 
-Project Name : Nishomi 
-Description : Main Style Sheet 
-Author : Imran Rovan 
-Created On : 12 August 2020 
+/* ------------------------------------------------------------------------------
+Project Name : Nishomi
+Description : Main Style Sheet
+Author : Imran Rovan
+Created On : 12 August 2020
 --------------------------------------------------------------------------------*/
 
 /* Google Fonts */
@@ -261,7 +261,7 @@ header .sub li a:after {
   background: url(../images/icons/next.svg) no-repeat right center;
   width: 20px;
   height: 10px;
-  margin-left: 12px; 
+  margin-left: 12px;
 }
 #particles {
   width: 100%;
@@ -285,7 +285,7 @@ header .sub li a:after {
   position: relative;
 }
 .story {
-  background: #ccc url(../images/bg-about01.jpg) no-repeat top center fixed; 
+  background: #ccc url(../images/bg-about01.jpg) no-repeat top center fixed;
   background-size: cover;
   margin-top: 0px;
   padding: 100px 0;
@@ -451,8 +451,8 @@ header .sub li a:after {
 }
 #hmecatynew > .half img {
   width: 100%;
-  transition-duration: .5s; 
-  will-change: transform; 
+  transition-duration: .5s;
+  will-change: transform;
 }
 #hmecatynew > .half:hover img {
   -webkit-transform: scale(1.2);
@@ -496,7 +496,7 @@ header .sub li a:after {
 }
 .hmeprsing .hmeprsingdtl {
   text-align: left;
-  padding: 15px; 
+  padding: 15px;
 }
 .hmeprsing h6 a {
   font-size: 13px;
@@ -605,7 +605,7 @@ header .sub li a:after {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
 .hmeblog ul li .twohalf {
   margin-bottom: 15px;
@@ -672,7 +672,7 @@ footer .foonav ul li a {
 }
 .foosocial a:hover {
   color: #fff;
-} 
+}
 .tabs-stage ul {
   list-style: none;
   margin: 0;
@@ -817,7 +817,7 @@ footer .foonav ul li a {
   max-height: 220px;
   overflow: hidden;
   -webkit-box-shadow: 0 0 6px 2px rgba(0,0,0,0.1);
-  box-shadow: 0 0 6px 2px rgba(0,0,0,0.1); 
+  box-shadow: 0 0 6px 2px rgba(0,0,0,0.1);
 }
 .collcaro .swiper-slide .collimg img {
   width: 100%;
@@ -852,7 +852,7 @@ footer .foonav ul li a {
   text-transform: capitalize;
   height: 45px;
   max-height: 45px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 .collcaro .colldtls h5 {
   color: #333;
@@ -980,7 +980,7 @@ footer .foonav ul li a {
  font-weight: 800;
  text-transform: uppercase;
 }
-.aboutdtl p { 
+.aboutdtl p {
   line-height:32px;
   color:#666666;
   margin-bottom: 20px;
@@ -1034,7 +1034,7 @@ img.over {
   padding:0;
 }
 .prodpop {
-  padding: 50px; 
+  padding: 50px;
 }
 .prodpop h2 {
   color: #000;
@@ -1129,7 +1129,7 @@ img.over {
   overflow: hidden;
   z-index: 1;
   outline: 0;
-  
+
 }
 .close {
   margin: 15px 15px 0 0;
@@ -1274,7 +1274,7 @@ img.over {
   height: 250px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
-} 
+}
 .bggrey .selectprod {
   text-align: center;
 }
@@ -1535,7 +1535,7 @@ cite {
 }
 .bloglist li .postdtls p {
   font-size: 16px;
-} 
+}
 .bloglist li .postdtls > a {
   font-size: 16px;
   font-weight: 600;
@@ -1603,7 +1603,7 @@ cite {
 }
 .breadcrumb {
   margin: 0;
-  padding: 0; 
+  padding: 0;
   padding-top: 20px;
   margin-bottom: 10px;
   color: #e6e6e6;
@@ -1799,26 +1799,26 @@ cite {
   background: #333;
   color: #fff;
   text-align: center;
-  padding: 12px 25px; 
-  margin-top: 0px; 
+  padding: 12px 25px;
+  margin-top: 0px;
   display: inline-block;
   border-radius: 4px;
 }
 .btncart:hover {
-  background-color: #d1992f; 
+  background-color: #d1992f;
 }
 .btnbuy, .btnbuy:hover {
   background: rgba(255,117,29,1);
   color: #fff;
   text-align: center;
-  padding: 12px 25px; 
-  margin-top: 0px; 
+  padding: 12px 25px;
+  margin-top: 0px;
   display: inline-block;
   border-radius: 4px;
   margin-right: 10px;
 }
 .btnbuy:hover {
-  background-color: #d1992f; 
+  background-color: #d1992f;
 }
 .product-meta {
   padding-bottom: 15px;
@@ -1957,7 +1957,7 @@ cite {
   position: relative;
   margin:15px 0 5px 0;
   padding: 0 15px;
-  background-color: #eee; 
+  background-color: #eee;
   height: 0px;
   overflow: hidden;
   -moz-transition: all .600s ease-in-out;
@@ -1966,9 +1966,9 @@ cite {
 }
 .customsize.show {
   height: auto;
-} 
+}
 .customsize ul {
-  background-color: #eee; 
+  background-color: #eee;
   display: flex;
 }
 .customsize ul li {
@@ -2121,7 +2121,7 @@ cite {
     margin-bottom: 15px;
   }
   #story .row {
-    margin: 0; 
+    margin: 0;
   }
   #story .row .half {
     width: 100%;
@@ -2520,7 +2520,7 @@ cite {
     margin-bottom: 15px;
   }
   .hmeblog ul li .hmeblksg {
-    margin:0; 
+    margin:0;
   }
   .story .banntxt p {
     color: #fff !important;

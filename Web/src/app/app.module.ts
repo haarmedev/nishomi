@@ -27,8 +27,9 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { DirectivesModule } from './shared/directives/directives.module';
+import { PipesModule } from './shared/pipes/pipes.module';
 
- 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 'auto'
@@ -63,6 +64,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReactiveFormsModule,
     NgxImgZoomModule,
     SlickCarouselModule,
+    DirectivesModule,
+    PipesModule,
   ],
   providers: [
     {

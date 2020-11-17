@@ -3,3 +3,7 @@
 @import 'assets/css/plugins.css';
 @import 'assets/css/style.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html {
+  scroll-behavior: smooth;
+}

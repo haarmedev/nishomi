@@ -28,10 +28,11 @@ declare var $: any;
 })
 export class ProductdetailsComponent implements OnInit {
   profileForm = new FormGroup({
+    acceptTAC: new FormControl(false, [Validators.requiredTrue]),
     name: new FormControl('', [Validators.required]),
-    cusmail: new FormControl(''),
-    phone: new FormControl(''),
-    address: new FormControl(''),
+    cusmail: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i)]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(11)]),
+    address: new FormControl('', [Validators.required]),
     message: new FormControl(''),
   });
   fullLength = new FormControl(0);
@@ -40,6 +41,9 @@ export class ProductdetailsComponent implements OnInit {
   hip = new FormControl(0);
   email: string;
   productId: string;
+  showContactForm = false;
+  orderClicked = false;
+  submitted = false;
   constructor(
     private httpClient: HttpClient,
     public dialog: MatDialog,
@@ -153,6 +157,7 @@ export class ProductdetailsComponent implements OnInit {
     });
   }
   buyProduct() {
+    /*
     var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
     if(this.profileForm.value.name===''){
       Swal.fire('Name is Mandatory');
@@ -175,50 +180,55 @@ export class ProductdetailsComponent implements OnInit {
       Swal.fire('Address is Mandatory');
       return;
     }
-
-    var formData: any = new FormData();
-    formData.append('ProductId', this.productId);
-    formData.append('Name', this.profileForm.value.name);
-    formData.append('Email', this.profileForm.value.cusmail);
-    formData.append('ContactNumber', this.profileForm.value.phone);
-    formData.append('Address', this.profileForm.value.address);
-    formData.append('Message', this.profileForm.value.message);
-    if (
-      this.fullLength.value > 0 &&
-      this.sleeveLength.value > 0 &&
-      this.bust.value > 0 &&
-      this.hip.value > 0
-    ) {
-      formData.append(
-        'Size',
-        'Size: FullLength: ' +
-          this.fullLength.value +
-          ' SleeveLength: ' +
-          this.sleeveLength.value +
-          ' Bust: ' +
-          this.bust.value +
-          ' Hip: ' +
-          this.hip.value
+    */
+   this.submitted = true;
+   if (this.profileForm.valid) {
+      var formData: any = new FormData();
+      formData.append('ProductId', this.productId);
+      formData.append('Name', this.profileForm.value.name);
+      formData.append('Email', this.profileForm.value.cusmail);
+      formData.append('ContactNumber', this.profileForm.value.phone);
+      formData.append('Address', this.profileForm.value.address);
+      formData.append('Message', this.profileForm.value.message);
+      if (
+        this.fullLength.value > 0 &&
+        this.sleeveLength.value > 0 &&
+        this.bust.value > 0 &&
+        this.hip.value > 0
+      ) {
+        formData.append(
+          'Size',
+          'Size: FullLength: ' +
+            this.fullLength.value +
+            ' SleeveLength: ' +
+            this.sleeveLength.value +
+            ' Bust: ' +
+            this.bust.value +
+            ' Hip: ' +
+            this.hip.value
+        );
+      } else {
+        formData.append('Size', 'Size: ' + this.selectedSize);
+      }
+      this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
+        (response: any) => {
+          console.log(response);
+          if (response.data) {
+            this.isRequest = false;
+            if(this.isBuyNow){
+              Swal.fire('Thanks for placing this order. We will connect you shortly and deliver this product to  your address');
+            }
+            else{
+              Swal.fire('Thanks for your interest on this product. We will connect you shortly to know more about your interest and help you with your purchase');
+            }
+            this.profileForm.reset();
+            this.submitted = false;
+            this.orderClicked = false;
+          }
+        },
+        (error) => console.log(error)
       );
-    } else {
-      formData.append('Size', 'Size: ' + this.selectedSize);
-    }
-    this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
-      (response: any) => {
-        console.log(response);
-        if (response.data) {
-          this.isRequest = false;
-          if(this.isBuyNow){
-            Swal.fire('Thanks for placing this order. We will connect you shortly and deliver this product to  your address');
-          }
-          else{
-            Swal.fire('Thanks for your interest on this product. We will connect you shortly to know more about your interest and help you with your purchase');
-          }
-          this.profileForm.reset();
-        }
-      },
-      (error) => console.log(error)
-    );
+   }
   }
   selectProduct(pro) {
     console.log(pro);
@@ -247,28 +257,31 @@ export class ProductdetailsComponent implements OnInit {
   }
 
   setBuyNow(status) {
-    if (status == 'buy') {
-      if (this.isBuyNow) {
-        $('.proddesc').toggleClass('show');
-        this.isBuyNow = false;
-      } else {
-        if ($('.proddesc').hasClass('show')) {
-          this.isBuyNow = true;
+    this.orderClicked = true;
+    if (this.profileForm.controls.acceptTAC.value) {
+      if (status == 'buy') {
+        if (this.isBuyNow) {
+          this.showContactForm = !this.showContactForm;
+          this.isBuyNow = false;
         } else {
-          $('.proddesc').toggleClass('show');
-          this.isBuyNow = true;
-        }
-        this.scrollDiv();
-      }
-    } else {
-      if (this.isBuyNow) {
-        this.isBuyNow = false;
-        this.scrollDiv();
-      } else {
-        $('.proddesc').toggleClass('show');
-        this.isBuyNow = false;
-        if ($('.proddesc').hasClass('show')) {
+          if (this.showContactForm) {
+            this.isBuyNow = true;
+          } else {
+            this.showContactForm = true;
+            this.isBuyNow = true;
+          }
           this.scrollDiv();
+        }
+      } else {
+        if (this.isBuyNow) {
+          this.isBuyNow = false;
+          this.scrollDiv();
+        } else {
+          this.showContactForm = !this.showContactForm;
+          this.isBuyNow = false;
+          if (this.showContactForm) {
+            this.scrollDiv();
+          }
         }
       }
     }
@@ -278,7 +291,7 @@ export class ProductdetailsComponent implements OnInit {
       {
         scrollTop: $('.btncart').offset().top,
       },
-      2000
+      1000
     );
   }
 }

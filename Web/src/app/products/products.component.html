@@ -22,8 +22,8 @@
                   <div class="colldtls">
                     <h6><a>Nishomi- {{item.name}} {{pro.productCode}}</a></h6>
                     <div class="price-box">
-                      <span class="old">SR {{pro.cost.toFixed(2)}}</span>
-                      <span class="new">SR {{pro.cost.toFixed(2)}}</span>
+                      <span class="old">{{ pro.cost | aedcurrency}}</span>
+                      <span class="new">{{ pro.cost | aedcurrency}}</span>
                     </div>
                     <div class="quickview">
                       <a (click)="gotoDetails(pro.productId)">View Details</a>
