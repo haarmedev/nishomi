@@ -9,6 +9,18 @@ namespace Analystor.Nishomi.Domain
     public class Category : NamedEntity
     {
         /// <summary>
+        /// Gets or sets the name in arabic.
+        /// </summary>
+        /// <value>
+        /// The name in arabic.
+        /// </value>
+        public string NameAr
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the caption.
         /// </summary>
         /// <value>

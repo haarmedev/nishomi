@@ -15,6 +15,7 @@
                     <tr>
                         <th></th>
                         <th>Name</th>
+                        <th>Arabic Name</th>
                         <th>Caption</th>
                         <th>Description</th>
                         <th></th>
@@ -49,6 +50,7 @@
                     { orderable: false, targets: -1 },
                     { orderable: false, targets: 1 },
                     { orderable: false, targets: 2 },
+                    { orderable: false, targets: 3 },
                     {
                         "defaultContent": "-",
                         "targets": "_all"
@@ -57,6 +59,7 @@
                 columns: [
                     { data: "categoryId", name: "Id", visible: false },
                     { data: "name", name: "name" },
+                    { data: "nameAr", name: "nameAr"},
                     { data: "caption", name: "caption" },
                     {data:"description",name:"description"},
                     {
