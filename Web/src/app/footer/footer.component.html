@@ -2,21 +2,21 @@
     <div class="container">
       <div class="foologo">
         <a href="index.html"><img src="assets/images/foologo.svg" alt=""></a>
-        <p>NishOmi combines original designs and meticulously chosen fabric to instantly speak the language of elegance, luxury, and modest fashion.</p>
+        <p>{{ 'footer_desc' | translate }}</p>
       </div>
       <div class="foonav">
         <ul>
           <li>
-            <a routerLink="/home">Home</a>
-            <a routerLink="/story">Our Story</a>
+            <a routerLink="/home">{{ 'home' | translate }}</a>
+            <a routerLink="/story">{{ 'our_story' | translate }}</a>
           </li>
           <li>
-            <a routerLink="/products">Our Products</a>
-            <a routerLink="/blogs">Blog</a>
+            <a routerLink="/products">{{ 'our_products' | translate }}</a>
+            <a routerLink="/blogs">{{ 'blogs' | translate }}</a>
           </li>
           <li>
-            <a routerLink="/privacy">Privacy Policy</a>
-            <a routerLink="/terms">Terms & Conditions</a>
+            <a routerLink="/privacy">{{ 'privacy_policy' | translate }}</a>
+            <a routerLink="/terms">{{ 'terms_and_conditions' | translate }}</a>
           </li>
         </ul>
       </div>
@@ -25,7 +25,7 @@
     </div>
     <div class="container">
       <div class="copyright">
-        <h6>&copy; 2020 Nishomi Abayas</h6>
+        <h6>{{ 'copyright' | translate }}</h6>
       </div>
       <div class="foosocial">
         <a href="https://www.facebook.com/nishomiabayas/" target="_blank"><i class="icofont-facebook"></i></a>

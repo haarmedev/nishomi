@@ -4,6 +4,7 @@ import {
   AfterViewInit,
   ViewChild,
   ElementRef,
+  OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CATEGORYPRODUCTS, CUSTOMERREQUEST,IMAGE_ENDPOINT } from '../core/constants/constant';
@@ -18,6 +19,8 @@ import { ModalComponent } from '../modal/modal.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 declare var $: any;
 
 @Component({
@@ -25,7 +28,7 @@ declare var $: any;
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   profileForm = new FormGroup({
     name: new FormControl(''),
     cusmail: new FormControl(''),
@@ -40,8 +43,10 @@ export class ProductsComponent implements OnInit {
     public dialog: MatDialog,
     private modalService: NgbModal,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private translate: TranslateService) {
+    this.langSubscription = this.translate.onLangChange.subscribe(() => { this.setLangKey(); });
+  }
   category: [];
   product:[];
   closeResult: string;
@@ -50,6 +55,9 @@ export class ProductsComponent implements OnInit {
   selectedproduct: [];
   imageurl:string;
   routeId:string;
+  langKey = '';
+  currentLang: string;
+  langSubscription: Subscription;
 
   config: SwiperOptions = {
     loop: false,
@@ -150,6 +158,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setLangKey();
     this.route.queryParams.subscribe((params) => {
       this.routeId = params.id;
     });
@@ -218,6 +227,11 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  setLangKey(): void {
+    this.currentLang = this.translate.currentLang;
+    this.langKey = 'ar' === this.currentLang ? 'Ar' : '';
+  }
+
   ngAfterViewInit(): void {
     setTimeout(() => {
       const selectedCategory = document.getElementById(this.routeId);
@@ -225,5 +239,9 @@ export class ProductsComponent implements OnInit {
         selectedCategory.scrollIntoView();
       }
     }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    this.langSubscription.unsubscribe();
   }
 }

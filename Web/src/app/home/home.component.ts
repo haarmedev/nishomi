@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   CATEGORIESAPI,
@@ -7,18 +7,26 @@ import {
 } from '../core/constants/constant';
 import { SwiperOptions } from 'swiper';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+
 declare var $: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
-  constructor(private httpClient: HttpClient, private router: Router) {}
+export class HomeComponent implements OnInit, OnDestroy {
+  constructor(private httpClient: HttpClient, private router: Router, private translate: TranslateService) {
+    this.langSubscription = this.translate.onLangChange.subscribe(() => { this.setLangKey(); });
+  }
+  langKey = '';
   mySwiper: SwiperOptions;
   categories = [];
   featuredproducts: [];
   imageurl: string;
+  currentLang: string;
+  langSubscription: Subscription;
 
   config: SwiperOptions = {
     //autoplay: 6000,
@@ -99,6 +107,7 @@ export class HomeComponent implements OnInit {
       console.log(data);
       this.featuredproducts = data.data;
     });
+    this.setLangKey();
     //console.log("result"+this.categories);
   }
 
@@ -110,11 +119,20 @@ export class HomeComponent implements OnInit {
     }, 500);
   }
 
+  setLangKey(): void {
+    this.currentLang = this.translate.currentLang;
+    this.langKey = 'ar' === this.currentLang ? 'Ar' : '';
+  }
+
   gotoDetails(id: any) {
     this.router.navigate(['/productdetails'], { queryParams: { id: id } });
   }
 
   gotoCategory(id: any) {
     this.router.navigate(['/products'], { queryParams: { id: id } });
+  }
+
+  ngOnDestroy(): void {
+    this.langSubscription.unsubscribe();
   }
 }
