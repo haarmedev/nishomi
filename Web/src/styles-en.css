@@ -88,7 +88,7 @@ header .sub li a:after {
   text-align: left;
 }
 .story {
-  background: #ccc url(assets/images/en/bg-about01.jpg) no-repeat top center fixed;
+  background: #ccc url(assets/images/bg-about01-en.jpg) no-repeat top center fixed;
 }
 header .social a.lang {
   margin-left: 15px;
@@ -106,16 +106,16 @@ header .social a.lang {
 }
 @media only screen and (max-width: 1024px) {
   .story {
-    background: #ccc url(assets/images/en/bg-about01.jpg) no-repeat top center fixed;
+    background: #ccc url(assets/images/bg-about01-en.jpg) no-repeat top center fixed;
   }
 }
 @media only screen and (max-width: 991px) {
   .story {
-    background: #ccc url(assets/images/en/bg-about01.jpg) no-repeat top center;
+    background: #ccc url(assets/images/bg-about01-en.jpg) no-repeat top center;
   }
 }
 @media only screen and (max-width: 767px) {
   .story {
-    background: #fff url(assets/images/en/bg-about01.jpg) no-repeat top left;
+    background: #fff url(assets/images/bg-about01-en.jpg) no-repeat top left;
   }
 }

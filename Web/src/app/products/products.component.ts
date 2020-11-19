@@ -236,7 +236,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       const selectedCategory = document.getElementById(this.routeId);
       if (selectedCategory) {
-        selectedCategory.scrollIntoView();
+        selectedCategory.scrollIntoView({ behavior: 'smooth' });
       }
     }, 1000);
   }

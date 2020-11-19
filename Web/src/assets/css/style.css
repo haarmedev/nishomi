@@ -1689,7 +1689,7 @@ cite {
 .content .carocateg .item a img {
   border-radius: 50%;
 }
-.proddtls h5 a {
+.proddtls h5 span {
   font-size: 14px;
   line-height: 16px;
   padding: 0 0 8px;
