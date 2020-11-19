@@ -47,7 +47,7 @@
       <div class="col-md-6">
         <form [formGroup]="profileForm" (ngSubmit)="buyProduct()" *ngIf="product">
           <div class="proddtls">
-            <h5><a href="">{{product['categoryName' + langKey]}}</a></h5>
+            <h5><span>{{product['categoryName' + langKey]}}</span></h5>
             <h6>{{ 'nishomi' | translate }} - {{product['categoryName' + langKey]}} {{product['productCode' + langKey]}}</h6>
             <div class="price">
               <div class="new">{{product?.cost | aedcurrency}}</div>

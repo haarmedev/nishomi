@@ -93,11 +93,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit(): void {
-    setTimeout(() => {
-      let myScript = document.createElement('script');
-      myScript.setAttribute('src', './assets/js/home.js');
-      document.body.appendChild(myScript);
-    }, 500);
     this.imageurl = IMAGE_ENDPOINT;
     this.httpClient.get<any>(CATEGORIESAPI).subscribe((data: any) => {
       console.log(data);
@@ -106,6 +101,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.httpClient.get<any>(FEATUREDPRODUCTSAPI).subscribe((data: any) => {
       console.log(data);
       this.featuredproducts = data.data;
+      setTimeout(() => {
+        const sliderScript = document.createElement('script');
+        sliderScript.setAttribute('src', './assets/js/home.js');
+        document.body.appendChild(sliderScript);
+      });
     });
     this.setLangKey();
     //console.log("result"+this.categories);
