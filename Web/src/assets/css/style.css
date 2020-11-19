@@ -2010,8 +2010,6 @@ header .social a.lang {
 @media only screen and (max-width: 1024px) {
   .hmeproduct .caroprod {
     width: 100%;
-    margin-left: 0%;
-    margin-right: 0%;
     padding: 0 15px;
   }
   .story .banntxt h1, .titleblk h1 {
@@ -2141,7 +2139,6 @@ header .social a.lang {
     height: 50px;
     position: absolute;
     top: 20px;
-    right: 20px;
     border-radius: 4px;
     z-index: 10;
   }

@@ -1,5 +1,5 @@
 {
-  "en": "الإنجليزية",
+  "en": "English",
   "ar": "عربى",
   "home": "الصفحة الرئيسية",
   "our_products": "المنتجات تنا",
@@ -171,13 +171,13 @@
     "accept_label": "أقبل هذا"
   },
   "error": {
-    "tac_mandatory": "موافق الشروط و الأحكام",
-    "full_name_mandatory": "منتدب الاسم",
-    "email_id_mandatory": "منتدب البريد الاكتروني",
-    "contact_number_mandatory": "منتدب رقم الاتصال",
-    "address_mandatory": "منتدب العنوان",
-    "email_id_invalid": "ادخال البريد الاكتروني الصحيح",
-    "contact_number_invalid": "ادخال رقم الاتصال الصحيح"
+    "tac_mandatory": "الرجاء قبول الشروط والأحكام قبل المتابعة.",
+    "full_name_mandatory": "من فضلك ادخل اسمك الكامل.",
+    "email_id_mandatory": "الرجاء إدخال اسم المستخدم البريد الالكتروني.",
+    "contact_number_mandatory": "الرجاء إدخال رقم الاتصال الخاص بك.",
+    "address_mandatory": "الرجاء إدخال عنوانك.",
+    "email_id_invalid": "الرجاء إدخال معرف بريد إلكتروني صالح.",
+    "contact_number_invalid": "الرجاء إدخال رقم اتصال صحيح."
   },
   "success": {
     "order": "شكرا لتقديم هذا الطلب. سنقوم بتوصيلك قريبًا وتسليم هذا المنتج إلى عنوانك.",

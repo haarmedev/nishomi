@@ -3,7 +3,7 @@
       <div class="logo moblogo">
         <a routerLink="/"><img src="assets/images/logo.jpg" alt=""></a>
       </div>
-      <nav>
+      <nav [ngClass]="{'show': showBurgerMenu}">
         <div class="logo">
           <a routerLink="/"><img src="assets/images/logo.jpg" alt=""></a>
         </div>
@@ -22,8 +22,8 @@
         </div>
       </nav>
     </div>
-    <div class="burger">
+    <div class="burger" (click)="handleBurgerMenu()" [ngClass]="{'clicked': showBurgerMenu}">
       <span></span>
     </div>
-    <div class="overlay"></div>
+    <div class="overlay" (click)="handleBurgerMenu()" [ngClass]="{'show': showBurgerMenu}"></div>
   </header>

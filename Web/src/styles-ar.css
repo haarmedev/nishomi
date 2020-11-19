@@ -108,10 +108,16 @@ header .social a.lang {
   .story {
     background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center fixed;
   }
+  .hmeproduct .caroprod {
+    margin-right: 0%;
+  }
 }
 @media only screen and (max-width: 991px) {
   .story {
     background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center;
+  }
+  .burger {
+    left: 20px;
   }
 }
 @media only screen and (max-width: 767px) {

@@ -1,6 +1,6 @@
 {
   "en": "English",
-  "ar": "Arabic",
+  "ar": "عربى",
   "home": "Home",
   "our_products": "Our Products",
   "blogs": "Blogs",
@@ -171,13 +171,13 @@
     "accept_label": "I accept the"
   },
   "error": {
-    "tac_mandatory": "Accept terms and conditions",
-    "full_name_mandatory": "Name is Mandatory",
-    "email_id_mandatory": "Email Id is Mandatory",
-    "contact_number_mandatory": "Contact Number is Mandatory",
-    "address_mandatory": "Address is Mandatory",
-    "email_id_invalid": "Enter Valid Email Id",
-    "contact_number_invalid": "Enter Valid Contact Number"
+    "tac_mandatory": "Please accept terms and conditions before you proceed.",
+    "full_name_mandatory": "Please enter your full name.",
+    "email_id_mandatory": "Please enter your email id.",
+    "contact_number_mandatory": "Please enter your contact number.",
+    "address_mandatory": "Please enter your address.",
+    "email_id_invalid": "Please enter a valid email id.",
+    "contact_number_invalid": "Please enter a valid contact number."
   },
   "success": {
     "order": "Thanks for placing this order. We will connect you shortly and deliver this product to  your address",
