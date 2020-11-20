@@ -3,7 +3,7 @@
       <div class="logo moblogo">
         <a routerLink="/"><img src="assets/images/logo.jpg" alt=""></a>
       </div>
-      <nav>
+      <nav [ngClass]="{'show': showBurgerMenu}">
         <div class="logo">
           <a routerLink="/"><img src="assets/images/logo.jpg" alt=""></a>
         </div>
@@ -18,12 +18,13 @@
           <a href="https://www.facebook.com/nishomiabayas/" target="_blank"><i class="icofont-facebook"></i></a>
           <a href="https://www.instagram.com/nishomiabayas/" target="_blank"><i class="icofont-instagram"></i></a>
           <a href="https://twitter.com/nish_omi" target="_blank"><i class="icofont-twitter"></i></a>
+          <a href="https://wa.me/message/F2AY4XXIBMCYB1" target="_blank"><i class="icofont-brand-whatsapp"></i></a>
           <a href="javascript:void(0)" (click)="changeLanguage(switchLang)" class="lang">{{ switchLang | translate }}</a>
         </div>
       </nav>
     </div>
-    <div class="burger">
+    <div class="burger" (click)="handleBurgerMenu()" [ngClass]="{'clicked': showBurgerMenu}">
       <span></span>
     </div>
-    <div class="overlay"></div>
+    <div class="overlay" (click)="handleBurgerMenu()" [ngClass]="{'show': showBurgerMenu}"></div>
   </header>

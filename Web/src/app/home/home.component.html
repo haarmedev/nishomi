@@ -34,7 +34,7 @@
               <div class="hmeprsingdtl">
                 <!-- <h6><a href="">{{item.categoryName}}</a></h6>
                 <h3><a href="">{{item.name}}</a></h3> -->
-                <h3><a (click)="gotoDetails(item.productId)">{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}} {{ item['productCode' + langKey]}}</a></h3>
+                <h3><a (click)="gotoDetails(item.productId)">{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}}<br/>{{ item['productCode' + langKey]}}</a></h3>
                 <p>{{item['description' + langKey]}}</p>
               </div>
             </div>

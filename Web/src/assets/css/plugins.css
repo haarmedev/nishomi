@@ -1,8 +1,8 @@
-/*! 
-* @package IcoFont 
-* @version 1.0.1 
-* @author IcoFont https://icofont.com 
-* @copyright Copyright (c) 2015 - 2020 IcoFont 
+/*!
+* @package IcoFont
+* @version 1.0.1
+* @author IcoFont https://icofont.com
+* @copyright Copyright (c) 2015 - 2020 IcoFont
 * @license - https://icofont.com/license/
 */
 
@@ -66,6 +66,10 @@
 .icofont-twitter:before
 {
   content: "\ed7a";
+}
+
+.icofont-brand-whatsapp:before{
+  content:"\e957";
 }
 
 .icofont-brand-youtube:before
@@ -372,6 +376,7 @@
 
 img:not([draggable]), embed, object, video {
   max-width: 100%;
+  min-height: 100%;
   height: auto;
 }
 

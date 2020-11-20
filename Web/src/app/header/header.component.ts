@@ -12,6 +12,7 @@ import { CommonService } from '../shared/common.service';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   switchLang: string; // 'en' or 'ar'
+  showBurgerMenu: boolean;
   langSubscription: Subscription;
 
   constructor(private route: Router, private commonService: CommonService, private translate: TranslateService) {
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setSwitchLang(this.translate.currentLang);
+    this.handleBurgerMenu(false);
   }
 
   /**
@@ -28,6 +30,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
    */
   setSwitchLang(lang: string): void {
     this.switchLang = ('en' === lang) ? 'ar' : 'en';
+  }
+
+  /**
+   * @description To handle burger menu click.
+   */
+  handleBurgerMenu(showBurgerMenu = !this.showBurgerMenu): void {
+    this.showBurgerMenu = showBurgerMenu;
+    this.showBurgerMenu ? document.body.classList.add('overflow') : document.body.classList.remove('overflow');
   }
 
   /**

@@ -802,7 +802,7 @@ footer .foonav ul li a {
   position: relative;
 }
 .collimg {
-  max-height: 220px;
+  height: 220px;
   overflow: hidden;
   -webkit-box-shadow: 0 0 6px 2px rgba(0,0,0,0.1);
   box-shadow: 0 0 6px 2px rgba(0,0,0,0.1);
@@ -1138,7 +1138,7 @@ img.over {
 .contact-box-content .img-holder {
   display: block;
   max-width: 580px;
-  width: 90%;
+  width: 100%;
 }
 .contact-box-content .img-holder img {
   width: 100%;
@@ -2010,8 +2010,6 @@ header .social a.lang {
 @media only screen and (max-width: 1024px) {
   .hmeproduct .caroprod {
     width: 100%;
-    margin-left: 0%;
-    margin-right: 0%;
     padding: 0 15px;
   }
   .story .banntxt h1, .titleblk h1 {
@@ -2141,7 +2139,6 @@ header .social a.lang {
     height: 50px;
     position: absolute;
     top: 20px;
-    right: 20px;
     border-radius: 4px;
     z-index: 10;
   }
@@ -2570,11 +2567,6 @@ header .social a.lang {
     font-size: 13px;
   }
 
-  .swal2-header .swal2-title {
-    font-size: 18px !important;
-    font-weight: 600;
-    line-height: 27px !important;
-}
 /*.product-details-tab.product-details-tab2 {
     width: 100%;
     display: flex;
