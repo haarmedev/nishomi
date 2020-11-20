@@ -2567,11 +2567,6 @@ header .social a.lang {
     font-size: 13px;
   }
 
-  .swal2-header .swal2-title {
-    font-size: 18px !important;
-    font-weight: 600;
-    line-height: 27px !important;
-}
 /*.product-details-tab.product-details-tab2 {
     width: 100%;
     display: flex;
