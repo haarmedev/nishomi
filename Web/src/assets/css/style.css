@@ -1138,7 +1138,7 @@ img.over {
 .contact-box-content .img-holder {
   display: block;
   max-width: 580px;
-  width: 90%;
+  width: 100%;
 }
 .contact-box-content .img-holder img {
   width: 100%;

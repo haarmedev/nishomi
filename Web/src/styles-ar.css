@@ -104,6 +104,13 @@ header .social a.lang {
 #collections:nth-child(even) .collblk .prodflex .prodright {
   padding-left: 40px;
 }
+.tabcontact ul li .icon {
+  float: right;
+}
+.tabcontact ul li .icon-content {
+  float: right;
+  padding-right: 20px;
+}
 @media only screen and (max-width: 1024px) {
   .story {
     background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center fixed;

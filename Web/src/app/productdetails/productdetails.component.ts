@@ -226,12 +226,9 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
           console.log(response);
           if (response.data) {
             this.isRequest = false;
-            if(this.isBuyNow){
-              Swal.fire('Thanks for placing this order. We will connect you shortly and deliver this product to  your address');
-            }
-            else{
-              Swal.fire('Thanks for your interest on this product. We will connect you shortly to know more about your interest and help you with your purchase');
-            }
+            const msg = `success.${this.isBuyNow ?  'order' : 'show_interest'}`;
+            const trsnslatedMsg = this.translate.instant(msg);
+            Swal.fire(trsnslatedMsg);
             this.profileForm.reset();
             this.submitted = false;
             this.orderClicked = false;
