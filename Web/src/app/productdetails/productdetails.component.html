@@ -92,22 +92,22 @@
                       <li>
                         <img src="assets/images/size/01.jpg" alt="">
                         <p>{{ 'full_length' | translate }}</p>
-                        <input [formControl]="fullLength" type="text" placeholder="in inches">
+                        <input [formControl]="fullLength" type="text" [placeholder]="'in_inches' | translate">
                       </li>
                       <li>
                         <img src="assets/images/size/02.jpg" alt="">
                         <p>{{ 'sleeve_length' | translate }}</p>
-                        <input [formControl]="sleeveLength" type="text" placeholder="in inches">
+                        <input [formControl]="sleeveLength" type="text" [placeholder]="'in_inches' | translate">
                       </li>
                       <li>
                         <img src="assets/images/size/03.jpg" alt="">
                         <p>{{ 'bust' | translate }}</p>
-                        <input [formControl]="bust" type="text" placeholder="in inches">
+                        <input [formControl]="bust" type="text" [placeholder]="'in_inches' | translate">
                       </li>
                       <li>
                         <img src="assets/images/size/04.jpg" alt="">
                         <p>{{ 'hip' | translate }}</p>
-                        <input [formControl]="hip" type="text" placeholder="in inches">
+                        <input [formControl]="hip" type="text" [placeholder]="'in_inches' | translate">
                       </li>
                     </ul>
                   </div>
