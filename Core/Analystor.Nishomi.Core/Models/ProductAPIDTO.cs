@@ -82,6 +82,18 @@
         }
 
         /// <summary>
+        /// Gets or sets the name of the category in Arabic.
+        /// </summary>
+        /// <value>
+        /// The name of the category in Arabic.
+        /// </value>
+        public string CategoryNameAr
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the caption.
         /// </summary>
         /// <value>
