@@ -376,6 +376,7 @@
 
 img:not([draggable]), embed, object, video {
   max-width: 100%;
+  min-height: 100%;
   height: auto;
 }
 
