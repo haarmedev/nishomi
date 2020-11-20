@@ -9,7 +9,7 @@
         <div class="prodright">
           <div class="colltitle">
             <!-- <h6>{{item.caption}}</h6> -->
-            <h3>{{item.name}}</h3>
+            <h3>{{item['name' + langKey]}}</h3>
           </div>
           <div class="carorelative">
             <div [className]="i%2==0? 'swiper-container collcaro colcar1':'swiper-container collcaro colcar2'" [swiper]="i%2==0?config:configs">
@@ -20,13 +20,13 @@
                     <a><img src="{{imageurl+pro.images[0].imageUrl}}" alt=""></a>
                   </div>
                   <div class="colldtls">
-                    <h6><a>Nishomi- {{item.name}} {{pro.productCode}}</a></h6>
+                    <h6><a>{{ 'nishomi' | translate }} - {{item['name' + langKey]}} {{pro['productCode' + langKey]}}</a></h6>
                     <div class="price-box">
-                      <span class="old">SR {{pro.cost.toFixed(2)}}</span>
-                      <span class="new">SR {{pro.cost.toFixed(2)}}</span>
+                      <span class="old">{{ pro.cost | aedcurrency}}</span>
+                      <span class="new">{{ pro.cost | aedcurrency}}</span>
                     </div>
                     <div class="quickview">
-                      <a (click)="gotoDetails(pro.productId)">View Details</a>
+                      <a (click)="gotoDetails(pro.productId)">{{ 'view_details' | translate }}</a>
                     </div>
                   </div>
                 </div>

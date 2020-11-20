@@ -1,0 +1,134 @@
+html body {
+  text-align: right;
+}
+.fast-text {
+  padding-right: 6%;
+  border-right: 1px solid #ccc;
+}
+.titleblk ul li {
+  padding-right: 20px;
+}
+.titleblk ul li:before {
+  right: 0;
+}
+.blogcontent blockquote p {
+  padding-right: 60px;
+  border-right: 3px solid #e7b51f;
+}
+cite {
+  padding-right: 60px;
+  text-align: right;
+}
+.bloglist li .postimg {
+  margin-left:50px;
+}
+.swiper-container, .swiper-wrapper, .slick-slider .slick-track, .slick-slider .slick-list {
+  direction: ltr;
+}
+.btnbuy, .btnbuy:hover {
+  margin-left: 10px;
+}
+.sizeabaya h6, .quantity h6 {
+  margin-left: 15px;
+}
+.size-list .size_item {
+  margin: 0 0 0 15px;
+}
+.product-meta li span.value {
+  margin-right: 4px;
+}
+.story .banntxt {
+  text-align: right;
+}
+.caroblkdtls > a:after {
+  margin-right: 12px;
+  transform: rotate(180deg);
+}
+.bloglist li .postdtls > a:after {
+  margin-right: 12px;
+  transform: rotate(180deg);
+}
+header .sub li a:after {
+  margin-right: 12px;
+  transform: rotate(180deg);
+}
+.hmeproduct .caroprod {
+  margin-right: 3%;
+}
+.title-box h3 {
+  padding-right: 15px;
+}
+.title-box h3:after {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 3px;
+  height: 20px;
+  background: #ffbf00;
+  content: "";
+}
+.quick-contact-box ul li:first-child,
+.quick-contact-box ul li:nth-child(2),
+.quick-contact-box ul li:nth-child(3),
+.quick-contact-box ul li:nth-child(4) {
+  padding-right: 35px;
+  background-position: right center;
+}
+.policy ul {
+  margin-right: 20px;
+}
+.policy ul li,
+.policy address {
+  text-align: right;
+}
+.termsblk label {
+  margin-right: 5px;
+}
+.hmeprsing .hmeprsingdtl {
+  text-align: right;
+}
+.story {
+  background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center fixed;
+}
+header .social a.lang {
+  margin-right: 15px;
+  padding-right: 15px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+.collcaro .colldtls {
+  text-align: right;
+}
+#collections:nth-child(odd) .collblk .prodflex .prodright {
+  padding-right: 40px;
+}
+#collections:nth-child(even) .collblk .prodflex .prodright {
+  padding-left: 40px;
+}
+.tabcontact ul li .icon {
+  float: right;
+}
+.tabcontact ul li .icon-content {
+  float: right;
+  padding-right: 20px;
+}
+@media only screen and (max-width: 1024px) {
+  .story {
+    background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center fixed;
+  }
+  .hmeproduct .caroprod {
+    margin-right: 0%;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .story {
+    background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center;
+  }
+  .burger {
+    left: 20px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .story {
+    background: #fff url(assets/images/bg-about01-ar.jpg) no-repeat top left;
+  }
+}

@@ -4,24 +4,24 @@
       <ul class="bloglist">
         <li>
           <div class="postimg">
-            <a href="abaya-thenamdnow.html"><img src="assets/images/blog01.jpg" alt=""></a>
+            <a routerLink="/abaya"><img src="assets/images/blog01.jpg" alt=""></a>
           </div>
           <div class="postdtls">
-            <h6 style="background-color: #4ca80b">Fashion</h6>
-            <h3><a href="abaya-thenamdnow.html">ABAYA: THEN AND NOW</a></h3>
-            <p>A long cloak or robe, popularly known as Abaya, also referred to as Aba, Abah, all represent this everyday clothing that effortlessly covers the entire body.</p>
-            <a routerLink="/abaya">Read More <i class="icofont-simple-right"></i></a>
+            <h6 style="background-color: #4ca80b">{{ 'fashion' | translate | uppercase }}</h6>
+            <h3><a routerLink="/abaya">{{ 'abaya_then_and_now' | translate | uppercase }}</a></h3>
+            <p>{{ 'abaya_then_and_now_desc1' | translate }}</p>
+            <a routerLink="/abaya">{{ 'read_more' | translate }}<i class="icofont-simple-right"></i></a>
           </div>
         </li>
         <li>
           <div class="postimg">
-            <a href="allaboutsleeves.html"><img src="assets/images/blog02.jpg" alt=""></a>
+            <a routerLink="/sleeves"><img src="assets/images/blog02.jpg" alt=""></a>
           </div>
           <div class="postdtls">
-            <h6 style="background-color: #fc4a00">INSPIRATION</h6>
-            <h3><a href="allaboutsleeves.html">All About Sleeves</a></h3>
-            <p>A long cloak or robe, popularly known as Abaya, also referred to as Aba, Abah, all represent this everyday clothing that effortlessly covers the entire body.</p>
-            <a routerLink="/sleeves">Read More <i class="icofont-simple-right"></i></a>
+            <h6 style="background-color: #fc4a00">{{ 'inspiration' | translate | uppercase }}</h6>
+            <h3><a routerLink="/sleeves">{{ 'about_sleeves' | translate | uppercase }}</a></h3>
+            <p>{{ 'about_sleeves_desc1' | translate }}</p>
+            <a routerLink="/sleeves">{{ 'read_more' | translate }} <i class="icofont-simple-right"></i></a>
           </div>
         </li>
       </ul>

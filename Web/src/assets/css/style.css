@@ -1,8 +1,8 @@
-/* ------------------------------------------------------------------------------ 
-Project Name : Nishomi 
-Description : Main Style Sheet 
-Author : Imran Rovan 
-Created On : 12 August 2020 
+/* ------------------------------------------------------------------------------
+Project Name : Nishomi
+Description : Main Style Sheet
+Author : Imran Rovan
+Created On : 12 August 2020
 --------------------------------------------------------------------------------*/
 
 /* Google Fonts */
@@ -261,7 +261,6 @@ header .sub li a:after {
   background: url(../images/icons/next.svg) no-repeat right center;
   width: 20px;
   height: 10px;
-  margin-left: 12px; 
 }
 #particles {
   width: 100%;
@@ -285,7 +284,6 @@ header .sub li a:after {
   position: relative;
 }
 .story {
-  background: #ccc url(../images/bg-about01.jpg) no-repeat top center fixed; 
   background-size: cover;
   margin-top: 0px;
   padding: 100px 0;
@@ -296,7 +294,6 @@ header .sub li a:after {
 .story .banntxt {
   width: 100%;
   margin:auto;
-  text-align: left;
 }
 .story .banvideo {
   width: 50%;
@@ -430,7 +427,6 @@ header .sub li a:after {
   background: url(../images/icons/next.svg) no-repeat right center;
   width: 20px;
   height: 10px;
-  margin-left: 12px;
 }
 .rightdtl .caroblkdtls {
   position: absolute;
@@ -451,8 +447,8 @@ header .sub li a:after {
 }
 #hmecatynew > .half img {
   width: 100%;
-  transition-duration: .5s; 
-  will-change: transform; 
+  transition-duration: .5s;
+  will-change: transform;
 }
 #hmecatynew > .half:hover img {
   -webkit-transform: scale(1.2);
@@ -495,8 +491,7 @@ header .sub li a:after {
   background: linear-gradient(90deg, rgba(255,117,29,1) 0%, rgba(208,48,48,1) 100%);
 }
 .hmeprsing .hmeprsingdtl {
-  text-align: left;
-  padding: 15px; 
+  padding: 15px;
 }
 .hmeprsing h6 a {
   font-size: 13px;
@@ -538,7 +533,6 @@ header .sub li a:after {
 }
 .hmeproduct .caroprod {
   width: 94%;
-  margin-left: 3%;
 }
 .hmeblog {
   padding: 60px 0;
@@ -605,7 +599,7 @@ header .sub li a:after {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
 .hmeblog ul li .twohalf {
   margin-bottom: 15px;
@@ -672,7 +666,7 @@ footer .foonav ul li a {
 }
 .foosocial a:hover {
   color: #fff;
-} 
+}
 .tabs-stage ul {
   list-style: none;
   margin: 0;
@@ -764,12 +758,6 @@ footer .foonav ul li a {
 #collections .collblk .prodright {
   width: 65%;
 }
-#collections:nth-child(odd) .collblk .prodflex .prodright {
-  padding-left: 40px;
-}
-#collections:nth-child(even) .collblk .prodflex .prodright {
-  padding-right: 40px;
-}
 #collections .collblk.collbg1 {
   margin-top: 90px;
   background-color: #ffe5ce;
@@ -814,13 +802,14 @@ footer .foonav ul li a {
   position: relative;
 }
 .collimg {
-  max-height: 220px;
+  height: 220px;
   overflow: hidden;
   -webkit-box-shadow: 0 0 6px 2px rgba(0,0,0,0.1);
-  box-shadow: 0 0 6px 2px rgba(0,0,0,0.1); 
+  box-shadow: 0 0 6px 2px rgba(0,0,0,0.1);
 }
 .collcaro .swiper-slide .collimg img {
   width: 100%;
+  min-height: 100%;
   -webkit-transition: all 5s linear;
   -moz-transition: all 5s linear;
   -ms-transition: all 5s linear;
@@ -834,7 +823,6 @@ footer .foonav ul li a {
 .collcaro .colldtls {
   background: #fff;
   padding: 15px;
-  text-align: left;
   /*height: 150px;*/
   -webkit-box-shadow: 0 0 6px 2px rgba(0,0,0,0.1);
   box-shadow: 0 0 6px 2px rgba(0,0,0,0.1);
@@ -852,7 +840,7 @@ footer .foonav ul li a {
   text-transform: capitalize;
   height: 45px;
   max-height: 45px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 .collcaro .colldtls h5 {
   color: #333;
@@ -980,14 +968,10 @@ footer .foonav ul li a {
  font-weight: 800;
  text-transform: uppercase;
 }
-.aboutdtl p { 
+.aboutdtl p {
   line-height:32px;
   color:#666666;
   margin-bottom: 20px;
-}
-.fast-text {
-  padding-left: 6%;
-  border-left: 1px solid #ccc;
 }
 #story .row.fast-text-container {
   align-items: flex-start;
@@ -1034,7 +1018,7 @@ img.over {
   padding:0;
 }
 .prodpop {
-  padding: 50px; 
+  padding: 50px;
 }
 .prodpop h2 {
   color: #000;
@@ -1129,7 +1113,7 @@ img.over {
   overflow: hidden;
   z-index: 1;
   outline: 0;
-  
+
 }
 .close {
   margin: 15px 15px 0 0;
@@ -1155,7 +1139,7 @@ img.over {
 .contact-box-content .img-holder {
   display: block;
   max-width: 580px;
-  width: 90%;
+  width: 100%;
 }
 .contact-box-content .img-holder img {
   width: 100%;
@@ -1175,19 +1159,9 @@ img.over {
   padding-left: 0px;
   padding-bottom: 15px;
 }
-.title-box  h3 {
+.title-box h3 {
   font-size: 22px;
   position: relative;
-  padding-left: 15px;
-}
-.title-box h3:before {
-  position: absolute;
-  top: 0px;
-  left: 0;
-  width: 3px;
-  height: 20px;
-  background: #ffbf00;
-  content: "";
 }
 .quick-contact-box {
   position: relative;
@@ -1209,22 +1183,18 @@ img.over {
   list-style: none;
 }
 .quick-contact-box ul li:first-child {
-  padding-left: 35px;
-  background: url(../images/icons/cont-ph.png) no-repeat left center;
+  background: url(../images/icons/cont-ph.png) no-repeat;
   background-size: auto 95%;
 }
 .quick-contact-box ul li:nth-child(2) {
-  padding-left: 35px;
-  background: url(../images/icons/cont-fax.png) no-repeat left center;
+  background: url(../images/icons/cont-fax.png) no-repeat;
   background-size: auto 95%;
 }
 .quick-contact-box ul li:nth-child(3) {
-  padding-left: 35px;
-  background: url(../images/icons/cont-mail.png) no-repeat left center;
+  background: url(../images/icons/cont-mail.png) no-repeat;
   background-size: auto 95%;
 }
 .quick-contact-box ul li:nth-child(4) {
-  padding-left: 35px;
   /* background: url(../images/icons/cont-map.png) no-repeat left center; */
   background-size: auto 95%;
 }
@@ -1242,7 +1212,6 @@ img.over {
   display: block;
   margin-bottom: 15px;
   position: relative;
-  padding-left: 20px;
 }
 .titleblk ul li:before {
   content:'';
@@ -1252,7 +1221,6 @@ img.over {
   background:#e7b51f;
   border-radius:50%;
   position:absolute;
-  left:0;
   top:5px;
 }
 .map {
@@ -1274,7 +1242,7 @@ img.over {
   height: 250px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
-} 
+}
 .bggrey .selectprod {
   text-align: center;
 }
@@ -1483,16 +1451,12 @@ h3 {
 }
 .blogcontent blockquote p {
   margin-bottom: 0;
-  padding-left: 60px;
   font-size: 24px;
   font-weight: 300;
   position: relative;
   line-height: 1.5;
-  border-left: 3px solid #e7b51f;
 }
 cite {
-  padding-left: 60px;
-  text-align: left;
   margin-top: 15px;
   display: block;
   width: 100%;
@@ -1512,8 +1476,10 @@ cite {
   border-bottom: none;
 }
 .bloglist li .postimg {
-  width:450px;
-  margin-right:50px;
+  flex-basis: 27%;
+}
+.bloglist li .postdtls {
+  flex-basis: 73%;
 }
 .bloglist li .postdtls h6 {
   background-color: #666;
@@ -1535,7 +1501,7 @@ cite {
 }
 .bloglist li .postdtls p {
   font-size: 16px;
-} 
+}
 .bloglist li .postdtls > a {
   font-size: 16px;
   font-weight: 600;
@@ -1554,7 +1520,6 @@ cite {
   background: url(../images/icons/next.svg) no-repeat right center;
   width: 20px;
   height: 10px;
-  margin-left: 12px;
 }
 .policy {
   margin-bottom: 40px;
@@ -1576,7 +1541,6 @@ cite {
 }
 .policy ul {
   list-style: disc;
-  margin-left: 20px;
   margin-bottom: 30px;
 }
 
@@ -1587,7 +1551,6 @@ cite {
   line-height: 24px;
   font-weight: 400;
   color: #4b4b4b;
-  text-align: left;
 }
 
 .policy a {
@@ -1603,7 +1566,7 @@ cite {
 }
 .breadcrumb {
   margin: 0;
-  padding: 0; 
+  padding: 0;
   padding-top: 20px;
   margin-bottom: 10px;
   color: #e6e6e6;
@@ -1727,7 +1690,7 @@ cite {
 .content .carocateg .item a img {
   border-radius: 50%;
 }
-.proddtls h5 a {
+.proddtls h5 span {
   font-size: 14px;
   line-height: 16px;
   padding: 0 0 8px;
@@ -1799,26 +1762,25 @@ cite {
   background: #333;
   color: #fff;
   text-align: center;
-  padding: 12px 25px; 
-  margin-top: 0px; 
+  padding: 12px 25px;
+  margin-top: 0px;
   display: inline-block;
   border-radius: 4px;
 }
 .btncart:hover {
-  background-color: #d1992f; 
+  background-color: #d1992f;
 }
 .btnbuy, .btnbuy:hover {
   background: rgba(255,117,29,1);
   color: #fff;
   text-align: center;
-  padding: 12px 25px; 
-  margin-top: 0px; 
+  padding: 12px 25px;
+  margin-top: 0px;
   display: inline-block;
   border-radius: 4px;
-  margin-right: 10px;
 }
 .btnbuy:hover {
-  background-color: #d1992f; 
+  background-color: #d1992f;
 }
 .product-meta {
   padding-bottom: 15px;
@@ -1833,13 +1795,16 @@ cite {
   font-weight: 400;
 }
 .product-meta li span {
+  display: inline-block;
+}
+.product-meta li span.value {
   color: #292b2c;
   font-weight: 500;
   text-decoration: none;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all .3s ease-in-out;
 }
-.product-meta li:last-child span {
+.product-meta li:last-child span.value {
   color: #2ea349;
 }
 .proddesc {
@@ -1900,7 +1865,6 @@ cite {
 .sizeabaya h6, .quantity h6 {
   font-size: 16px;
   margin-bottom: 10px;
-  margin-right: 15px;
 }
 .size-list li {
   display: inline-block;
@@ -1914,7 +1878,6 @@ cite {
   width: 100%;
   display: block;
   cursor: pointer;
-  margin: 0 15px 0 0;
   width: 40px;
   height: 40px;
   line-height:37px;
@@ -1957,7 +1920,7 @@ cite {
   position: relative;
   margin:15px 0 5px 0;
   padding: 0 15px;
-  background-color: #eee; 
+  background-color: #eee;
   height: 0px;
   overflow: hidden;
   -moz-transition: all .600s ease-in-out;
@@ -1966,9 +1929,9 @@ cite {
 }
 .customsize.show {
   height: auto;
-} 
+}
 .customsize ul {
-  background-color: #eee; 
+  background-color: #eee;
   display: flex;
 }
 .customsize ul li {
@@ -2005,12 +1968,13 @@ cite {
   font-size: 14px;
   padding-top: 15px;
 }
-.termsblk label {
-  margin-left: 5px;
-}
 .related {
   background: #ffe5ce;
   padding: 20px 0;
+}
+header .social a.lang {
+  font-size: 18px;
+  font-family: 'Tahoma', sansserif;
 }
 
 /* Responsive CSS */
@@ -2047,7 +2011,6 @@ cite {
 @media only screen and (max-width: 1024px) {
   .hmeproduct .caroprod {
     width: 100%;
-    margin-left: 0%;
     padding: 0 15px;
   }
   .story .banntxt h1, .titleblk h1 {
@@ -2063,7 +2026,6 @@ cite {
     padding-left: 50px;
   }
   .story {
-    background: #ccc url(../images/bg-about01.jpg) no-repeat top center fixed;
     background-size: auto 100%;
   }
   .hmeblog ul li .blkgdtl h3 {
@@ -2109,7 +2071,6 @@ cite {
     flex-direction: column;
   }
   .story {
-    background: #ccc url(../images/bg-about01.jpg) no-repeat top center;
     background-size: auto 100%;
   }
   .hmeblog ul {
@@ -2121,7 +2082,7 @@ cite {
     margin-bottom: 15px;
   }
   #story .row {
-    margin: 0; 
+    margin: 0;
   }
   #story .row .half {
     width: 100%;
@@ -2179,7 +2140,6 @@ cite {
     height: 50px;
     position: absolute;
     top: 20px;
-    right: 20px;
     border-radius: 4px;
     z-index: 10;
   }
@@ -2520,7 +2480,7 @@ cite {
     margin-bottom: 15px;
   }
   .hmeblog ul li .hmeblksg {
-    margin:0; 
+    margin:0;
   }
   .story .banntxt p {
     color: #fff !important;
@@ -2529,7 +2489,6 @@ cite {
     width: 100%;
   }
   .story {
-    background: #fff url(../images/bg-about01.jpg) no-repeat top left;
     background-size: auto 250px;
     padding-top: 270px;
     padding-bottom: 30px;
@@ -2609,11 +2568,6 @@ cite {
     font-size: 13px;
   }
 
-  .swal2-header .swal2-title {
-    font-size: 18px !important;
-    font-weight: 600;
-    line-height: 27px !important;
-}
 /*.product-details-tab.product-details-tab2 {
     width: 100%;
     display: flex;

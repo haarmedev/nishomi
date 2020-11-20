@@ -1,0 +1,54 @@
+.tabcontact {
+  background-color: #222;
+  border-radius: 4px 4px 0 0;
+  padding: 30px;
+  width: 100%;
+}
+.tabcontact ul {
+  list-style: none;
+  margin: 0;
+}
+.tabcontact ul li {
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #5d5d5e;
+}
+.tabcontact ul li:last-child {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border-bottom: none;
+}
+.tabcontact ul li .icon {
+  border: 1px solid #5a5a5b;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  line-height: 48px;
+}
+.tabcontact ul li .icon i {
+  color: #e7b51f;
+  font-size: 25px;
+}
+.tabcontact ul li .icon-content {
+  width: calc(100% - 45px);
+}
+.tabcontact ul li .icon-content h6 {
+  color: #939393;
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.tabcontact ul li .icon-content p {
+  font-size: 16px;
+  margin:0 0 5px 0;
+  line-height: 26px;
+  color: #fff;
+}
+.tabcontact ul li a {
+  color: #fff;
+}
+iframe {
+  height: 100%;
+}
