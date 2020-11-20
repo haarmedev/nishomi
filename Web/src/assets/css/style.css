@@ -809,6 +809,7 @@ footer .foonav ul li a {
 }
 .collcaro .swiper-slide .collimg img {
   width: 100%;
+  min-height: 100%;
   -webkit-transition: all 5s linear;
   -moz-transition: all 5s linear;
   -ms-transition: all 5s linear;
