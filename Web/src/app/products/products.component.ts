@@ -1,9 +1,7 @@
 import {
   Component,
   OnInit,
-  AfterViewInit,
   ViewChild,
-  ElementRef,
   OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -167,6 +165,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.httpClient.get<any>(CATEGORYPRODUCTS).subscribe((data: any) => {
       console.log(data);
       this.category = data.data;
+      setTimeout(() => {
+        const selectedCategory = document.getElementById(this.routeId);
+        if (selectedCategory) {
+          selectedCategory.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
     });
     setTimeout(() => {
       let myScript = document.createElement('script');
@@ -230,15 +234,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   setLangKey(): void {
     this.currentLang = this.translate.currentLang;
     this.langKey = 'ar' === this.currentLang ? 'Ar' : '';
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      const selectedCategory = document.getElementById(this.routeId);
-      if (selectedCategory) {
-        selectedCategory.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 1000);
   }
 
   ngOnDestroy(): void {
