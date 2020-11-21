@@ -465,7 +465,7 @@ header .sub li a:after {
 .hmeprsing > a {
   position: relative;
   display: block;
-  max-height: 250px;
+  height: 250px;
   overflow: hidden;
 }
 .hmeprsing > a > span {
@@ -2344,7 +2344,6 @@ header .social a.lang {
     display: inline-block;
     width: 30px;
     height: 30px;
-    margin-right: 25px;
   }
   nav .social a:last-of-type {
     margin-right: 0px;

@@ -1,3 +1,7 @@
+.product-details#contact {
+  padding-bottom: 40px;
+}
+
 .error {
   color: #FF0000;
   font-size: 12px;

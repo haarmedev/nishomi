@@ -15,7 +15,6 @@ export class AEDcurrencyPipe implements PipeTransform {
     digitsInfo: string = '0.2-2',
     locale: string = 'en-US'
   ): string | null {
-    console.log('triggered');
     return formatCurrency(
       value,
       locale,
