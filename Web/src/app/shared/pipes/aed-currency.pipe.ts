@@ -18,7 +18,7 @@ export class AEDcurrencyPipe implements PipeTransform {
     return formatCurrency(
       value,
       locale,
-      getCurrencySymbol(`${this.translate.instant(currencyCode)}`, 'wide'),
+      getCurrencySymbol(`${this.translate.instant(currencyCode)} `, 'wide'),
       currencyCode,
       digitsInfo
     );
