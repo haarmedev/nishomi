@@ -30,11 +30,16 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let item of featuredproducts">
             <div class="hmeprsing">
-              <a (click)="gotoDetails(item.productId)"><img src="{{imageurl+item.images[0].imageUrl}}" alt=""><span  [className]="!item.caption?'':item.caption=='Limited'?'limited':item.caption=='New'?'new':'best'">{{item.caption}}</span></a>
+              <a (click)="gotoDetails(item.productId)">
+                <img src="{{(item.images | mainImageFilter)}}" alt="">
+                <span  [className]="!item.caption?'':item.caption=='Limited'?'limited':item.caption=='New'?'new':'best'">
+                  {{item.caption}}
+                </span>
+              </a>
               <div class="hmeprsingdtl">
                 <!-- <h6><a href="">{{item.categoryName}}</a></h6>
                 <h3><a href="">{{item.name}}</a></h3> -->
-                <h3><a (click)="gotoDetails(item.productId)">{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}}<br/>{{ item['productCode' + langKey]}}</a></h3>
+                <h3><a (click)="gotoDetails(item.productId)">{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}} {{ item['productCode' + langKey]}}</a></h3>
                 <p>{{item['description' + langKey]}}</p>
               </div>
             </div>

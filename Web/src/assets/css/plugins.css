@@ -1464,6 +1464,7 @@ span.nav-close:before {
 
   /* 'Shrink-wrap' the element */
   display: inline-block;
+  vertical-align: bottom;
   *display: inline;
   *zoom: 1;
 }

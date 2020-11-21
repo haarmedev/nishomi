@@ -17,7 +17,7 @@
 
                 <div class="swiper-slide" *ngFor="let pro of item.products;index as i;first as is">
                   <div class="collimg">
-                    <a><img src="{{imageurl+pro.images[0].imageUrl}}" alt=""></a>
+                    <a><img src="{{(pro.images | mainImageFilter)}}" alt=""></a>
                   </div>
                   <div class="colldtls">
                     <h6><a>{{ 'nishomi' | translate }} - {{item['name' + langKey]}} {{pro['productCode' + langKey]}}</a></h6>

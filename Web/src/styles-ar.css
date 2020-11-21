@@ -111,6 +111,9 @@ header .social a.lang {
   float: right;
   padding-right: 20px;
 }
+.customizeblk > h6 {
+  right: 230px;
+}
 @media only screen and (max-width: 1024px) {
   .story {
     background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center fixed;

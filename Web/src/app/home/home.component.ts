@@ -99,7 +99,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.categories = data.data;
     });
     this.httpClient.get<any>(FEATUREDPRODUCTSAPI).subscribe((data: any) => {
-      console.log(data);
       this.featuredproducts = data.data;
       setTimeout(() => {
         const sliderScript = document.createElement('script');

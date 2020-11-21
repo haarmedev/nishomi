@@ -1,3 +1,3 @@
 # nishomi
 
-Nishomi eCommerce website
+nishomi eCommerce website
