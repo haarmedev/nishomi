@@ -460,7 +460,7 @@ header .sub li a:after {
 }
 .hmeprsing {
   border-radius: 2px;
-  border: solid 1px #c8c8c6
+  border: solid 1px #c8c8c6;
 }
 .hmeprsing > a {
   position: relative;
@@ -712,6 +712,11 @@ footer .foonav ul li a {
 }
 .one .swiper-slide.swiper-slide-active .hmeprsing {
   border:1px solid #d7a22e;
+  -webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+}
+.one .swiper-slide .hmeprsing {
+  cursor: pointer;
   -webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
   box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
 }

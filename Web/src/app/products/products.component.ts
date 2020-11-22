@@ -166,11 +166,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
       console.log(data);
       this.category = data.data;
       setTimeout(() => {
-        const selectedCategory = document.getElementById(this.routeId);
-        if (selectedCategory) {
-          selectedCategory.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
+        // const selectedCategory = document.getElementById(this.routeId);
+        // if (selectedCategory) {
+        //   selectedCategory.scrollIntoView({ behavior: 'smooth' });
+        // }
+        $('html, body').animate({scrollTop: $(`#${this.routeId}`).position().top}, 'slow');
+      }, 500);
     });
     setTimeout(() => {
       let myScript = document.createElement('script');

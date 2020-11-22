@@ -29,7 +29,7 @@
       <div class="swiper-container one">
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let item of featuredproducts">
-            <div class="hmeprsing">
+            <div class="hmeprsing" (click)="gotoDetails(item.productId)">
               <a (click)="gotoDetails(item.productId)">
                 <img src="{{(item.images | mainImageFilter)}}" alt="">
                 <span  [className]="!item.caption?'':item.caption=='Limited'?'limited':item.caption=='New'?'new':'best'">
