@@ -439,6 +439,7 @@ header .sub li a:after {
 }
 #hmecatynew > .half {
   width: 50%;
+  cursor: pointer;
   position: relative;
 }
 #hmecatynew > .half > a {

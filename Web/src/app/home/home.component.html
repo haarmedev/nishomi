@@ -51,7 +51,7 @@
     </section>
     <section id="hmecatynew">
       <div class="half" *ngFor="let item of categories">
-        <a routerLink="/products" fragment={{item.categoryId}}><img src="{{imageurl+item.url}}" alt=""></a>
+        <a (click)="gotoCategory(item.categoryId)"><img src="{{imageurl+item.url}}" alt=""></a>
         <div class="caroblkdtls">
           <h3>{{item['name' + langKey]}}</h3>
           <a (click)="gotoCategory(item.categoryId)">{{ 'explore_category' | translate }}</a>
