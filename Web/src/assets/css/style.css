@@ -189,6 +189,9 @@ header .social a {
   margin: 0 10px;
   color: #60616d;
 }
+header .social a:hover {
+  color: #FFFFFF;
+}
 header nav {
   display:flex;
   align-items:center;
@@ -463,7 +466,7 @@ header .sub li a:after {
   border-radius: 2px;
   border: solid 1px #c8c8c6;
 }
-.hmeprsing > a {
+.hmeprsing > a > .head-section {
   position: relative;
   display: block;
   height: 250px;
@@ -503,14 +506,15 @@ header .sub li a:after {
 }
 .hmeprsing h3 {
   margin-top: 0;
-  margin-bottom: 10px;
-}
-.hmeprsing h3 a {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: normal;
   color: #222222;
+  margin-bottom: 10px;
+}
+.hmeprsing h3 a {
+
   margin-bottom: 0px;
 }
 .hmeprsing p {
@@ -717,9 +721,11 @@ footer .foonav ul li a {
   box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
 }
 .one .swiper-slide .hmeprsing {
-  cursor: pointer;
   -webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
   box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+}
+.one .swiper-slide .hmeprsing a {
+  cursor: pointer;
 }
 .swiper-container.two {
   padding-bottom: 50px;
@@ -1880,11 +1886,10 @@ cite {
   border: 2px solid #E6E6E6;
   padding: 0;
   text-align: left;
-  width: 100%;
   display: block;
   cursor: pointer;
-  width: 40px;
   height: 40px;
+  padding: 0 10px;
   line-height:37px;
   text-align: center;
   font-size: 13px;
@@ -1925,14 +1930,10 @@ cite {
   margin:15px 0 5px 0;
   padding: 0 15px;
   background-color: #eee;
-  height: 0px;
   overflow: hidden;
   -moz-transition: all .600s ease-in-out;
   -webkit-transition: all .600s ease-in-out;
   transition: all .600s ease-in-out;
-}
-.customsize.show {
-  height: auto;
 }
 .customsize ul {
   background-color: #eee;
@@ -1970,7 +1971,6 @@ cite {
 .termsblk {
   padding-bottom: 15px;
   font-size: 14px;
-  padding-top: 15px;
 }
 .related {
   background: #ffe5ce;

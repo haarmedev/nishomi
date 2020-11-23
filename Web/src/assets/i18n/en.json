@@ -180,7 +180,9 @@
     "contact_number_mandatory": "Please enter your contact number.",
     "address_mandatory": "Please enter your address.",
     "email_id_invalid": "Please enter a valid email id.",
-    "contact_number_invalid": "Please enter a valid contact number."
+    "contact_number_invalid": "Please enter a valid contact number.",
+    "size": "Please choose a size.",
+    "custom_size": "Please enter custom size."
   },
   "success": {
     "order": "Thanks for placing this order. We will connect you shortly and deliver this product to  your address",

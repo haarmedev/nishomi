@@ -29,19 +29,19 @@
       <div class="swiper-container one">
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let item of featuredproducts">
-            <div class="hmeprsing" (click)="gotoDetails(item.productId)">
-              <a (click)="gotoDetails(item.productId)">
-                <img src="{{(item.images | mainImageFilter)}}" alt="">
-                <span  [className]="!item.caption?'':item.caption=='Limited'?'limited':item.caption=='New'?'new':'best'">
-                  {{item.caption}}
-                </span>
+            <div class="hmeprsing">
+              <a (click)="gotoDetails(item.productId)" [attr.href]="'/productdetails?id='+item.productId">
+                <div class="head-section">
+                  <img src="{{(item.images | mainImageFilter)}}" alt="">
+                  <span  [className]="!item.caption?'':item.caption=='Limited'?'limited':item.caption=='New'?'new':'best'">
+                    {{item.caption}}
+                  </span>
+                </div>
+                <div class="hmeprsingdtl">
+                  <h3>{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}} {{ item['productCode' + langKey]}}</h3>
+                  <p>{{item['description' + langKey]}}</p>
+                </div>
               </a>
-              <div class="hmeprsingdtl">
-                <!-- <h6><a href="">{{item.categoryName}}</a></h6>
-                <h3><a href="">{{item.name}}</a></h3> -->
-                <h3><a (click)="gotoDetails(item.productId)">{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}} {{ item['productCode' + langKey]}}</a></h3>
-                <p>{{item['description' + langKey]}}</p>
-              </div>
             </div>
           </div>
         </div>

@@ -37,11 +37,12 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(11)]),
     address: new FormControl('', [Validators.required]),
     message: new FormControl(''),
+    size: new FormControl('', [Validators.required]),
+    fullLength: new FormControl(''),
+    sleeveLength: new FormControl(''),
+    bust: new FormControl(''),
+    hip: new FormControl(''),
   });
-  fullLength = new FormControl(0);
-  sleeveLength = new FormControl(0);
-  bust = new FormControl(0);
-  hip = new FormControl(0);
   email: string;
   productId: string;
   showContactForm = false;
@@ -73,7 +74,6 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
   imageurl: string;
   enableZoom: Boolean = true;
   showCustomsize: Boolean = false;
-  selectedSize: string = '';
   sliderHtml: string = '';
   zoomHtml: string = '';
   isBuyNow: Boolean = false;
@@ -167,6 +167,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       },
     });
   }
+
   buyProduct() {
     /*
     var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
@@ -194,33 +195,16 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     */
    this.submitted = true;
    if (this.profileForm.valid) {
-      var formData: any = new FormData();
+      const formData: any = new FormData();
       formData.append('ProductId', this.productId);
       formData.append('Name', this.profileForm.value.name);
       formData.append('Email', this.profileForm.value.cusmail);
       formData.append('ContactNumber', this.profileForm.value.phone);
       formData.append('Address', this.profileForm.value.address);
       formData.append('Message', this.profileForm.value.message);
-      if (
-        this.fullLength.value > 0 &&
-        this.sleeveLength.value > 0 &&
-        this.bust.value > 0 &&
-        this.hip.value > 0
-      ) {
-        formData.append(
-          'Size',
-          'Size: FullLength: ' +
-            this.fullLength.value +
-            ' SleeveLength: ' +
-            this.sleeveLength.value +
-            ' Bust: ' +
-            this.bust.value +
-            ' Hip: ' +
-            this.hip.value
-        );
-      } else {
-        formData.append('Size', 'Size: ' + this.selectedSize);
-      }
+      const size = this.profileForm.value.size; //  `` : ``;
+      const customSize = `FullLength: ${this.profileForm.value.fullLength} SleeveLength: ${this.profileForm.value.sleeveLength} Bust: ${this.profileForm.value.bust} Hip: ${this.profileForm.value.hip}`;
+      formData.append('Size', `Size: ${this.showCustomsize ? customSize : size }`);
       this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
         (response: any) => {
           console.log(response);
@@ -232,6 +216,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
               title: trsnslatedMsg,
               icon: 'success',
             });
+            this.selectSize('');
             this.profileForm.reset();
             this.submitted = false;
             this.orderClicked = false;
@@ -255,16 +240,59 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleCustomeSize() {
-    this.selectedSize = '';
-    this.showCustomsize = !this.showCustomsize;
+  /**
+   * @description To select a predefined size.
+   * @param size Selected size.
+   */
+  selectSize(size: string): void {
+    // set value for the size field.
+    this.profileForm.get('size').setValue(size);
+    this.profileForm.get('size').setValidators([Validators.required]);
+    this.profileForm.get('size').updateValueAndValidity();
+    // remove validators for custom size
+    this.updateCustomSizeValidators(false);
   }
 
-  selectSize(size) {
-    if (this.showCustomsize) {
-      this.toggleCustomeSize();
-    }
-    this.selectedSize = size;
+  /**
+   * @description To enable custom size.
+   */
+  setCustomSize(): void {
+    // reset value to empty string for the size field.
+    this.profileForm.get('size').setValue('');
+    this.profileForm.get('size').clearValidators();
+    this.profileForm.get('size').updateValueAndValidity();
+    // add validators for custom size
+    this.updateCustomSizeValidators(true);
+  }
+
+  /**
+   * To add/remove required validation for custom size.
+   */
+  updateCustomSizeValidators(isRequired: boolean = true): void {
+    this.showCustomsize = isRequired;
+    const customeSizeFields = ['fullLength', 'sleeveLength', 'bust', 'hip'];
+    customeSizeFields.forEach((field) => {
+      if (isRequired) {
+        this.profileForm.get(field).setValidators([Validators.required]);
+      } else {
+        this.profileForm.get(field).clearValidators();
+      }
+      this.profileForm.get(field).updateValueAndValidity();
+    });
+  }
+
+  /**
+   * @description Returns whether form is valid to show the form.
+   */
+  isValidForOrderForm(): boolean {
+    let isValid = true;
+    const fields = ['fullLength', 'sleeveLength', 'bust', 'hip', 'size', 'acceptTAC'];
+    fields.forEach((field) => {
+      if (!this.profileForm.get(field).valid) {
+        isValid = false;
+      }
+    });
+    return isValid;
   }
 
   setBuyNow(status) {
