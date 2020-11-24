@@ -7,16 +7,16 @@
       <div class="foonav">
         <ul>
           <li>
-            <a routerLink="/">{{ 'home' | translate }}</a>
-            <a routerLink="/story">{{ 'our_story' | translate }}</a>
+            <a routerLink="/" (click)="scrollToTop()">{{ 'home' | translate }}</a>
+            <a routerLink="/story" (click)="scrollToTop()">{{ 'our_story' | translate }}</a>
           </li>
           <li>
-            <a routerLink="/products">{{ 'our_products' | translate }}</a>
-            <a routerLink="/blogs">{{ 'blogs' | translate }}</a>
+            <a routerLink="/products" (click)="scrollToTop()">{{ 'our_products' | translate }}</a>
+            <a routerLink="/blogs" (click)="scrollToTop()">{{ 'blogs' | translate }}</a>
           </li>
           <li>
-            <a routerLink="/privacy">{{ 'privacy_policy' | translate }}</a>
-            <a routerLink="/terms">{{ 'terms_and_conditions' | translate }}</a>
+            <a routerLink="/privacy" (click)="scrollToTop()">{{ 'privacy_policy' | translate }}</a>
+            <a routerLink="/terms" (click)="scrollToTop()">{{ 'terms_and_conditions' | translate }}</a>
           </li>
         </ul>
       </div>
