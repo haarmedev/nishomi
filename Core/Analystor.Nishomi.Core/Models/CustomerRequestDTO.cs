@@ -90,5 +90,17 @@
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is order.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is order; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsOrder
+        {
+            get;
+            set;
+        }
     }
 }

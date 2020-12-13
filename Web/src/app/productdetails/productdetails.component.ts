@@ -201,6 +201,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       formData.append('ContactNumber', this.profileForm.value.phone);
       formData.append('Address', this.profileForm.value.address);
       formData.append('Message', this.profileForm.value.message);
+      formData.append('IsOrder',this.isBuyNow?true:false);
       if (
         this.fullLength.value > 0 &&
         this.sleeveLength.value > 0 &&
@@ -209,7 +210,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       ) {
         formData.append(
           'Size',
-          'Size: FullLength: ' +
+          'Custom Size: FullLength: ' +
             this.fullLength.value +
             ' SleeveLength: ' +
             this.sleeveLength.value +

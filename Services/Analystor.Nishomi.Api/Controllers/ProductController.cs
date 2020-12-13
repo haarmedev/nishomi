@@ -81,11 +81,25 @@
         public IActionResult SaveCustomerRequest([FromForm] CustomerRequestDTO details)
         {
             var product = this._productService.GetProductDetails(details.ProductId);
+            var request = details.IsOrder ? "<b>product order</b>" : "<b>product Interest</b>";
             MailRequest mailRequest = new MailRequest()
             {
-                ToEmail="drshcse@gmail.com",
-                Subject="Customer Requested Your Product",
-                Body="<b>Product Details:<b><br/> Product Name: "+product.Name+"<br/> Product Cost: "+product.Cost.ToString("0.00")+ "<br/> Description: "+product.Description+" <br/> <b>Customer Details:<b><br/> Customer Name:"+details.Name+"<br/> Phone:"+details.ContactNumber+"<br/> Email:"+details.Email+" <br/> Address:"+details.Address+"<br/> Message:"+details.Message+"<br/> "+details.Size+"",
+                ToEmail="ahlan@nishomiabayas.com",
+                Subject=details.IsOrder? "Customer Placed a Product Order" : "Customer Placed a Product Interest",
+                Body="<b>Hi,</b> </br>"+
+                     "Please see below the details of a "+request+ " from customer<br/>"+
+                     "<b><i><u>Product Details</u></i></b><br/><br/>"+
+                     "Product Name        : nishOmi - "+product.CategoryName+" "+product.ProductCode+"<br/>"+
+                     "Product Cost        : AED "+product.Cost.ToString("N2") + "<br/>"+
+                     "Product Description : "+product.Description+"<br/><br/>"+
+                     "<b><i><u>Customer Details</u></i></b><br/><br/>" +
+                     "Customer Name       :"+details.Name+" <br/>"+
+                     "Customer Phone      :" +details.ContactNumber+ " <br/>" +
+                     "Customer Email      :" +details.Email+ " <br/>" +
+                     "Customer Address    :" +details.Address+ " <br/>" +
+                     "Customer Size       :" +details.Size+" <br/>" +
+                     "Customer Note       :"+details.Message,
+                //Body="<b>Product Details:<b><br/> Product Name: "+product.Name+"<br/> Product Cost: "+product.Cost.ToString("0.00")+ "<br/> Description: "+product.Description+" <br/> <b>Customer Details:<b><br/> Customer Name:"+details.Name+"<br/> Phone:"+details.ContactNumber+"<br/> Email:"+details.Email+" <br/> Address:"+details.Address+"<br/> Message:"+details.Message+"<br/> "+details.Size+"",
             };
             mailService.SendEmailAsync(mailRequest);
             var status = this._customerService.CreateCustomerRequest(details);
