@@ -1,25 +1,17 @@
 import {
   Component,
   OnInit,
-  AfterViewInit,
-  ViewChild,
-  ElementRef,
   OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  CATEGORYPRODUCTS,
   CUSTOMERREQUEST,
   IMAGE_ENDPOINT,
   PRODUCTDETAILS,
 } from '../core/constants/constant';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -37,16 +29,18 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(11)]),
     address: new FormControl('', [Validators.required]),
     message: new FormControl(''),
+    size: new FormControl('', [Validators.required]),
+    fullLength: new FormControl(''),
+    sleeveLength: new FormControl(''),
+    bust: new FormControl(''),
+    hip: new FormControl(''),
   });
-  fullLength = new FormControl(0);
-  sleeveLength = new FormControl(0);
-  bust = new FormControl(0);
-  hip = new FormControl(0);
   email: string;
   productId: string;
   showContactForm = false;
   orderClicked = false;
   submitted = false;
+  apiInprogress = false;
   constructor(
     private httpClient: HttpClient,
     public dialog: MatDialog,
@@ -66,17 +60,16 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     images: [];
   };
   productDetails: any = [];
-  quantity: number = 1;
+  quantity = 1;
   closeResult: string;
   isRequest: boolean;
   selectedproduct: [];
   imageurl: string;
-  enableZoom: Boolean = true;
-  showCustomsize: Boolean = false;
-  selectedSize: string = '';
-  sliderHtml: string = '';
-  zoomHtml: string = '';
-  isBuyNow: Boolean = false;
+  enableZoom = true;
+  showCustomsize = false;
+  sliderHtml = '';
+  zoomHtml = '';
+  isBuyNow = false;
   ngOnInit(): void {
     this.setLangKey();
     this.quantity = 1;
@@ -84,9 +77,8 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe((params) => {
       this.productId = params.id;
     });
-    var fetchProductDetails = PRODUCTDETAILS + '?productId=' + this.productId;
+    const fetchProductDetails = PRODUCTDETAILS + '?productId=' + this.productId;
     this.httpClient.get<any>(fetchProductDetails).subscribe((data: any) => {
-      console.log(data);
       this.product = data.data;
       this.productDetails = data.data;
       setTimeout(() => this.initSlider(), 500);
@@ -115,11 +107,9 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     //   $(".proddesc").toggleClass("show");
     // });
   }
-  ngAfterViewInit(): void {}
+
   initSlider(): void {
-    //this.slides=this.imageurl+this.productDetails.images[0].imageUrl;
-    //alert(this.slides);
-    var $easyzoom = $('.easyzoom').easyZoom();
+    $('.easyzoom').easyZoom();
 
     $('.pro-dec-big-img-slider').slick({
       slidesToShow: 1,
@@ -167,7 +157,8 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       },
     });
   }
-  buyProduct() {
+
+  buyProduct(): void {
     /*
     var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
     if(this.profileForm.value.name===''){
@@ -194,7 +185,8 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     */
    this.submitted = true;
    if (this.profileForm.valid) {
-      var formData: any = new FormData();
+      this.apiInprogress = true;
+      const formData: any = new FormData();
       formData.append('ProductId', this.productId);
       formData.append('Name', this.profileForm.value.name);
       formData.append('Email', this.profileForm.value.cusmail);
@@ -202,73 +194,118 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       formData.append('Address', this.profileForm.value.address);
       formData.append('Message', this.profileForm.value.message);
       formData.append('IsOrder',this.isBuyNow?true:false);
-      if (
-        this.fullLength.value > 0 &&
-        this.sleeveLength.value > 0 &&
-        this.bust.value > 0 &&
-        this.hip.value > 0
-      ) {
-        formData.append(
-          'Size',
-          'Custom Size: FullLength: ' +
-            this.fullLength.value +
-            ' SleeveLength: ' +
-            this.sleeveLength.value +
-            ' Bust: ' +
-            this.bust.value +
-            ' Hip: ' +
-            this.hip.value
-        );
-      } else {
-        formData.append('Size', 'Size: ' + this.selectedSize);
-      }
+
+      const size = `Size: ${this.profileForm.value.size}`;
+      const customSize = `Custom Size: FullLength: ${this.profileForm.value.fullLength} SleeveLength: ${this.profileForm.value.sleeveLength} Bust: ${this.profileForm.value.bust} Hip: ${this.profileForm.value.hip}`;
+      formData.append('Size', this.showCustomsize ? customSize : size);
+
       this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
         (response: any) => {
-          console.log(response);
+          this.apiInprogress = false;
           if (response.data) {
             this.isRequest = false;
             const msg = `success.${this.isBuyNow ?  'order' : 'show_interest'}`;
             const trsnslatedMsg = this.translate.instant(msg);
-            Swal.fire(trsnslatedMsg);
+            Swal.fire({
+              title: trsnslatedMsg,
+              icon: 'success',
+            });
+            this.selectSize('');
             this.profileForm.reset();
             this.submitted = false;
             this.orderClicked = false;
           }
         },
-        (error) => console.log(error)
+        (error) => {
+          this.apiInprogress = false;
+          Swal.fire({
+            title: this.translate.instant('error.something_went_wrong'),
+            icon: 'error',
+          });
+        }
       );
+   } else {
+     setTimeout(() => {
+      const errorMsg = document.getElementsByClassName('error')[0];
+      if (errorMsg) {
+        $('html, body').animate({ scrollTop: errorMsg.parentElement.offsetTop }, 1000);
+      }
+     });
    }
   }
-  selectProduct(pro) {
-    console.log(pro);
+  selectProduct(pro): void {
     this.selectedproduct = pro;
   }
 
-  changeQuantity(stat: any) {
-    if (stat == 'increment') this.quantity = ++this.quantity;
-    else {
-      if (this.quantity != 1) {
+  changeQuantity(stat: any): void {
+    if (stat === 'increment') {
+      this.quantity = ++this.quantity;
+    } else {
+      if (this.quantity !== 1) {
         this.quantity = --this.quantity;
       }
     }
   }
 
-  toggleCustomeSize() {
-    this.selectedSize = '';
-    this.showCustomsize = !this.showCustomsize;
+  /**
+   * @description To select a predefined size.
+   * @param size Selected size.
+   */
+  selectSize(size: string): void {
+    // set value for the size field.
+    this.profileForm.get('size').setValue(size);
+    this.profileForm.get('size').setValidators([Validators.required]);
+    this.profileForm.get('size').updateValueAndValidity();
+    // remove validators for custom size
+    this.updateCustomSizeValidators(false);
   }
 
-  selectSize(size) {
-    if (this.showCustomsize) {
-      this.toggleCustomeSize();
-    }
-    this.selectedSize = size;
+  /**
+   * @description To enable custom size.
+   */
+  setCustomSize(): void {
+    // reset value to empty string for the size field.
+    this.profileForm.get('size').setValue('');
+    this.profileForm.get('size').clearValidators();
+    this.profileForm.get('size').updateValueAndValidity();
+    // add validators for custom size
+    this.updateCustomSizeValidators(true);
   }
 
-  setBuyNow(status) {
+  /**
+   * To add/remove required validation for custom size.
+   */
+  updateCustomSizeValidators(isRequired: boolean = true): void {
+    this.showCustomsize = isRequired;
+    const customeSizeFields = ['fullLength', 'sleeveLength', 'bust', 'hip'];
+    customeSizeFields.forEach((field) => {
+      if (isRequired) {
+        this.profileForm.get(field).setValidators([Validators.required]);
+      } else {
+        this.profileForm.get(field).clearValidators();
+      }
+      this.profileForm.get(field).updateValueAndValidity();
+    });
+  }
+
+  /**
+   * @description Returns whether form is valid to show the form.
+   */
+  isValidForOrderForm(): boolean {
+    let isValid = true;
+    const fields = ['fullLength', 'sleeveLength', 'bust', 'hip', 'size', 'acceptTAC'];
+    fields.forEach((field) => {
+      if (!this.profileForm.get(field).valid) {
+        isValid = false;
+      }
+    });
+    return isValid;
+  }
+
+  setBuyNow(status): void {
     this.orderClicked = true;
     if (this.profileForm.controls.acceptTAC.value) {
-      if (status == 'buy') {
+      if (status === 'buy') {
         if (this.isBuyNow) {
           this.showContactForm = !this.showContactForm;
           this.isBuyNow = false;
@@ -295,7 +332,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       }
     }
   }
-  scrollDiv() {
+  scrollDiv(): void {
     $('html, body').animate(
       {
         scrollTop: $('.btncart').offset().top,

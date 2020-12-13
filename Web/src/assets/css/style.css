@@ -165,7 +165,7 @@ body {
   padding: 0;
 }
 header {
-  background: #231f20;
+  background: #000;
   width: 100%;
   height: 100px;
   position: fixed;
@@ -188,6 +188,9 @@ header .social a {
   font-size: 25px;
   margin: 0 10px;
   color: #60616d;
+}
+header .social a:hover {
+  color: #FFFFFF;
 }
 header nav {
   display:flex;
@@ -233,10 +236,10 @@ header nav .main li a:before {
   -webkit-transition: all .200s ease-in-out;
   transition: all .200s ease-in-out;
 }
-header nav .main li.active a, header nav .main li:hover a {
+header nav .main li a.active, header nav .main li.active a, header nav .main li:hover a {
   color: #fff;
 }
-header nav .main li.active a:before, header nav .main li:hover a:before {
+header nav .main li a.active:before, header nav .main li.active a:before, header nav .main li:hover a:before {
   width: 10px;
 }
 .social a svg {
@@ -439,6 +442,7 @@ header .sub li a:after {
 }
 #hmecatynew > .half {
   width: 50%;
+  cursor: pointer;
   position: relative;
 }
 #hmecatynew > .half > a {
@@ -460,9 +464,9 @@ header .sub li a:after {
 }
 .hmeprsing {
   border-radius: 2px;
-  border: solid 1px #c8c8c6
+  border: solid 1px #c8c8c6;
 }
-.hmeprsing > a {
+.hmeprsing > a > .head-section {
   position: relative;
   display: block;
   height: 250px;
@@ -502,14 +506,15 @@ header .sub li a:after {
 }
 .hmeprsing h3 {
   margin-top: 0;
-  margin-bottom: 10px;
-}
-.hmeprsing h3 a {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: normal;
   color: #222222;
+  margin-bottom: 10px;
+}
+.hmeprsing h3 a {
+
   margin-bottom: 0px;
 }
 .hmeprsing p {
@@ -715,6 +720,13 @@ footer .foonav ul li a {
   -webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
   box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
 }
+.one .swiper-slide .hmeprsing {
+  -webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+}
+.one .swiper-slide .hmeprsing a {
+  cursor: pointer;
+}
 .swiper-container.two {
   padding-bottom: 50px;
 }
@@ -837,7 +849,6 @@ footer .foonav ul li a {
   color: #000;
   font-size: 16px;
   font-weight: 500;
-  text-transform: capitalize;
   height: 45px;
   max-height: 45px;
   overflow: hidden;
@@ -1875,11 +1886,10 @@ cite {
   border: 2px solid #E6E6E6;
   padding: 0;
   text-align: left;
-  width: 100%;
   display: block;
   cursor: pointer;
-  width: 40px;
   height: 40px;
+  padding: 0 10px;
   line-height:37px;
   text-align: center;
   font-size: 13px;
@@ -1920,14 +1930,10 @@ cite {
   margin:15px 0 5px 0;
   padding: 0 15px;
   background-color: #eee;
-  height: 0px;
   overflow: hidden;
   -moz-transition: all .600s ease-in-out;
   -webkit-transition: all .600s ease-in-out;
   transition: all .600s ease-in-out;
-}
-.customsize.show {
-  height: auto;
 }
 .customsize ul {
   background-color: #eee;
@@ -1965,7 +1971,6 @@ cite {
 .termsblk {
   padding-bottom: 15px;
   font-size: 14px;
-  padding-top: 15px;
 }
 .related {
   background: #ffe5ce;
@@ -2420,6 +2425,12 @@ header .social a.lang {
   }
 }
 @media only screen and (max-width: 767px) {
+  .hmeproduct {
+    padding: 0;
+  }
+  .swiper-container.one {
+    padding-bottom: 30px;
+  }
   header {
     width: 100%;
     height: 75px;

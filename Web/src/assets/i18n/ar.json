@@ -163,7 +163,8 @@
     "show_interest": "مشاهدة الفائدة",
     "order_now": "طلبية  الآن",
     "place_order": "ضع طلبية",
-    "send_product_interest": "أرسل اهتمامًا بالمنتج"
+    "send_product_interest": "أرسل اهتمامًا بالمنتج",
+    "updating": "التحديث"
   },
   "label": {
     "full_name": "اسم الكامل",
@@ -180,7 +181,10 @@
     "contact_number_mandatory": "الرجاء إدخال رقم الاتصال الخاص بك.",
     "address_mandatory": "الرجاء إدخال عنوانك.",
     "email_id_invalid": "الرجاء إدخال معرف بريد إلكتروني صالح.",
-    "contact_number_invalid": "الرجاء إدخال رقم اتصال صحيح."
+    "contact_number_invalid": "الرجاء إدخال رقم اتصال صحيح.",
+    "size": "الرجاء اختيار الحجم.",
+    "custom_size": "الرجاء إدخال الحجم المخصص.",
+    "something_went_wrong": "هناك خطأ ما. الرجاء معاودة المحاولة في وقت لاحق."
   },
   "success": {
     "order": "شكرا لتقديم هذا الطلب. سنقوم بتوصيلك قريبًا وتسليم هذا المنتج إلى عنوانك.",

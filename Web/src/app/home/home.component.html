@@ -30,28 +30,30 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let item of featuredproducts">
             <div class="hmeprsing">
-              <a (click)="gotoDetails(item.productId)">
-                <img src="{{(item.images | mainImageFilter)}}" alt="">
-                <span  [className]="!item.caption?'':item.caption=='Limited'?'limited':item.caption=='New'?'new':'best'">
-                  {{item.caption}}
-                </span>
+              <a (click)="gotoDetails(item.productId)" [attr.href]="'/productdetails?id='+item.productId">
+                <div class="head-section">
+                  <img src="{{(item.images | mainImageFilter)}}" alt="">
+                  <span  [className]="!item.caption?'':item.caption=='Limited'?'limited':item.caption=='New'?'new':'best'">
+                    {{item.caption}}
+                  </span>
+                </div>
+                <div class="hmeprsingdtl">
+                  <h3>{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}} {{ item['productCode' + langKey]}}</h3>
+                  <p>{{item['description' + langKey]}}</p>
+                </div>
               </a>
-              <div class="hmeprsingdtl">
-                <!-- <h6><a href="">{{item.categoryName}}</a></h6>
-                <h3><a href="">{{item.name}}</a></h3> -->
-                <h3><a (click)="gotoDetails(item.productId)">{{ 'nishomi' | translate }} - {{item['categoryName' + langKey]}} {{ item['productCode' + langKey]}}</a></h3>
-                <p>{{item['description' + langKey]}}</p>
-              </div>
             </div>
           </div>
         </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
         <div class="prodpage"></div>
       </div>
     </div>
     </section>
     <section id="hmecatynew">
       <div class="half" *ngFor="let item of categories">
-        <a routerLink="/products" fragment={{item.categoryId}}><img src="{{imageurl+item.url}}" alt=""></a>
+        <a (click)="gotoCategory(item.categoryId)"><img src="{{imageurl+item.url}}" alt=""></a>
         <div class="caroblkdtls">
           <h3>{{item['name' + langKey]}}</h3>
           <a (click)="gotoCategory(item.categoryId)">{{ 'explore_category' | translate }}</a>
@@ -67,6 +69,7 @@
 
     </section>
 
+    <img class="story-mobile-image" src="assets/images/bg-about01-mob.jpg" alt="">
     <section class="story">
     <div class="container">
       <div class="banntxt">

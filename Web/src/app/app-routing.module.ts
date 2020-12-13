@@ -17,11 +17,11 @@ const routes: Routes = [
   { path: 'contactus', component: ContactusComponent },
   { path: 'story', component: StoryComponent },
   { path: 'productdetails', component: ProductdetailsComponent },
-  {path:'blogs',component:BlogsComponent},
-  {path:'abaya',component:Blog1Component},
-  {path:'sleeves',component:Blog2Component},
-  {path:'terms',component:TermsComponent},
-  {path:'privacy',component:PrivacyComponent}
+  {path: 'blogs', component: BlogsComponent},
+  {path: 'abaya', component: Blog1Component},
+  {path: 'sleeves', component: Blog2Component},
+  {path: 'terms', component: TermsComponent},
+  {path: 'privacy', component: PrivacyComponent},
 ];
 
 @NgModule({
