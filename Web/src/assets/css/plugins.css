@@ -72,6 +72,14 @@
   content:"\e957";
 }
 
+.icofont-spinner-alt-1:before {
+  content:"\eff4";
+}
+
+.icofont-spinner:before{
+  content:"\effa";
+}
+
 .icofont-brand-youtube:before
 {
   content: "\e95f";

@@ -773,7 +773,7 @@ footer .foonav ul li a {
 #collections .collblk.collbg1 {
   margin-top: 90px;
   background-color: #ffe5ce;
-  height: calc(100vh - 90px);
+  min-height: calc(100vh - 90px);
 }
 #collections .collblk.collbg2 {
   background-color: #f3f3f3;

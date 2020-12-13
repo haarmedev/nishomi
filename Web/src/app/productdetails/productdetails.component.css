@@ -12,6 +12,10 @@
   cursor: not-allowed;
 }
 
+.no-action i {
+  color: #fff;
+}
+
 /* Chrome, Safari, Edge, Opera */
 .customsize input::-webkit-outer-spin-button,
 .customsize input::-webkit-inner-spin-button {
