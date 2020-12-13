@@ -1,25 +1,17 @@
 import {
   Component,
   OnInit,
-  AfterViewInit,
-  ViewChild,
-  ElementRef,
   OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  CATEGORYPRODUCTS,
   CUSTOMERREQUEST,
   IMAGE_ENDPOINT,
   PRODUCTDETAILS,
 } from '../core/constants/constant';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -48,6 +40,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
   showContactForm = false;
   orderClicked = false;
   submitted = false;
+  apiInprogress = false;
   constructor(
     private httpClient: HttpClient,
     public dialog: MatDialog,
@@ -67,16 +60,16 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     images: [];
   };
   productDetails: any = [];
-  quantity: number = 1;
+  quantity = 1;
   closeResult: string;
   isRequest: boolean;
   selectedproduct: [];
   imageurl: string;
-  enableZoom: Boolean = true;
-  showCustomsize: Boolean = false;
-  sliderHtml: string = '';
-  zoomHtml: string = '';
-  isBuyNow: Boolean = false;
+  enableZoom = true;
+  showCustomsize = false;
+  sliderHtml = '';
+  zoomHtml = '';
+  isBuyNow = false;
   ngOnInit(): void {
     this.setLangKey();
     this.quantity = 1;
@@ -84,9 +77,8 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe((params) => {
       this.productId = params.id;
     });
-    var fetchProductDetails = PRODUCTDETAILS + '?productId=' + this.productId;
+    const fetchProductDetails = PRODUCTDETAILS + '?productId=' + this.productId;
     this.httpClient.get<any>(fetchProductDetails).subscribe((data: any) => {
-      console.log(data);
       this.product = data.data;
       this.productDetails = data.data;
       setTimeout(() => this.initSlider(), 500);
@@ -115,11 +107,9 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     //   $(".proddesc").toggleClass("show");
     // });
   }
-  ngAfterViewInit(): void {}
+
   initSlider(): void {
-    //this.slides=this.imageurl+this.productDetails.images[0].imageUrl;
-    //alert(this.slides);
-    var $easyzoom = $('.easyzoom').easyZoom();
+    $('.easyzoom').easyZoom();
 
     $('.pro-dec-big-img-slider').slick({
       slidesToShow: 1,
@@ -168,7 +158,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  buyProduct() {
+  buyProduct(): void {
     /*
     var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
     if(this.profileForm.value.name===''){
@@ -195,6 +185,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     */
    this.submitted = true;
    if (this.profileForm.valid) {
+      this.apiInprogress = true;
       const formData: any = new FormData();
       formData.append('ProductId', this.productId);
       formData.append('Name', this.profileForm.value.name);
@@ -207,7 +198,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       formData.append('Size', `Size: ${this.showCustomsize ? customSize : size }`);
       this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
         (response: any) => {
-          console.log(response);
+          this.apiInprogress = false;
           if (response.data) {
             this.isRequest = false;
             const msg = `success.${this.isBuyNow ?  'order' : 'show_interest'}`;
@@ -222,19 +213,32 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
             this.orderClicked = false;
           }
         },
-        (error) => console.log(error)
+        (error) => {
+          this.apiInprogress = false;
+          Swal.fire({
+            title: this.translate.instant('error.something_went_wrong'),
+            icon: 'error',
+          });
+        }
       );
+   } else {
+     setTimeout(() => {
+      const errorMsg = document.getElementsByClassName('error')[0];
+      if (errorMsg) {
+        $('html, body').animate({ scrollTop: errorMsg.parentElement.offsetTop }, 1000);
+      }
+     });
    }
   }
-  selectProduct(pro) {
-    console.log(pro);
+  selectProduct(pro): void {
     this.selectedproduct = pro;
   }
 
-  changeQuantity(stat: any) {
-    if (stat == 'increment') this.quantity = ++this.quantity;
-    else {
-      if (this.quantity != 1) {
+  changeQuantity(stat: any): void {
+    if (stat === 'increment') {
+      this.quantity = ++this.quantity;
+    } else {
+      if (this.quantity !== 1) {
         this.quantity = --this.quantity;
       }
     }
@@ -295,10 +299,10 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     return isValid;
   }
 
-  setBuyNow(status) {
+  setBuyNow(status): void {
     this.orderClicked = true;
     if (this.profileForm.controls.acceptTAC.value) {
-      if (status == 'buy') {
+      if (status === 'buy') {
         if (this.isBuyNow) {
           this.showContactForm = !this.showContactForm;
           this.isBuyNow = false;
@@ -325,7 +329,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       }
     }
   }
-  scrollDiv() {
+  scrollDiv(): void {
     $('html, body').animate(
       {
         scrollTop: $('.btncart').offset().top,

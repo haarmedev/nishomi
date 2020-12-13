@@ -163,7 +163,8 @@
     "show_interest": "Show Interest",
     "order_now": "Order Now",
     "place_order": "Place an Order",
-    "send_product_interest": "Send a product Interest"
+    "send_product_interest": "Send a product Interest",
+    "updating": "Updating"
   },
   "label": {
     "full_name": "Full Name",
@@ -182,7 +183,8 @@
     "email_id_invalid": "Please enter a valid email id.",
     "contact_number_invalid": "Please enter a valid contact number.",
     "size": "Please choose a size.",
-    "custom_size": "Please enter custom size."
+    "custom_size": "Please enter custom size.",
+    "something_went_wrong": "Something went wrong. Please try again later."
   },
   "success": {
     "order": "Thanks for placing this order. We will connect you shortly and deliver this product to  your address",

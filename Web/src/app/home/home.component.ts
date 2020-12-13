@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   CATEGORIESAPI,
@@ -16,7 +16,7 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private httpClient: HttpClient, private router: Router, private translate: TranslateService) {
     this.langSubscription = this.translate.onLangChange.subscribe(() => { this.setLangKey(); });
   }
@@ -29,9 +29,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   langSubscription: Subscription;
 
   config: SwiperOptions = {
-    //autoplay: 6000,
-    //pagination: '.prodpage',
-    //paginationClickable: true,
+    // autoplay: 6000,
+    // pagination: '.prodpage',
+    // paginationClickable: true,
     pagination: {
       el: '.prodpage',
       type: 'bullets',
@@ -65,11 +65,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
 
   catconfig: SwiperOptions = {
-    //pagination: '.swiper-pagination',
-    //paginationClickable: true,
+    // pagination: '.swiper-pagination',
+    // paginationClickable: true,
     pagination: {
       el: '.bannpage',
-      //type: 'bullets',
+      // type: 'bullets',
       clickable: true,
     },
     effect: 'coverflow',
@@ -87,15 +87,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     // 	modifier: 2.5,
     // 	slideShadows : false,
     // },
-    //keyboardControl: true,
-    //nextButton: '.swiper-button-next',
-    //prevButton: '.swiper-button-prev',
+    // keyboardControl: true,
+    // nextButton: '.swiper-button-next',
+    // prevButton: '.swiper-button-prev',
   };
 
   ngOnInit(): void {
     this.imageurl = IMAGE_ENDPOINT;
     this.httpClient.get<any>(CATEGORIESAPI).subscribe((data: any) => {
-      console.log(data);
       this.categories = data.data;
     });
     this.httpClient.get<any>(FEATUREDPRODUCTSAPI).subscribe((data: any) => {
@@ -107,12 +106,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     });
     this.setLangKey();
-    //console.log("result"+this.categories);
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      let myScript = document.createElement('script');
+      const myScript = document.createElement('script');
       myScript.setAttribute('src', './assets/js/home.js');
       document.body.appendChild(myScript);
     }, 500);
@@ -123,12 +121,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.langKey = 'ar' === this.currentLang ? 'Ar' : '';
   }
 
-  gotoDetails(id: any) {
-    this.router.navigate(['/productdetails'], { queryParams: { id: id } });
+  gotoDetails(id: any): void {
+    this.router.navigate(['/productdetails'], { queryParams: { id } });
   }
 
-  gotoCategory(id: any) {
-    this.router.navigate(['/products'], { queryParams: { id: id } });
+  gotoCategory(id: any): void {
+    this.router.navigate(['/products'], { queryParams: { id } });
   }
 
   ngOnDestroy(): void {

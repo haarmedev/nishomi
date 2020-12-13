@@ -1,9 +1,11 @@
 // Carousel
 
 var swiper = new Swiper('.one', {
-	autoplay: 6000,
+	autoplay: 3000,
 	pagination: '.prodpage',
   paginationClickable: true,
+  nextButton: '.swiper-button-next',
+  prevButton: '.swiper-button-prev',
   simulateTouch: false,
 	breakpoints: {
 		640: {

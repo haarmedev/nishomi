@@ -165,7 +165,7 @@ body {
   padding: 0;
 }
 header {
-  background: #231f20;
+  background: #000;
   width: 100%;
   height: 100px;
   position: fixed;
@@ -236,10 +236,10 @@ header nav .main li a:before {
   -webkit-transition: all .200s ease-in-out;
   transition: all .200s ease-in-out;
 }
-header nav .main li.active a, header nav .main li:hover a {
+header nav .main li a.active, header nav .main li.active a, header nav .main li:hover a {
   color: #fff;
 }
-header nav .main li.active a:before, header nav .main li:hover a:before {
+header nav .main li a.active:before, header nav .main li.active a:before, header nav .main li:hover a:before {
   width: 10px;
 }
 .social a svg {
@@ -2425,6 +2425,12 @@ header .social a.lang {
   }
 }
 @media only screen and (max-width: 767px) {
+  .hmeproduct {
+    padding: 0;
+  }
+  .swiper-container.one {
+    padding-bottom: 30px;
+  }
   header {
     width: 100%;
     height: 75px;

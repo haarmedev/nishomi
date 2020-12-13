@@ -181,11 +181,19 @@
                   </div>
                 </div>
                 <div class="button-container">
-                  <div *ngIf="isBuyNow; else elseBlock">
-                    <button type="submit" class="button"><span>{{ 'button.place_order' | translate }}</span></button>
+                  <div *ngIf="!apiInprogress; else updatingBtn">
+                    <div *ngIf="isBuyNow; else elseBlock">
+                      <button type="submit" class="button"><span>{{ 'button.place_order' | translate }}</span></button>
+                    </div>
+                    <ng-template #elseBlock>
+                      <button type="submit" class="button"><span>{{ 'button.send_product_interest' | translate }}</span></button>
+                    </ng-template>
                   </div>
-                  <ng-template #elseBlock>
-                    <button type="submit" class="button"><span>{{ 'button.send_product_interest' | translate }}</span></button>
+                  <ng-template #updatingBtn>
+                    <button class="button no-action" type="button">
+                      <!-- <i class="fa fa-spinner fa-spin"></i> -->
+                      <span>{{ 'button.updating' | translate }}</span>
+                    </button>
                   </ng-template>
                 </div>
             </div>

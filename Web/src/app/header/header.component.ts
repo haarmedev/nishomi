@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // this.setSwitchLang(lang);
   }
 
-  myFunction():void{
+  myFunction(): void {
     this.route.navigate(['/story']);
   }
 
