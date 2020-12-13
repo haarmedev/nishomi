@@ -1,5 +1,7 @@
 ﻿namespace Analystor.Nishomi.Core
 {
+    using System;
+    using System.Net;
     using System.Net.Mail;
 
     /// <summary>
@@ -24,21 +26,62 @@
 
         public bool SendEmailAsync(MailRequest mailRequest)
         {
-            var mail = new MailMessage
+            //var mail = new MailMessage
+            //{
+            //    Body = mailRequest.Body,
+            //    IsBodyHtml = true,
+            //    Subject = mailRequest.Subject,
+            //};
+
+            //mail.From = new MailAddress("ahlan.nishomiabayas@outlook.com");
+
+            //mail.To.Add(new MailAddress("ahlan@nishomiabayas.com"));
+            //var provider = this._smtpProvider.GetCurrentSMTPClient();
+
+            //provider.Send(mail);
+
+            string serverName = "smtp.live.com";
+            int port = 587;
+            string fromEmail = "ahlan.nishomiabayas@outlook.com";
+            string password = "Nishomi2020#";
+            string displayName = "Nishomi Abayas";
+            string toEmail = "ahlan@nishomiabayas.com";
+            //string subject = "You have a new product request from Prashobh";
+            //string messageBody = "Hello Nishomi Abayas, Prashobh is showing interest to your product #00449.";
+
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            var fromAddress = new MailAddress(fromEmail, displayName);
+            var toAddress = new MailAddress(toEmail);
+            string fromPassword = password;
+            var smtp = new SmtpClient
             {
-                Body = mailRequest.Body,
-                IsBodyHtml = true,
-                Subject = mailRequest.Subject,
+                Host = serverName,
+                Port = port,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
+
             };
 
-            mail.From = new MailAddress("fawaskallayi@gmail.com");
-
-            mail.To.Add(new MailAddress("fawaskallayi@gmail.com"));
-            var provider = this._smtpProvider.GetCurrentSMTPClient();
-
-            provider.Send(mail);
-
-            return true;
+            using (var mailmessage = new MailMessage(fromAddress, toAddress)
+            {
+                IsBodyHtml = true,
+                Subject = mailRequest.Subject,
+                Body = mailRequest.Body
+            })
+            {
+                try
+                {
+                    smtp.Send(mailmessage);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
         }
     }
 }

@@ -119,6 +119,7 @@
                                             ProductCodeAr = it.ProductCodeAr,
                                             Name = it.Name,
                                             CategoryName = it.Category.Name,
+                                            CategoryNameAr = it.Category.NameAr,
                                             Caption = it.Caption,
                                             Type = it.Type,
                                             Color = it.Color,
