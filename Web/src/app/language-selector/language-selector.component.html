@@ -7,8 +7,16 @@
   <div class="modal-body">
     <h2>Welcome!</h2>
     <ul class="langselect">
-      <li class="active"><a href="javascript:void(0)" (click)="modal.dismiss('en')">English</a></li>
-      <li><a href="javascript:void(0)" (click)="modal.dismiss('ar')">عربى</a></li>
+      <li class="active">
+        <a href="javascript:void(0)" (click)="modal.dismiss('en')">
+          {{ 'en' | translate }}
+        </a>
+      </li>
+      <li dir="rtl">
+        <a href="javascript:void(0)" (click)="modal.dismiss('ar')">
+          {{ 'ar' | translate }}
+        </a>
+      </li>
     </ul>
     <h3 class="langtitle">Please select your language</h3>
   </div>
