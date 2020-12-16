@@ -32,6 +32,7 @@ import { PipesModule } from './shared/pipes/pipes.module';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -53,7 +54,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     Blog1Component,
     Blog2Component,
     TermsComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    LanguageSelectorComponent
   ],
   imports: [
     BrowserModule,
