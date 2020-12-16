@@ -2426,7 +2426,7 @@ header .social a.lang {
 }
 @media only screen and (max-width: 767px) {
   .hmeproduct {
-    padding: 0;
+    padding: 20px 0 0;
   }
   .swiper-container.one {
     padding-bottom: 30px;
@@ -2509,8 +2509,7 @@ header .social a.lang {
     margin-bottom: 0;
   }
   .story .banntxt h1 {
-    color: #141414;
-    padding: 0
+    padding: 0;
   }
   .story .banntxt p {
     color: #898989 !important;

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
-import { Inject } from '@angular/core';
 import { CommonService } from './shared/common.service';
 
 @Component({
@@ -11,13 +9,18 @@ import { CommonService } from './shared/common.service';
 })
 export class AppComponent implements OnInit {
 
+  showLanguageSelector = false;
+
   constructor(
     private router: Router,
-    private translate: TranslateService,
     private commonService: CommonService,
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       const lang = params.lang ? params.lang : localStorage.getItem('lang');
+      debugger
+      if (window.innerWidth <= 767 && !lang) {
+        this.showLanguageSelector = true;
+      }
       this.changeLangage(lang ? lang : 'en');
     });
   }

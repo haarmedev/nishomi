@@ -193,7 +193,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       formData.append('ContactNumber', this.profileForm.value.phone);
       formData.append('Address', this.profileForm.value.address);
       formData.append('Message', this.profileForm.value.message);
-      formData.append('IsOrder',this.isBuyNow?true:false);
+      formData.append('IsOrder', this.isBuyNow ? true : false);
 
       const size = `Size: ${this.profileForm.value.size}`;
       const customSize = `Custom Size: FullLength: ${this.profileForm.value.fullLength} SleeveLength: ${this.profileForm.value.sleeveLength} Bust: ${this.profileForm.value.bust} Hip: ${this.profileForm.value.hip}`;
