@@ -9,6 +9,13 @@ export class CommonService {
 
   constructor(private translate: TranslateService, @Inject(DOCUMENT) private document: Document) { }
 
+  initLang() {
+    const defaultLang = 'en';
+    this.translate.setDefaultLang(defaultLang);
+    this.translate.use(defaultLang);
+    this.changeCssFile(defaultLang);
+  }
+
   /**
    * @description To change application language.
    * @param lang Selected language.

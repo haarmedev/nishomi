@@ -17,11 +17,22 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       const lang = params.lang ? params.lang : localStorage.getItem('lang');
-      debugger
-      if (window.innerWidth <= 767 && !lang) {
+      if (lang || window.innerWidth > 767) {
+        this.changeLangage(lang || 'en');
+      } else if (window.innerWidth <= 767) {
+        this.commonService.initLang();
         this.showLanguageSelector = true;
       }
-      this.changeLangage(lang ? lang : 'en');
+      // if (window.innerWidth <= 767) {
+      //   if (lang) {
+      //     this.changeLangage(lang);
+      //   } else {
+      //     this.commonService.initLang();
+      //     this.showLanguageSelector = true;
+      //   }
+      // } else {
+      //   this.changeLangage(lang ? lang : 'en');
+      // }
     });
   }
 

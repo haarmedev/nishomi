@@ -42,8 +42,9 @@
   background-size: cover;
   color: #fff;
 }
-.langselect li:last-child a {
+::ng-deep .langselect li:last-child a {
   font-size: 20px;
+  line-height: 1;
 }
 ::ng-deep .modal-dialog h2 {
 	text-align: center;
@@ -59,6 +60,7 @@
 ::ng-deep .langtitle {
   text-align: center;
   margin:15px 0;
+  font-size: 22px;
   display: block;
   color: #fff;
   text-shadow: 0 0px 5px rgba(0,0,0,0.5);
