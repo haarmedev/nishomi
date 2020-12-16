@@ -116,7 +116,7 @@ header .social a.lang {
 }
 @media only screen and (max-width: 1024px) {
   .story {
-    background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center fixed;
+    background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top left -250px fixed;
   }
   .hmeproduct .caroprod {
     margin-right: 0%;
@@ -124,7 +124,7 @@ header .social a.lang {
 }
 @media only screen and (max-width: 991px) {
   .story {
-    background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top center;
+    background: #ccc url(assets/images/bg-about01-ar.jpg) no-repeat top left -290px;
   }
   .burger {
     left: 20px;
@@ -132,6 +132,6 @@ header .social a.lang {
 }
 @media only screen and (max-width: 767px) {
   .story {
-    background: #fff url(assets/images/bg-about01-ar.jpg) no-repeat top left;
+    background: #fff url(assets/images/bg-about01-ar.jpg) no-repeat top -45px left -230px;
   }
 }

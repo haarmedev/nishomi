@@ -1,9 +1,12 @@
 // Carousel
 
 var swiper = new Swiper('.one', {
-	autoplay: 6000,
+	autoplay: 3000,
 	pagination: '.prodpage',
-	paginationClickable: true,
+  paginationClickable: true,
+  nextButton: '.swiper-button-next',
+  prevButton: '.swiper-button-prev',
+  simulateTouch: false,
 	breakpoints: {
 		640: {
 			slidesPerView: 1,
@@ -23,10 +26,10 @@ var swiper = new Swiper('.one', {
 		1920: {
 			slidesPerView: 5,
 			spaceBetween: 15,
-			slidesPerGroup: 4,
-			centeredSlides: false,
-			loop: false,
-			loopFillGroupWithBlank: true,
+			slidesPerGroup: 5,
+			centeredSlides: true,
+			loop: true,
+      loopFillGroupWithBlank: true,
 		},
 	}
 });

@@ -4,8 +4,47 @@
 @import "assets/css/style.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-.swal2-header .swal2-title {
+.swal2-container .swal2-popup {
+	background: #000;
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+}
+.swal2-container .swal2-header .swal2-title {
+  color:#fff;
   font-size: 18px;
   font-weight: 600;
   line-height: 1.5;
+}
+.swal2-container .swal2-styled.swal2-confirm {
+	color: #000;
+	background: #F5D275;
+}
+
+.one .swiper-button-next, .one .swiper-button-prev {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .one .swiper-button-next, .one .swiper-button-prev {
+    top: 50%;
+    margin: 0;
+    display: flex;
+  }
+
+  .one .swiper-button-next {
+    right: -10px;
+  }
+
+  .one .swiper-button-prev {
+    left: -10px;
+  }
+
+  .one.swiper-container .swiper-slide {
+    padding: 0 15px;
+  }
+
+  .one.swiper-container {
+    overflow: visible;
+  }
 }

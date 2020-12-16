@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
-import { Inject } from '@angular/core';
 import { CommonService } from './shared/common.service';
 
 @Component({
@@ -11,14 +9,30 @@ import { CommonService } from './shared/common.service';
 })
 export class AppComponent implements OnInit {
 
+  showLanguageSelector = false;
+
   constructor(
     private router: Router,
-    private translate: TranslateService,
     private commonService: CommonService,
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       const lang = params.lang ? params.lang : localStorage.getItem('lang');
-      this.changeLangage(lang ? lang : 'en');
+      if (lang || window.innerWidth > 767) {
+        this.changeLangage(lang || 'en');
+      } else if (window.innerWidth <= 767) {
+        this.commonService.initLang();
+        this.showLanguageSelector = true;
+      }
+      // if (window.innerWidth <= 767) {
+      //   if (lang) {
+      //     this.changeLangage(lang);
+      //   } else {
+      //     this.commonService.initLang();
+      //     this.showLanguageSelector = true;
+      //   }
+      // } else {
+      //   this.changeLangage(lang ? lang : 'en');
+      // }
     });
   }
 

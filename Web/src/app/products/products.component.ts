@@ -5,7 +5,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CATEGORYPRODUCTS, CUSTOMERREQUEST,IMAGE_ENDPOINT } from '../core/constants/constant';
+import { CATEGORYPRODUCTS, CUSTOMERREQUEST, IMAGE_ENDPOINT } from '../core/constants/constant';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'ngx-useful-swiper';
 import {
@@ -46,13 +46,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.langSubscription = this.translate.onLangChange.subscribe(() => { this.setLangKey(); });
   }
   category: [];
-  product:[];
+  product: [];
   closeResult: string;
   isRequest: boolean;
-  showModal:boolean;
+  showModal: boolean;
   selectedproduct: [];
-  imageurl:string;
-  routeId:string;
+  imageurl: string;
+  routeId: string;
   langKey = '';
   currentLang: string;
   langSubscription: Subscription;
@@ -86,9 +86,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
       enabled: true,
       onlyInViewport: false,
     },
-    //keyboardControl: true,
-    //nextButton: '.colcar1-next',
-    //prevButton: '.colcar1-prev',
+    // keyboardControl: true,
+    // nextButton: '.colcar1-next',
+    // prevButton: '.colcar1-prev',
   };
   configs: SwiperOptions = {
     loop: false,
@@ -119,9 +119,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
       enabled: true,
       onlyInViewport: false,
     },
-    //keyboardControl: true,
-    //nextButton: '.colcar1-next',
-    //prevButton: '.colcar1-prev',
+    // keyboardControl: true,
+    // nextButton: '.colcar1-next',
+    // prevButton: '.colcar1-prev',
   };
 
   config1: SwiperOptions = {
@@ -129,20 +129,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
     spaceBetween: 0,
     effect: 'fade',
     speed: 1500,
-    //spaceBetween: 100,
+    // spaceBetween: 100,
     slidesPerGroup: 1,
     centeredSlides: true,
-    //autoplay: 5000,
+    // autoplay: 5000,
     loop: true,
     loopFillGroupWithBlank: true,
-    //keyboardControl: true,
-    //pagination: '.bannpage',
-    //paginationClickable: true,
+    // keyboardControl: true,
+    // pagination: '.bannpage',
+    // paginationClickable: true,
   };
 
   @ViewChild('usefulSwiper', { static: false }) usefulSwiper: SwiperComponent;
 
-  open(content) {
+  open(content): void {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
@@ -150,7 +150,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.closeResult = `Closed with: ${result}`;
         },
         (reason) => {
-          //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
   }
@@ -160,64 +160,39 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe((params) => {
       this.routeId = params.id;
     });
-    this.imageurl=IMAGE_ENDPOINT;
-    this.showModal=true;
+    this.imageurl = IMAGE_ENDPOINT;
+    this.showModal = true;
     this.httpClient.get<any>(CATEGORYPRODUCTS).subscribe((data: any) => {
-      console.log(data);
       this.category = data.data;
       setTimeout(() => {
         const selectedCategory = document.getElementById(this.routeId);
         if (selectedCategory) {
-          selectedCategory.scrollIntoView({ behavior: 'smooth' });
+          // selectedCategory.scrollIntoView({ behavior: 'smooth' });
+          $('html, body').animate({ scrollTop: selectedCategory.offsetTop - 90 }, 1000);
         }
       });
     });
     setTimeout(() => {
-      let myScript = document.createElement('script');
+      const myScript = document.createElement('script');
       myScript.setAttribute('src', './assets/js/home.js');
       document.body.appendChild(myScript);
     }, 500);
   }
 
-  selectProduct(pro) {
-    console.log(pro);
+  selectProduct(pro): void {
     this.selectedproduct = pro;
   }
 
-  onRequest() {
+  onRequest(): void {
     this.isRequest = true;
   }
 
-  gotoDetails(id:any){
-      this.router.navigate(['/productdetails'], { queryParams: { id: id } });
+  gotoDetails(id: any): void{
+      this.router.navigate(['/productdetails'], { queryParams: { id } });
   }
 
-  closeModal() {
+  closeModal(): void {
     this.isRequest = false;
-  }
-
-  buyProduct(product) {
-    console.log("d"+this.profileForm.value);
-    var formData: any = new FormData();
-    formData.append('ProductId', product.productId);
-    formData.append('Name', this.profileForm.value.name);
-    formData.append('Email', this.profileForm.value.cusmail);
-    formData.append('ContactNumber', this.profileForm.value.phone);
-    formData.append('Address', this.profileForm.value.address);
-    formData.append('Message', this.profileForm.value.message);
-    console.log('cus' + formData);
-    this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
-      (response: any) => {
-        console.log(response);
-        if(response.data){
-          this.isRequest=false;
-          this.showModal=false;
-          alert("success");
-          this.profileForm.reset();
-        }
-      },
-      (error) => console.log(error)
-    );
   }
 
   openDialog(): void {
