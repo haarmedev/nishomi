@@ -155,11 +155,27 @@
                     </span>
                   </div>
                   <div class="form-group col-md-12">
-                    <textarea formControlName="address" required="required"></textarea>
-                    <label for="textarea" class="control-label">{{ 'label.address' | translate }}</label><i class="bar"></i>
-                    <span class="error" *ngIf="(submitted || profileForm.controls.address.touched) && !profileForm.controls.address.valid">
+                    <input formControlName="street" required="notrequired"  type="text"/>
+                    <label for="input" class="control-label">{{ 'label.street' | translate }}</label><i class="bar"></i>
+                    <!-- <span class="error" *ngIf="(submitted || profileForm.controls.address.touched) && !profileForm.controls.address.valid">
                       {{ 'error.address_mandatory' | translate }}
+                    </span> -->
+                  </div>
+                  <div class="form-group col-md-12">
+                    <input formControlName="post" required="required"  type="text"/>
+                    <label for="input" class="control-label">{{ 'label.post' | translate }}</label><i class="bar"></i>
+                    <span class="error" *ngIf="(submitted || profileForm.controls.post.touched) && !profileForm.controls.post.valid">
+                      {{ 'error.post_mandatory' | translate }}
                     </span>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <select formControlName="country" required="required"> 
+                      <option [value]="country.name" *ngFor="let country of countries">{{country.name}}</option>
+                    </select>
+                    <!-- <label for="select" class="control-label">{{ 'label.country' | translate }}</label><i class="bar"></i> -->
+                    <!-- <span class="error" *ngIf="(submitted || profileForm.controls.post.touched) && !profileForm.controls.post.valid">
+                      {{ 'error.post_mandatory' | translate }}
+                    </span> -->
                   </div>
                   <div class="form-group col-md-12">
                     <textarea formControlName="message"></textarea>

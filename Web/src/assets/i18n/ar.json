@@ -171,7 +171,10 @@
     "contact_number": "رقم الاتصال",
     "address": "عنوان :",
     "message": "الرسائل",
-    "accept_label": "أقبل هذا"
+    "accept_label": "أقبل هذا",
+    "street":"أقبل هذا",
+    "post":"أقبل هذا",
+    "country":"أقبل هذا"
   },
   "error": {
     "tac_mandatory": "الرجاء قبول الشروط والأحكام قبل المتابعة.",
@@ -180,7 +183,8 @@
     "contact_number_mandatory": "الرجاء إدخال رقم الاتصال الخاص بك.",
     "address_mandatory": "الرجاء إدخال عنوانك.",
     "email_id_invalid": "الرجاء إدخال معرف بريد إلكتروني صالح.",
-    "contact_number_invalid": "الرجاء إدخال رقم اتصال صحيح."
+    "contact_number_invalid": "الرجاء إدخال رقم اتصال صحيح.",
+    "post_mandatory":"Please enter your post"
   },
   "success": {
     "order": "شكرا لتقديم هذا الطلب. سنقوم بتوصيلك قريبًا وتسليم هذا المنتج إلى عنوانك.",

@@ -23,6 +23,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { stringify } from '@angular/compiler/src/util';
 declare var $: any;
 @Component({
   selector: 'app-productdetails',
@@ -30,13 +31,46 @@ declare var $: any;
   styleUrls: ['./productdetails.component.css'],
 })
 export class ProductdetailsComponent implements OnInit, OnDestroy {
+  countries = [{
+    id: '1',
+    name: 'Saudi arabia(966)',
+    code: '966'
+   },
+   {
+    id: '2',
+    name: 'Bahrain(973)',
+    code: '973'
+   },
+   {
+    id: '3',
+    name: 'Kuwait(965)',
+    code: '965'
+   },
+   {
+    id: '4',
+    name: 'Qatar(974)',
+    code: '974'
+   },
+   {
+    id: '5',
+    name: 'Oman(968)',
+    code: '968'
+   },
+   {
+    id: '6',
+    name: 'United Arab Emirates(971)',
+    code: '971'
+   }];
   profileForm = new FormGroup({
     acceptTAC: new FormControl(false, [Validators.requiredTrue]),
     name: new FormControl('', [Validators.required]),
     cusmail: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i)]),
     phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(11)]),
-    address: new FormControl('', [Validators.required]),
+    address: new FormControl(''),
     message: new FormControl(''),
+    street:new FormControl(''),
+    post:new FormControl('',[Validators.required]),
+    country:new FormControl(this.countries[1].name)
   });
   fullLength = new FormControl(0);
   sleeveLength = new FormControl(0);
@@ -77,6 +111,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
   sliderHtml: string = '';
   zoomHtml: string = '';
   isBuyNow: Boolean = false;
+  
   ngOnInit(): void {
     this.setLangKey();
     this.quantity = 1;
@@ -193,6 +228,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     }
     */
    this.submitted = true;
+   
    if (this.profileForm.valid) {
       var formData: any = new FormData();
       formData.append('ProductId', this.productId);
@@ -202,6 +238,10 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       formData.append('Address', this.profileForm.value.address);
       formData.append('Message', this.profileForm.value.message);
       formData.append('IsOrder',this.isBuyNow?true:false);
+      formData.append('Street',this.profileForm.value.street);
+      formData.append('PostalCode',this.profileForm.value.post);
+      formData.append('Country',this.profileForm.value.country);
+      console.log(formData);
       if (
         this.fullLength.value > 0 &&
         this.sleeveLength.value > 0 &&
@@ -212,7 +252,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
           'Size',
           'Custom Size: FullLength: ' +
             this.fullLength.value +
-            ' SleeveLength: ' +
+            ' SleeveLength: ' +   1+
             this.sleeveLength.value +
             ' Bust: ' +
             this.bust.value +
@@ -220,7 +260,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
             this.hip.value
         );
       } else {
-        formData.append('Size', 'Size: ' + this.selectedSize);
+        formData.append('Size',this.selectedSize);
       }
       this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
         (response: any) => {

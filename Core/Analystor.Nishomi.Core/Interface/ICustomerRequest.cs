@@ -10,6 +10,6 @@
         /// </summary>
         /// <param name="customerReques">The customer reques.</param>
         /// <returns></returns>
-        bool CreateCustomerRequest(CustomerRequestDTO customerReques);
+        string CreateCustomerRequest(CustomerRequestDTO customerReques);
     }
 }

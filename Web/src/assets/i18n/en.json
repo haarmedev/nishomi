@@ -171,7 +171,10 @@
     "contact_number": "Contact Number",
     "address": "Address",
     "message": "Message",
-    "accept_label": "I accept the"
+    "accept_label": "I accept the",
+    "street":"Street or District",
+    "post":"P.O Box Number",
+    "country":"Country"
   },
   "error": {
     "tac_mandatory": "Please accept terms and conditions before you proceed.",
@@ -180,7 +183,8 @@
     "contact_number_mandatory": "Please enter your contact number.",
     "address_mandatory": "Please enter your address.",
     "email_id_invalid": "Please enter a valid email id.",
-    "contact_number_invalid": "Please enter a valid contact number."
+    "contact_number_invalid": "Please enter a valid contact number.",
+    "post_mandatory":"Please enter your post"
   },
   "success": {
     "order": "Thanks for placing this order. We will connect you shortly and deliver this product to  your address",
