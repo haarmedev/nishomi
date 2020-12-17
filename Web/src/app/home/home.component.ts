@@ -10,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-declare var $: any;
+import initSwipers from '../../assets/js/home.js';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,7 +19,10 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private httpClient: HttpClient, private router: Router, private translate: TranslateService) {
-    this.langSubscription = this.translate.onLangChange.subscribe(() => { this.setLangKey(); });
+    this.langSubscription = this.translate.onLangChange.subscribe(() => {
+      this.setLangKey();
+      this.reInItFeaturedProdSlider();
+    });
   }
   langKey = '';
   mySwiper: SwiperOptions;
@@ -27,6 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   imageurl: string;
   currentLang: string;
   langSubscription: Subscription;
+  initResponse;
 
   config: SwiperOptions = {
     // autoplay: 6000,
@@ -100,9 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.httpClient.get<any>(FEATUREDPRODUCTSAPI).subscribe((data: any) => {
       this.featuredproducts = data.data;
       setTimeout(() => {
-        const sliderScript = document.createElement('script');
-        sliderScript.setAttribute('src', './assets/js/home.js');
-        document.body.appendChild(sliderScript);
+        this.initResponse = initSwipers();
       });
     });
     this.setLangKey();
@@ -119,6 +122,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   setLangKey(): void {
     this.currentLang = this.translate.currentLang;
     this.langKey = 'ar' === this.currentLang ? 'Ar' : '';
+  }
+
+  reInItFeaturedProdSlider() {
+    if (this.initResponse) {
+      setTimeout(() => {
+        this.initResponse.oneSwiper.init();
+      });
+    }
   }
 
   gotoDetails(id: any): void {
