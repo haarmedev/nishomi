@@ -8,6 +8,18 @@
     public class CustomerRequest : NamedEntity
     {
         /// <summary>
+        /// Gets or sets the order number.
+        /// </summary>
+        /// <value>
+        /// The order number.
+        /// </value>
+        public string OrderNumber
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the product identifier.
         /// </summary>
         /// <value>
@@ -74,6 +86,42 @@
         /// The message.
         /// </value>
         public string Message
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the street.
+        /// </summary>
+        /// <value>
+        /// The street.
+        /// </value>
+        public string Street
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the postal code.
+        /// </summary>
+        /// <value>
+        /// The postal code.
+        /// </value>
+        public string PostalCode
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the country.
+        /// </summary>
+        /// <value>
+        /// The country.
+        /// </value>
+        public string Country
         {
             get;
             set;

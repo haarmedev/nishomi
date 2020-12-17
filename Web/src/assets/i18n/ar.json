@@ -172,7 +172,10 @@
     "contact_number": "رقم الاتصال",
     "address": "عنوان :",
     "message": "الرسائل",
-    "accept_label": "أقبل هذا"
+    "accept_label": "أقبل هذا",
+    "street":"أقبل هذا",
+    "post":"أقبل هذا",
+    "country":"أقبل هذا"
   },
   "error": {
     "tac_mandatory": "الرجاء قبول الشروط والأحكام قبل المتابعة.",
@@ -182,6 +185,7 @@
     "address_mandatory": "الرجاء إدخال عنوانك.",
     "email_id_invalid": "الرجاء إدخال معرف بريد إلكتروني صالح.",
     "contact_number_invalid": "الرجاء إدخال رقم اتصال صحيح.",
+    "post_mandatory":"Please enter your post",
     "size": "الرجاء اختيار الحجم.",
     "custom_size": "الرجاء إدخال الحجم المخصص.",
     "something_went_wrong": "هناك خطأ ما. الرجاء معاودة المحاولة في وقت لاحق."

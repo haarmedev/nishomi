@@ -81,6 +81,7 @@
         public IActionResult SaveCustomerRequest([FromForm] CustomerRequestDTO details)
         {
             var product = this._productService.GetProductDetails(details.ProductId);
+            details.CategoryName = product.CategoryName;
             var request = details.IsOrder ? "<b>product order</b>" : "<b>product Interest</b>";
             MailRequest mailRequest = new MailRequest()
             {

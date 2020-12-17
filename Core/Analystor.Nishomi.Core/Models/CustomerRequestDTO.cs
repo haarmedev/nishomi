@@ -102,5 +102,53 @@
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets or sets the name of the category.
+        /// </summary>
+        /// <value>
+        /// The name of the category.
+        /// </value>
+        public string CategoryName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the street.
+        /// </summary>
+        /// <value>
+        /// The street.
+        /// </value>
+        public string Street
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the postal code.
+        /// </summary>
+        /// <value>
+        /// The postal code.
+        /// </value>
+        public string PostalCode
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the country.
+        /// </summary>
+        /// <value>
+        /// The country.
+        /// </value>
+        public string Country
+        {
+            get;
+            set;
+        }
     }
 }

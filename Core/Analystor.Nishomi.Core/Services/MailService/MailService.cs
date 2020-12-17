@@ -45,7 +45,7 @@
             string fromEmail = "ahlan.nishomiabayas@outlook.com";
             string password = "Nishomi2020#";
             string displayName = "Nishomi Abayas";
-            string toEmail = "ahlan@nishomiabayas.com";
+            string toEmail = mailRequest.ToEmail;
             //string subject = "You have a new product request from Prashobh";
             //string messageBody = "Hello Nishomi Abayas, Prashobh is showing interest to your product #00449.";
 

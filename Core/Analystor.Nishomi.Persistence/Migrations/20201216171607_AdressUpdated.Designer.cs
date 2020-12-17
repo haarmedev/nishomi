@@ -3,14 +3,16 @@ using System;
 using Analystor.Nishomi.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Analystor.Nishomi.Persistence.Migrations
 {
     [DbContext(typeof(NishomiDbContext))]
-    partial class NishomiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201216171607_AdressUpdated")]
+    partial class AdressUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
