@@ -175,7 +175,13 @@
     "accept_label": "I accept the",
     "street":"Street or District",
     "post":"P.O Box Number",
-    "country":"Country"
+    "country":"Country",
+    "ksa":"Saudi Arabia(966)",
+    "qatar":"Qatar(974)",
+    "oman":"Oman(968)",
+    "bahrain":"Bahrain(973)",
+    "uae":"United Arab Emirates(971)",
+    "kuwait":"Kuwait(965)"
   },
   "error": {
     "tac_mandatory": "Please accept terms and conditions before you proceed.",

@@ -25,32 +25,32 @@ declare var $: any;
 export class ProductdetailsComponent implements OnInit, OnDestroy {
   countries = [{
     id: '1',
-    name: 'Saudi arabia(966)',
+    name: 'label.ksa',
     code: '966'
    },
    {
     id: '2',
-    name: 'Bahrain(973)',
+    name: 'label.bahrain',
     code: '973'
    },
    {
     id: '3',
-    name: 'Kuwait(965)',
+    name: 'label.kuwait',
     code: '965'
    },
    {
     id: '4',
-    name: 'Qatar(974)',
+    name: 'label.qatar',
     code: '974'
    },
    {
     id: '5',
-    name: 'Oman(968)',
+    name: 'label.oman',
     code: '968'
    },
    {
     id: '6',
-    name: 'United Arab Emirates(971)',
+    name: 'label.uae',
     code: '971'
    }];
   profileForm = new FormGroup({

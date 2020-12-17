@@ -1331,7 +1331,12 @@ img.over {
   transition: all 0.28s ease;
   box-shadow: none;
 }
-.form-group select,
+.form-group select {
+  width: 100%;
+  border: 0.0625rem solid #999;
+  margin-bottom: 15px;
+  height: 40px;
+}
 .form-group input:focus,
 .form-group input:valid,
 .form-group input.form-file,
