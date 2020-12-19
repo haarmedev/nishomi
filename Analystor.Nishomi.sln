@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analystor.Nishomi.Common", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0DB7F633-E8C3-43D3-8ED5-419F2D6E840E}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{56010959-6A95-4DC4-989B-9A7A93C3849F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D9194A4D-4C1B-4452-8519-E83F2B87F1C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9194A4D-4C1B-4452-8519-E83F2B87F1C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9194A4D-4C1B-4452-8519-E83F2B87F1C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56010959-6A95-4DC4-989B-9A7A93C3849F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56010959-6A95-4DC4-989B-9A7A93C3849F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56010959-6A95-4DC4-989B-9A7A93C3849F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56010959-6A95-4DC4-989B-9A7A93C3849F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
