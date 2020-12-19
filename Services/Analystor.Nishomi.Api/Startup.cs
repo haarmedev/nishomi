@@ -62,8 +62,7 @@ namespace Analystor.Nishomi.Api
                   "CorsPolicy",
                   builder => builder.AllowAnyOrigin()
                   .AllowAnyMethod()
-                  .AllowAnyHeader()
-                  .AllowCredentials());
+                  .AllowAnyHeader());
             });
             // Mail Service
             services.AddScoped<SmtpClient>((serviceProvider) =>
