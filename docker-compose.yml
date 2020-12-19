@@ -1,6 +1,9 @@
 version: '3.4'
 
 services:
+  mysql:
+    image: mysql:5.7
+
   analystor.nishomi.admin:
     image: ${DOCKER_REGISTRY-}analystornishomiadmin
     build:
