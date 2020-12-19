@@ -60,7 +60,7 @@ namespace Analystor.Nishomi.Api
             {
                 options.AddPolicy(
                   "CorsPolicy",
-                  builder => builder.WithOrigins("http://localhost:4200")
+                  builder => builder.AllowAnyOrigin()
                   .AllowAnyMethod()
                   .AllowAnyHeader()
                   .AllowCredentials());
@@ -90,7 +90,7 @@ namespace Analystor.Nishomi.Api
             }
             else
             {
-                app.UseHsts();
+                // app.UseHsts();
             }
 
             app.UseCors("CorsPolicy");
