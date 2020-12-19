@@ -11,7 +11,7 @@ services:
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
     ports:
       - "81:80"
     build:
@@ -23,7 +23,7 @@ services:
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
     ports:
       - "82:80"
     build:
