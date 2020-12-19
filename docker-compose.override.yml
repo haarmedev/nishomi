@@ -14,7 +14,6 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
       - "81:80"
-      - "443"
     build:
       network: host
     volumes:
@@ -27,7 +26,6 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
       - "82:80"
-      - "443"
     build:
       network: host
     volumes:
