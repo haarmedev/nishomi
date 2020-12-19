@@ -23,33 +23,34 @@ declare var $: any;
   styleUrls: ['./productdetails.component.css'],
 })
 export class ProductdetailsComponent implements OnInit, OnDestroy {
-  countries = [{
-    id: '1',
+  countries = [
+    {
+    id: '2',
     name: 'label.ksa',
     code: '966'
    },
    {
-    id: '2',
+    id: '3',
     name: 'label.bahrain',
     code: '973'
    },
    {
-    id: '3',
+    id: '4',
     name: 'label.kuwait',
     code: '965'
    },
    {
-    id: '4',
+    id: '5',
     name: 'label.qatar',
     code: '974'
    },
    {
-    id: '5',
+    id: '6',
     name: 'label.oman',
     code: '968'
    },
    {
-    id: '6',
+    id: '7',
     name: 'label.uae',
     code: '971'
    }];
@@ -57,12 +58,12 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     acceptTAC: new FormControl(false, [Validators.requiredTrue]),
     name: new FormControl('', [Validators.required]),
     cusmail: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i)]),
-    phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(11)]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(14)]),
     address: new FormControl(''),
     message: new FormControl(''),
     street:new FormControl(''),
-    post:new FormControl('',[Validators.required]),
-    country:new FormControl(this.countries[1].name),
+    post:new FormControl(''),
+    country:new FormControl('',[Validators.required]),
     size: new FormControl('', [Validators.required]),
     fullLength: new FormControl(''),
     sleeveLength: new FormControl(''),
@@ -234,31 +235,32 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       formData.append('PostalCode',this.profileForm.value.post);
       formData.append('Country',this.profileForm.value.country);
       console.log(formData);
-      if (
-        this.profileForm.value.fullLength > 0 &&
-        this.profileForm.value.sleeveLength > 0 &&
-        this.profileForm.value.bust > 0 &&
-        this.profileForm.value.hip > 0
-      ) {
-        formData.append(
-          'Size',
-          'Custom Size: FullLength: ' +
-          this.profileForm.value.fullLength +
-            ' SleeveLength: ' +   1+
-            this.profileForm.value.sleeveLength +
-            ' Bust: ' +
-            this.profileForm.value.bust +
-            ' Hip: ' +
-            this.profileForm.value.hip
-        );
-      } else {
-        formData.append('Size',this.selectedSize);
-      }
-      formData.append('IsOrder', this.isBuyNow ? true : false);
+      // if (
+      //   this.profileForm.value.fullLength > 0 &&
+      //   this.profileForm.value.sleeveLength > 0 &&
+      //   this.profileForm.value.bust > 0 &&
+      //   this.profileForm.value.hip > 0
+      // ) {
+      //   formData.append(
+      //     'Size',
+      //     'Custom Size: FullLength: ' +
+      //     this.profileForm.value.fullLength +
+      //       ' SleeveLength: ' +   1+
+      //       this.profileForm.value.sleeveLength +
+      //       ' Bust: ' +
+      //       this.profileForm.value.bust +
+      //       ' Hip: ' +
+      //       this.profileForm.value.hip
+      //   );
+      // } else {
+      //   formData.append('Size',this.selectedSize);
+      // }
+      //formData.append('IsOrder', this.isBuyNow ? true : false);
 
       const size = `Size: ${this.profileForm.value.size}`;
-      const customSize = `Custom Size: FullLength: ${this.profileForm.value.fullLength} SleeveLength: ${this.profileForm.value.sleeveLength} Bust: ${this.profileForm.value.bust} Hip: ${this.profileForm.value.hip}`;
+      const customSize = `Custom Size: <br/>FullLength: ${this.profileForm.value.fullLength} <br/>SleeveLength: ${this.profileForm.value.sleeveLength} <br/>Bust: ${this.profileForm.value.bust} <br/>Hip: ${this.profileForm.value.hip}`;
       formData.append('Size', this.showCustomsize ? customSize : size);
+      //console.log("fff"+formData);
 
       this.httpClient.post(CUSTOMERREQUEST, formData).subscribe(
         (response: any) => {
@@ -269,6 +271,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
             const trsnslatedMsg = this.translate.instant(msg);
             Swal.fire({
               title: trsnslatedMsg,
+              text:this.isBuyNow ?'Order Number: '+response.data : 'Ref. No: '+response.data,
               icon: 'success',
             });
             this.selectSize('');

@@ -83,24 +83,27 @@
             var product = this._productService.GetProductDetails(details.ProductId);
             details.CategoryName = product.CategoryName;
             var request = details.IsOrder ? "<b>product order</b>" : "<b>product Interest</b>";
+            var street = details.Street != null ? details.Street + "<br/>" : "";
+            var post = details.PostalCode != null ? details.PostalCode + "<br/>" : "";
             MailRequest mailRequest = new MailRequest()
             {
                 ToEmail="ahlan@nishomiabayas.com",
-                Subject=details.IsOrder? "Customer Placed a Product Order" : "Customer Placed a Product Interest",
+                FromMail= "ahlan.nishomiabayas@outlook.com",
+                Subject =details.IsOrder? "Customer Placed a Product Order" : "Customer Placed a Product Interest",
                 Body="<b>Hi,</b> </br>"+
                      "Please see below the details of a "+request+ " from customer<br/>"+
+                     "Order Number&emsp;:&emsp;" + _customerService.GetOrderNumber(details)+"<br/>"+
                      "<b><i><u>Product Details</u></i></b><br/><br/>"+
-                     "Product Name        : nishOmi - "+product.CategoryName+" "+product.ProductCode+"<br/>"+
-                     "Product Cost        : AED "+product.Cost.ToString("N2") + "<br/>"+
-                     "Product Description : "+product.Description+"<br/><br/>"+
+                     "Product Name&emsp;:&emsp;nishOmi - " + product.CategoryName+" "+product.ProductCode+"<br/>"+
+                     "Product Cost&emsp;:&emsp;AED " + product.Cost.ToString("N2") + "<br/>"+
+                     "Product Description&emsp;:&emsp;" + product.Description+"<br/><br/>"+
                      "<b><i><u>Customer Details</u></i></b><br/><br/>" +
-                     "Customer Name       :"+details.Name+" <br/>"+
-                     "Customer Phone      :" +details.ContactNumber+ " <br/>" +
-                     "Customer Email      :" +details.Email+ " <br/>" +
-                     "Customer Address    :" +details.Address+ " <br/>" +
-                     "Customer Size       :" +details.Size+" <br/>" +
-                     "Customer Note       :"+details.Message,
-                //Body="<b>Product Details:<b><br/> Product Name: "+product.Name+"<br/> Product Cost: "+product.Cost.ToString("0.00")+ "<br/> Description: "+product.Description+" <br/> <b>Customer Details:<b><br/> Customer Name:"+details.Name+"<br/> Phone:"+details.ContactNumber+"<br/> Email:"+details.Email+" <br/> Address:"+details.Address+"<br/> Message:"+details.Message+"<br/> "+details.Size+"",
+                     "Customer Name&emsp;:&emsp;" + details.Name+" <br/>"+
+                     "Customer Phone&emsp;:&emsp;" + details.ContactNumber+ " <br/>" +
+                     "Customer Email&emsp;:&emsp;" + details.Email+ " <br/>" +
+                     "Customer Address&emsp;:<br/>" +street+post+ details.Country+"<br/>" +
+                     "Customer Size&emsp;:&emsp;" + details.Size+" <br/>" +
+                     "Customer Note&emsp;:&emsp;" + details.Message,
             };
             mailService.SendEmailAsync(mailRequest);
             var status = this._customerService.CreateCustomerRequest(details);

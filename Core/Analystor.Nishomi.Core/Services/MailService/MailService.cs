@@ -24,25 +24,31 @@
             this._smtpProvider = smtpProvider;
         }
 
+        public bool SendAckMail(MailRequest mailRequest)
+        {
+            var mail = new MailMessage
+            {
+                Body = mailRequest.Body,
+                IsBodyHtml = true,
+                Subject = mailRequest.Subject,
+            };
+
+            mail.From = new MailAddress(mailRequest.FromMail);
+
+            mail.To.Add(new MailAddress(mailRequest.ToEmail));
+            var provider = this._smtpProvider.GetCurrentSMTPClient();
+
+            provider.Send(mail);
+            return true;
+        }
+
         public bool SendEmailAsync(MailRequest mailRequest)
         {
-            //var mail = new MailMessage
-            //{
-            //    Body = mailRequest.Body,
-            //    IsBodyHtml = true,
-            //    Subject = mailRequest.Subject,
-            //};
-
-            //mail.From = new MailAddress("ahlan.nishomiabayas@outlook.com");
-
-            //mail.To.Add(new MailAddress("ahlan@nishomiabayas.com"));
-            //var provider = this._smtpProvider.GetCurrentSMTPClient();
-
-            //provider.Send(mail);
+            
 
             string serverName = "smtp.live.com";
             int port = 587;
-            string fromEmail = "ahlan.nishomiabayas@outlook.com";
+            string fromEmail = mailRequest.FromMail;
             string password = "Nishomi2020#";
             string displayName = "Nishomi Abayas";
             string toEmail = mailRequest.ToEmail;

@@ -181,7 +181,8 @@
     "oman":"Oman(968)",
     "bahrain":"Bahrain(973)",
     "uae":"United Arab Emirates(971)",
-    "kuwait":"Kuwait(965)"
+    "kuwait":"Kuwait(965)",
+    "selectcountry":"Select Country"
   },
   "error": {
     "tac_mandatory": "Please accept terms and conditions before you proceed.",
@@ -194,7 +195,8 @@
     "post_mandatory":"Please enter your post",
     "size": "Please choose a size.",
     "custom_size": "Please enter custom size.",
-    "something_went_wrong": "Something went wrong. Please try again later."
+    "something_went_wrong": "Something went wrong. Please try again later.",
+    "select_country":"Please select your country."
   },
   "success": {
     "order": "Thanks for placing this order. We will connect you shortly and deliver this product to  your address",

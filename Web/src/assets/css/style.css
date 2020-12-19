@@ -1333,9 +1333,19 @@ img.over {
 }
 .form-group select {
   width: 100%;
-  border: 0.0625rem solid #999;
+  border: 0;
+      border-bottom-color: currentcolor;
+      border-bottom-style: none;
+      border-bottom-width: 0px;
   margin-bottom: 15px;
   height: 40px;
+  border-bottom: 0.0625rem solid #999;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('../images/icons/ico-down.png') no-repeat 98% center;
+      background-size: auto;
+  background-size: auto 16px;
 }
 .form-group input:focus,
 .form-group input:valid,

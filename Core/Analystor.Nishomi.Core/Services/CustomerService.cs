@@ -60,34 +60,48 @@
             return customerRequest.IsOrder?"#niOmion" + count: "#niOmien" + count;
         }
 
+        /// <summary>
+        /// Gets the order number.
+        /// </summary>
+        /// <param name="customerRequest">The customer request.</param>
+        /// <returns></returns>
+        public string GetOrderNumber(CustomerRequestDTO customerRequest)
+        {
+            var count= this.CurrentDbContext.CustomerRequests.Count() + 1;
+            return customerRequest.IsOrder ? "#niOmion" + count : "#niOmien" + count;
+        }
+
         public void SendCustomerEmail(CustomerRequestDTO customerRequest)
         {
             var product = this._productService.GetProductDetails(customerRequest.ProductId);
             var count = this.CurrentDbContext.CustomerRequests.Count()+1;
             var orderNumber= customerRequest.IsOrder ? "#niOmion" + count : "#niOmien" + count;
-            var requestBody = customerRequest.IsOrder ? "Thank you for your order on product “nishOmi -"+orderNumber+"”.We will contact you as soon as your package ready for shipment.Please find the order summary details below." : "Thank you for your interest on product “"+orderNumber+"”. We will contact you at the earliest, to know more about your enquiry. Please find the details of your enquiry";
+            var requestBody = customerRequest.IsOrder ? "Thank you for your order on product “nishOmi -" + product.CategoryName + " " + product.ProductCode + "”.We will contact you as soon as your package ready for shipment.Please find the order summary details below." : "Thank you for your interest on product “nishOmi -" + product.CategoryName + " " + product.ProductCode + "”. We will contact you at the earliest, to know more about your enquiry. Please find the details of your enquiry";
+            var street = customerRequest.Street != null ? customerRequest.Street + "<br/>" : "";
+            var post = customerRequest.PostalCode != null ? customerRequest.PostalCode + "<br/>" : "";
 
             MailRequest mailRequest = new MailRequest()
             {
                 ToEmail = customerRequest.Email,
+                FromMail = "ahlan@nishomiabayas.com",
                 Subject = customerRequest.IsOrder ? "nishOmi Abaya Order Confirmation" : "Acknowledgement : nishOmi Abaya product Enquiry",
-                Body = "<html><body><img src ='https://nishomi-api.analystortech.com/Service/assets/nishomi.png' /> " +
+                Body = "<html><body><img src ='https://nishomi-api.analystortech.com/Service/assets/nishomi.png' style='display: block;margin-left:auto;margin-right:auto;width:50% ' /><br/> " +
                     "Dear " +customerRequest.Name+"<br/><br/>"+
                     ""+requestBody+"<br/><br/>"+
                     "<u>Order Summary</u><br/>"+
-                    "Order Number   : #niOmi" + count+"<br/>"+
-                    "Product Name   : nishomi - " + product.CategoryName + " " + product.ProductCode+"<br/>"+
-                    "Product Description : "+product.Description+ "<br/>" +
-                    "Product Size  :"+customerRequest.Size+"<br/>"+
-                    "Order Total Price  :" + product.Cost.ToString("N2") + "<br/>" +
-                    "Contact Address  :" + customerRequest.Street + "<br/>" +customerRequest.PostalCode+"<br/>"+customerRequest.Country+"<br/>"+
-                    "Contact Number  :" + customerRequest.ContactNumber + "<br/>" +
-                    "Email id  :" + customerRequest.Email + "<br/><br/>" +
-                    "Thanks & Regards </br>"+
+                    "Order Number   &emsp;:&emsp;" + orderNumber+"<br/>"+
+                    "Product Name   &emsp;:&emsp;nishomi - " + product.CategoryName + " " + product.ProductCode+"<br/>"+
+                    "Product Description &emsp;:&emsp;" + product.Description+ "<br/>" +
+                    "Product Size  &emsp;:&emsp;" + customerRequest.Size+"<br/>"+
+                    "Order Total Price  &emsp;:&emsp;AED " + product.Cost.ToString("N2") + "<br/>" +
+                    "Contact Address  &emsp;:<br/>" + street+post+customerRequest.Country+"<br/>"+
+                    "Contact Number  &emsp;:&emsp;" + customerRequest.ContactNumber + "<br/>" +
+                    "Email id  &emsp;:&emsp;" + customerRequest.Email + "<br/><br/>" +
+                    "Thanks & Regards <br/>"+
                     "<b>Nishomi Designer Abayas</b>"+
                     "</body></html>",
             };
-            _mailService.SendEmailAsync(mailRequest);
+            _mailService.SendAckMail(mailRequest);
         }
     }
 }

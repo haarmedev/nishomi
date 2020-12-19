@@ -13,5 +13,12 @@
         /// <param name="mailRequest">The mail request.</param>
         /// <returns></returns>
         bool SendEmailAsync(MailRequest mailRequest);
+
+        /// <summary>
+        /// Sends the ack mail.
+        /// </summary>
+        /// <param name="mailRequest">The mail request.</param>
+        /// <returns></returns>
+        bool SendAckMail(MailRequest mailRequest);
     }
 }

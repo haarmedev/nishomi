@@ -11,5 +11,7 @@
         /// <param name="customerReques">The customer reques.</param>
         /// <returns></returns>
         string CreateCustomerRequest(CustomerRequestDTO customerReques);
+
+        string GetOrderNumber(CustomerRequestDTO customerRequest);
     }
 }
