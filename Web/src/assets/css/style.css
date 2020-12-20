@@ -1343,8 +1343,6 @@ img.over {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-size: auto;
-  background-size: auto 16px;
 }
 .form-group input:focus,
 .form-group input:valid,

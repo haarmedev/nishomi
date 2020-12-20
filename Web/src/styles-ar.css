@@ -3,6 +3,8 @@ html body {
 }
 .form-group select {
   background: url('./assets/images/icons/ico-down.png') no-repeat 2% center;
+  background-size: auto;
+  background-size: auto 16px;
 }
 .fast-text {
   padding-right: 6%;
