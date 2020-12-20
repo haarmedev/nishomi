@@ -1343,8 +1343,7 @@ img.over {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url('../images/icons/ico-down.png') no-repeat 98% center;
-      background-size: auto;
+  background-size: auto;
   background-size: auto 16px;
 }
 .form-group input:focus,

@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiBaseUrl: 'https://nishomi-api.analystortech.com/Admin',
+  imageBaseUrl: 'https://nishomi-api.analystortech.com/Service',
 };
 
 /*

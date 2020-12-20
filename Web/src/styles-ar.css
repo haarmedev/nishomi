@@ -1,6 +1,9 @@
 html body {
   text-align: right;
 }
+.form-group select {
+  background: url('./assets/images/icons/ico-down.png') no-repeat 2% center;
+}
 .fast-text {
   padding-right: 6%;
   border-right: 1px solid #ccc;
