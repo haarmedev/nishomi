@@ -1,4 +1,5 @@
 ﻿using Analystor.Nishomi.Domain;
+using Analystor.Nishomi.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,10 +19,8 @@ namespace WebApplication2.IdentityServer
             var services = new ServiceCollection();
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseMySql(connectionString));
-
-            services.AddIdentity<IdentityUser, Role>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddDbContext<NishomiDbContext>(options =>
+               options.UseMySql(connectionString));
 
             services.AddLogging(builder => builder.AddConsole());
 
@@ -30,28 +29,37 @@ namespace WebApplication2.IdentityServer
                 using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
                     var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
-                    context.Database.Migrate();
+                    var dbcontext = scope.ServiceProvider.GetService<NishomiDbContext>();
 
-                    var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-                    
-                    var admin = userMgr.FindByNameAsync("ahlan@nishomiabayas.com").Result;
-                    if (admin == null)
+                    if (context.Database.GetPendingMigrations().Any())
                     {
-                        admin = new User
-                        {
-                            UserName = "ahlan@nishomiabayas.com",
-                            Email = "ahlan@nishomiabayas.com",
-                            FirstName = "Super",
-                            LastName = "Admin",
-                            EmailConfirmed = true,
-                            IsActive = true
-                        };
-                        var result = userMgr.CreateAsync(admin, "Pass123$").Result;
-                        if (!result.Succeeded)
-                        {
-                            throw new Exception(result.Errors.First().Description);
-                        }
+                        context.Database.Migrate();
                     }
+                    if (dbcontext.Database.GetPendingMigrations().Any())
+                    {
+                        dbcontext.Database.Migrate();
+                    }
+
+                    //var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+
+                    //var admin = userMgr.FindByNameAsync("ahlan@nishomiabayas.com").Result;
+                    //if (admin == null)
+                    //{
+                    //    admin = new User
+                    //    {
+                    //        UserName = "ahlan@nishomiabayas.com",
+                    //        Email = "ahlan@nishomiabayas.com",
+                    //        FirstName = "Super",
+                    //        LastName = "Admin",
+                    //        EmailConfirmed = true,
+                    //        IsActive = true
+                    //    };
+                    //    var result = userMgr.CreateAsync(admin, "Pass123$").Result;
+                    //    if (!result.Succeeded)
+                    //    {
+                    //        throw new Exception(result.Errors.First().Description);
+                    //    }
+                    //}
                 }
             }
         }
