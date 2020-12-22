@@ -6,20 +6,20 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["Services/Analystor.Nishomi.Api/Analystor.Nishomi.Api.csproj", "Services/Analystor.Nishomi.Api/"]
+COPY ["Services/Analystor.Nishomi.Admin/Analystor.Nishomi.Admin.csproj", "Services/Analystor.Nishomi.Admin/"]
 COPY ["Analystor.Nishomi.Common/Analystor.Nishomi.Common.csproj", "Analystor.Nishomi.Common/"]
 COPY ["Core/Analystor.Nishomi.Core/Analystor.Nishomi.Core.csproj", "Core/Analystor.Nishomi.Core/"]
 COPY ["Core/Analystor.Nishomi.Persistence/Analystor.Nishomi.Persistence.csproj", "Core/Analystor.Nishomi.Persistence/"]
 COPY ["Core/Analystor.Nishomi.Domain/Analystor.Nishomi.Domain.csproj", "Core/Analystor.Nishomi.Domain/"]
-RUN dotnet restore "Services/Analystor.Nishomi.Api/Analystor.Nishomi.Api.csproj"
+RUN dotnet restore "Services/Analystor.Nishomi.Admin/Analystor.Nishomi.Admin.csproj"
 COPY . .
-WORKDIR "/src/Services/Analystor.Nishomi.Api"
-RUN dotnet build "Analystor.Nishomi.Api.csproj" -c Release -o /app/build
+WORKDIR "/src/Services/Analystor.Nishomi.Admin"
+RUN dotnet build "Analystor.Nishomi.Admin.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Analystor.Nishomi.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "Analystor.Nishomi.Admin.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Analystor.Nishomi.Api.dll"]
+ENTRYPOINT ["dotnet", "Analystor.Nishomi.Admin.dll"]

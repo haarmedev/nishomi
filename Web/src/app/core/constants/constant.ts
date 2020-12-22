@@ -1,5 +1,8 @@
-export const IMAGE_ENDPOINT = 'https://nishomi-api.analystortech.com/Admin';
-export const API_ENDPOINT = 'https://nishomi-api.analystortech.com/Service'; // 'https://localhost:44380';
+import { environment } from "src/environments/environment";
+
+export const API_ENDPOINT = environment.apiBaseUrl;
+export const IMAGE_ENDPOINT = environment.imageBaseUrl;
+
 export const CATEGORIESAPI = `${API_ENDPOINT}/api/Category`;
 export const FEATUREDPRODUCTSAPI = `${API_ENDPOINT}/api/Product/FeaturedProducts`;
 export const CATEGORYPRODUCTS = `${API_ENDPOINT}/api/Category/CategoryProducts`;

@@ -1,6 +1,11 @@
 html body {
   text-align: left;
 }
+.form-group select {
+  background: url('./assets/images/icons/ico-down.png') no-repeat 98% center;
+  background-size: auto;
+  background-size: auto 16px;
+}
 .fast-text {
   padding-left: 6%;
   border-left: 1px solid #ccc;
