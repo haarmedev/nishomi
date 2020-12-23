@@ -60,7 +60,7 @@ namespace Analystor.Nishomi.Api
             {
                 options.AddPolicy(
                   "CorsPolicy",
-                  builder => builder.AllowAnyOrigin()
+                  builder => builder.WithOrigins("https://www.nishomiabayas.com")
                   .AllowAnyMethod()
                   .AllowAnyHeader());
             });
@@ -89,10 +89,9 @@ namespace Analystor.Nishomi.Api
             }
             else
             {
+                app.UseCors("CorsPolicy");
                 // app.UseHsts();
             }
-
-            app.UseCors("CorsPolicy");
 
             app.UseRouting();
             //app.UseAuthentication();
