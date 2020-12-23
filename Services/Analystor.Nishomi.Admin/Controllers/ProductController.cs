@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Analystor.Nishomi.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Analystor.Nishomi.Admin.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         /// <summary>

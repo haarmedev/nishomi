@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -47,38 +51,25 @@
                     </div>
                     <!-- Profile -->
                     <div class="profile clearfix">
-                        <div class="profimg">
-                            <div class="dropdown">
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a asp-controller="Account" asp-action="Profile" class="dropdown-item"><i class="fas fa-user"></i> &nbsp; Profile</a>
-                                    <a asp-controller="Account" asp-action="Logout" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> &nbsp; Log out</a>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <div class="profimg">
+                                <div class="dropdown">
+
+                                    <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span>@User.Identity.Name</span>
+                                    </a>
+                                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            @*<a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> &nbsp; Log out</a>*@
+                                            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </div>
-                        <a href="/Home/Notification">
-                            <div class="headnotify">
-                                <div class="my-btn">
-                                    <div class="my-btn-border"></div>
-                                    <span id="notificationCount"></span>
-                                </div>
-                                <div class="bellicon"><i class="fas fa-bell btn-bell"></i></div>
-                            </div>
-                        </a>
-
-
-
-
-
-
-
-
-                        <!--<div id="sb-search" class="sb-search">
-                            <form>
-                                <input class="sb-search-input" placeholder="Enter your search term" type="search" value="" name="search" id="search">
-                                <input class="sb-search-submit" type="submit" value="">
-                                <span class="sb-icon-search"><i class="fas fa-search"></i></span>
-                            </form>
-                        </div>-->
+                        }
                     </div>
                 </header>
 
@@ -96,8 +87,8 @@
         <div class="sidebar-menu">
             <div class="logo">
                 @*<div class="logoimg">
-                    <img src="~/assets/images/logo.png" />
-                </div>*@
+                        <img src="~/assets/images/logo.png" />
+                    </div>*@
                 <a href="#" class="sidebar-icon">
                     <img src="~/assets/images/icons/burger.svg">
                 </a>
