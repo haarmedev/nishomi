@@ -20,8 +20,8 @@ namespace WebApplication2
             var config = host.Services.GetRequiredService<IConfiguration>();
             var connectionString = config.GetConnectionString("NishomiDbContext");
 
-            DataSeeder.EnsureSeedData(connectionString);
-
+            DataSeeder.EnsureSeedData(host.Services);
+            
             host.Run();
             //CreateHostBuilder(args).Build().Run();
         }
