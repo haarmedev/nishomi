@@ -13,7 +13,7 @@ COPY ["Core/Analystor.Nishomi.Persistence/Analystor.Nishomi.Persistence.csproj",
 COPY ["Core/Analystor.Nishomi.Domain/Analystor.Nishomi.Domain.csproj", "Core/Analystor.Nishomi.Domain/"]
 RUN dotnet restore "Services/Analystor.Nishomi.Admin/Analystor.Nishomi.Admin.csproj"
 COPY . .
-WORKDIR "/src/Services/Analystor.Nishomi.Admin"
+WORKDIR "/src/Analystor.Nishomi.Admin"
 RUN dotnet build "Analystor.Nishomi.Admin.csproj" -c Release -o /app/build
 
 FROM build AS publish
