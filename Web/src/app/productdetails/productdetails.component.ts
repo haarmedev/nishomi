@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   CUSTOMERREQUEST,
@@ -25,45 +21,53 @@ declare var $: any;
 export class ProductdetailsComponent implements OnInit, OnDestroy {
   countries = [
     {
-    id: '2',
-    name: 'label.ksa',
-    code: '966'
-   },
-   {
-    id: '3',
-    name: 'label.bahrain',
-    code: '973'
-   },
-   {
-    id: '4',
-    name: 'label.kuwait',
-    code: '965'
-   },
-   {
-    id: '5',
-    name: 'label.qatar',
-    code: '974'
-   },
-   {
-    id: '6',
-    name: 'label.oman',
-    code: '968'
-   },
-   {
-    id: '7',
-    name: 'label.uae',
-    code: '971'
-   }];
+      id: '2',
+      name: 'label.ksa',
+      code: '966',
+    },
+    {
+      id: '3',
+      name: 'label.bahrain',
+      code: '973',
+    },
+    {
+      id: '4',
+      name: 'label.kuwait',
+      code: '965',
+    },
+    {
+      id: '5',
+      name: 'label.qatar',
+      code: '974',
+    },
+    {
+      id: '6',
+      name: 'label.oman',
+      code: '968',
+    },
+    {
+      id: '7',
+      name: 'label.uae',
+      code: '971',
+    },
+  ];
   profileForm = new FormGroup({
     acceptTAC: new FormControl(false, [Validators.requiredTrue]),
     name: new FormControl('', [Validators.required]),
-    cusmail: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i)]),
-    phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(14)]),
+    cusmail: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i),
+    ]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.minLength(7),
+      Validators.maxLength(14),
+    ]),
     address: new FormControl(''),
     message: new FormControl(''),
-    street:new FormControl(''),
-    post:new FormControl(''),
-    country:new FormControl('',[Validators.required]),
+    street: new FormControl(''),
+    post: new FormControl(''),
+    country: new FormControl('', [Validators.required]),
     size: new FormControl('', [Validators.required]),
     fullLength: new FormControl(''),
     sleeveLength: new FormControl(''),
@@ -80,8 +84,11 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     private httpClient: HttpClient,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private translate: TranslateService) {
-    this.langSubscription = this.translate.onLangChange.subscribe(() => { this.setLangKey(); });
+    private translate: TranslateService
+  ) {
+    this.langSubscription = this.translate.onLangChange.subscribe(() => {
+      this.setLangKey();
+    });
   }
   langKey = '';
   currentLang: string;
@@ -128,21 +135,20 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       //             '<a class="easyzoom-pop-up img-popup popmag" href='+this.imageurl+this.productDetails.images[i].imageUrl+'></a></div>';
       // }
     });
-    // $('.btncart').click(function () {
-    //   $('html, body').animate(
-    //     {
-    //       scrollTop: $('.btncart').offset().top,
-    //     },
-    //     2000
-    //   );
-    // });
-    // $(".btnbuy").click(function(){
-    //   $(".proddesc").toggleClass("show");
-    // });
-    // $(".btncart").click(function(){
-    //   $(".proddesc").toggleClass("show");
-    // });
   }
+  // ngAfterViewInit() :void{
+    // $('.inputlog').each(function(){
+    //   alert("Hii");
+    //   $(this).on('blur', function(){
+    //     if($(this).val().trim() != "") {
+    //       $(this).addClass('has-value');
+    //     }
+    //     else {
+    //       $(this).removeClass('has-value');
+    //     }
+    //   })
+    // });
+  // }
 
   initSlider(): void {
     $('.easyzoom').easyZoom();
@@ -155,6 +161,17 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       fade: false,
       asNavFor: '.product-dec-slider , .product-dec-slider-2',
     });
+    // $('.inputlog').each(function(){
+    //   alert("Hii");
+    //   $(this).on('blur', function(){
+    //     if($(this).val().trim() != "") {
+    //       $(this).addClass('has-value');
+    //     }
+    //     else {
+    //       $(this).removeClass('has-value');
+    //     }
+    //   })
+    // });
 
     /*---------------------------------
         Product details slider 2 active
@@ -192,6 +209,17 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
         enabled: true,
       },
     });
+
+    $('.inputlog').each(function(){
+      $(this).on('blur', function(){
+        if($(this).val().trim() != "") {
+          $(this).addClass('has-value');
+        }
+        else {
+          $(this).removeClass('has-value');
+        }
+      })
+    });
   }
 
   buyProduct(): void {
@@ -219,9 +247,9 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       return;
     }
     */
-   this.submitted = true;
-   
-   if (this.profileForm.valid) {
+    this.submitted = true;
+
+    if (this.profileForm.valid) {
       this.apiInprogress = true;
       const formData: any = new FormData();
       formData.append('ProductId', this.productId);
@@ -230,10 +258,10 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       formData.append('ContactNumber', this.profileForm.value.phone);
       formData.append('Address', this.profileForm.value.address);
       formData.append('Message', this.profileForm.value.message);
-      formData.append('IsOrder',this.isBuyNow?true:false);
-      formData.append('Street',this.profileForm.value.street);
-      formData.append('PostalCode',this.profileForm.value.post);
-      formData.append('Country',this.profileForm.value.country);
+      formData.append('IsOrder', this.isBuyNow ? true : false);
+      formData.append('Street', this.profileForm.value.street);
+      formData.append('PostalCode', this.profileForm.value.post);
+      formData.append('Country', this.profileForm.value.country);
       console.log(formData);
       // if (
       //   this.profileForm.value.fullLength > 0 &&
@@ -267,11 +295,13 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
           this.apiInprogress = false;
           if (response.data) {
             this.isRequest = false;
-            const msg = `success.${this.isBuyNow ?  'order' : 'show_interest'}`;
+            const msg = `success.${this.isBuyNow ? 'order' : 'show_interest'}`;
             const trsnslatedMsg = this.translate.instant(msg);
             Swal.fire({
               title: trsnslatedMsg,
-              text:this.isBuyNow ?'Order Number: '+response.data : 'Ref. No: '+response.data,
+              text: this.isBuyNow
+                ? 'Order Number: ' + response.data
+                : 'Ref. No: ' + response.data,
               icon: 'success',
             });
             this.selectSize('');
@@ -288,14 +318,17 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
           });
         }
       );
-   } else {
-     setTimeout(() => {
-      const errorMsg = document.getElementsByClassName('error')[0];
-      if (errorMsg) {
-        $('html, body').animate({ scrollTop: errorMsg.parentElement.offsetTop }, 1000);
-      }
-     });
-   }
+    } else {
+      setTimeout(() => {
+        const errorMsg = document.getElementsByClassName('error')[0];
+        if (errorMsg) {
+          $('html, body').animate(
+            { scrollTop: errorMsg.parentElement.offsetTop },
+            1000
+          );
+        }
+      });
+    }
   }
   selectProduct(pro): void {
     this.selectedproduct = pro;
@@ -357,7 +390,14 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
    */
   isValidForOrderForm(): boolean {
     let isValid = true;
-    const fields = ['fullLength', 'sleeveLength', 'bust', 'hip', 'size', 'acceptTAC'];
+    const fields = [
+      'fullLength',
+      'sleeveLength',
+      'bust',
+      'hip',
+      'size',
+      'acceptTAC',
+    ];
     fields.forEach((field) => {
       if (!this.profileForm.get(field).valid) {
         isValid = false;

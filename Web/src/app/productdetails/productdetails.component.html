@@ -148,35 +148,35 @@
               <h2>{{ 'contact_details' | translate }}</h2>
                 <div class="row">
                   <div class="form-group col-md-12">
-                    <input formControlName="name" type="text" required="required">
+                    <input formControlName="name" type="text" required="required" class="inputlog">
                     <label for="input" class="control-label">{{ 'label.full_name' | translate }}</label><i class="bar"></i>
                     <span class="error" *ngIf="(submitted || profileForm.controls.name.touched) && !profileForm.controls.name.valid">
                       {{ 'error.full_name_mandatory' | translate }}
                     </span>
                   </div>
                   <div class="form-group col-md-12">
-                    <input formControlName="cusmail" type="text" required="required">
+                    <input formControlName="cusmail" type="text" required="required" class="inputlog">
                     <label for="input" class="control-label">{{ 'label.email_id' | translate }}</label><i class="bar"></i>
                     <span class="error" *ngIf="(submitted || profileForm.controls.cusmail.touched) && !profileForm.controls.cusmail.valid">
                       {{ (profileForm.controls.cusmail.errors.required ? 'error.email_id_mandatory' : 'error.email_id_invalid') | translate }}
                     </span>
                   </div>
                   <div class="form-group col-md-12">
-                    <input formControlName="phone" type="text" required="required" appNumberOnly [maxlen]="14">
+                    <input formControlName="phone" type="text" required="required" appNumberOnly [maxlen]="14" class="inputlog">
                     <label for="input" class="control-label">{{ 'label.contact_number' | translate }}</label><i class="bar"></i>
                     <span class="error" *ngIf="(submitted || profileForm.controls.phone.touched) && !profileForm.controls.phone.valid">
                       {{ (profileForm.controls.phone.errors.required ? 'error.contact_number_mandatory' : 'error.contact_number_invalid') | translate }}
                     </span>
                   </div>
                   <div class="form-group col-md-12">
-                    <input formControlName="street" required="required" type="text"/>
+                    <input formControlName="street" type="text" class="inputlog"/>
                     <label for="input" class="control-label">{{ 'label.street' | translate }}</label><i class="bar"></i>
                     <!-- <span class="error" *ngIf="(submitted || profileForm.controls.address.touched) && !profileForm.controls.address.valid">
                       {{ 'error.address_mandatory' | translate }}
                     </span> -->
                   </div>
                   <div class="form-group col-md-12">
-                    <input formControlName="post" type="text"/>
+                    <input formControlName="post" type="text" class="inputlog"/>
                     <label for="input" class="control-label">{{ 'label.post' | translate }}</label><i class="bar"></i>
                     <!-- <span class="error" *ngIf="(submitted || profileForm.controls.post.touched) && !profileForm.controls.post.valid">
                       {{ 'error.post_mandatory' | translate }}
@@ -199,7 +199,7 @@
                     </span>
                   </div>
                   <div class="form-group col-md-12">
-                    <textarea formControlName="message"></textarea>
+                    <textarea formControlName="message" class="inputlog"></textarea>
                     <label for="textarea" class="control-label">{{ 'label.message' | translate }}</label><i class="bar"></i>
                   </div>
                 </div>
