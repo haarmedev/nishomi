@@ -1334,9 +1334,9 @@ img.over {
 .form-group select {
   width: 100%;
   border: 0;
-      border-bottom-color: currentcolor;
-      border-bottom-style: none;
-      border-bottom-width: 0px;
+  border-bottom-color: currentcolor;
+  border-bottom-style: none;
+  border-bottom-width: 0px;
   margin-bottom: 15px;
   height: 40px;
   border-bottom: 0.0625rem solid #999;
@@ -1345,22 +1345,18 @@ img.over {
   appearance: none;
 }
 .form-group input:focus,
-.form-group input:valid,
 .form-group input.form-file,
 .form-group input.has-value,
 .form-group textarea:focus,
-.form-group textarea:valid,
 .form-group textarea.form-file,
 .form-group textarea.has-value {
   color: #333;
 }
 .form-group select ~ .control-label,
 .form-group input:focus ~ .control-label,
-.form-group input:valid ~ .control-label,
 .form-group input.form-file ~ .control-label,
 .form-group input.has-value ~ .control-label,
 .form-group textarea:focus ~ .control-label,
-.form-group textarea:valid ~ .control-label,
 .form-group textarea.form-file ~ .control-label,
 .form-group textarea.has-value ~ .control-label {
   font-size: 0.8rem;
