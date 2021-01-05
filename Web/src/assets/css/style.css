@@ -2435,6 +2435,12 @@ header .social a.lang {
   nav {
     padding: 120px 90px 70px 90px;
   }
+  .customsize ul {
+    flex-flow: wrap;
+  }
+  .customsize ul li {
+    width: 50%;
+  }
 }
 @media only screen and (max-width: 767px) {
   .hmeproduct {
@@ -2586,6 +2592,12 @@ header .social a.lang {
   }
   .caroblkdtls > a {
     font-size: 13px;
+  }
+  .customsize ul {
+    flex-flow: wrap;
+  }
+  .customsize ul li {
+    width: 50%;
   }
 
 /*.product-details-tab.product-details-tab2 {

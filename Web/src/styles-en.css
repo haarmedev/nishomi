@@ -134,9 +134,15 @@ header .social a.lang {
   .burger {
     right: 20px;
   }
+  .size-list .size_item {
+    margin: 0 10px 0 0;
+  }
 }
 @media only screen and (max-width: 767px) {
   .story {
     background: #fff url(assets/images/bg-about01-en.jpg) no-repeat top -45px right -230px;
+  }
+  .size-list .size_item {
+    margin: 0 4px 0 0;
   }
 }
