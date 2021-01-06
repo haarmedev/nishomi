@@ -4,7 +4,9 @@ import {
   CUSTOMERREQUEST,
   IMAGE_ENDPOINT,
   PRODUCTDETAILS,
+  META,
 } from '../core/constants/constant';
+import { Title, Meta } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -84,7 +86,9 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     private httpClient: HttpClient,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private titleService: Title,
+    private metaTagService: Meta,
   ) {
     this.langSubscription = this.translate.onLangChange.subscribe(() => {
       this.setLangKey();
@@ -135,6 +139,11 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
       //             '<a class="easyzoom-pop-up img-popup popmag" href='+this.imageurl+this.productDetails.images[i].imageUrl+'></a></div>';
       // }
     });
+
+    this.titleService.setTitle(META.PRODUCTS.TITLE);
+    this.metaTagService.updateTag(
+      { name: 'description', content: META.PRODUCTS.DESC },
+    );
   }
   // ngAfterViewInit() :void{
     // $('.inputlog').each(function(){

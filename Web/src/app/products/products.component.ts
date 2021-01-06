@@ -5,7 +5,8 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CATEGORYPRODUCTS, CUSTOMERREQUEST, IMAGE_ENDPOINT } from '../core/constants/constant';
+import { CATEGORYPRODUCTS, CUSTOMERREQUEST, IMAGE_ENDPOINT, META } from '../core/constants/constant';
+import { Title, Meta } from '@angular/platform-browser';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'ngx-useful-swiper';
 import {
@@ -42,6 +43,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private route: ActivatedRoute,
     private router: Router,
+    private titleService: Title,
+    private metaTagService: Meta,
     private translate: TranslateService) {
     this.langSubscription = this.translate.onLangChange.subscribe(() => { this.setLangKey(); });
   }
@@ -177,6 +180,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
       myScript.setAttribute('src', './assets/js/home.js');
       document.body.appendChild(myScript);
     }, 500);
+
+    this.titleService.setTitle(META.PRODUCTS.TITLE);
+    this.metaTagService.updateTag(
+      { name: 'description', content: META.PRODUCTS.DESC },
+    );
   }
 
   selectProduct(pro): void {

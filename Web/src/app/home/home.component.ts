@@ -4,11 +4,13 @@ import {
   CATEGORIESAPI,
   FEATUREDPRODUCTSAPI,
   IMAGE_ENDPOINT,
+  META,
 } from '../core/constants/constant';
 import { SwiperOptions } from 'swiper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { Title, Meta } from '@angular/platform-browser';
 
 import initSwipers from '../../assets/js/home.js';
 
@@ -18,7 +20,13 @@ import initSwipers from '../../assets/js/home.js';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
-  constructor(private httpClient: HttpClient, private router: Router, private translate: TranslateService) {
+  constructor(
+    private router: Router,
+    private titleService: Title,
+    private metaTagService: Meta,
+    private httpClient: HttpClient,
+    private translate: TranslateService,
+  ) {
     this.langSubscription = this.translate.onLangChange.subscribe(() => {
       this.setLangKey();
       this.reInItFeaturedProdSlider();
@@ -109,6 +117,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.setLangKey();
+
+    this.titleService.setTitle(META.HOME.TITLE);
+    this.metaTagService.updateTag(
+      { name: 'description', content: META.HOME.DESC },
+    );
   }
 
   ngAfterViewInit(): void {
