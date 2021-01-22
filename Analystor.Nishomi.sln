@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0DB7F6
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{56010959-6A95-4DC4-989B-9A7A93C3849F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analystor.Nishomi.Jobs", "..\Analystor.Nishomi.Jobs\Analystor.Nishomi.Jobs.csproj", "{63A1E3F4-7AAB-45E2-BB43-B5766434FBCE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{91E6B8D1-1A96-4647-897E-39C320BF5F6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,10 @@ Global
 		{56010959-6A95-4DC4-989B-9A7A93C3849F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56010959-6A95-4DC4-989B-9A7A93C3849F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56010959-6A95-4DC4-989B-9A7A93C3849F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63A1E3F4-7AAB-45E2-BB43-B5766434FBCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A1E3F4-7AAB-45E2-BB43-B5766434FBCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A1E3F4-7AAB-45E2-BB43-B5766434FBCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A1E3F4-7AAB-45E2-BB43-B5766434FBCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{21807DB7-736C-4E54-B84E-A5A0CA080A2B} = {7F076DBA-8691-4460-9B10-8FF2F7620A55}
 		{DF9BD74F-10E6-46B1-83D3-5617B6CFAE43} = {7F076DBA-8691-4460-9B10-8FF2F7620A55}
 		{D9194A4D-4C1B-4452-8519-E83F2B87F1C5} = {0DB7F633-E8C3-43D3-8ED5-419F2D6E840E}
+		{63A1E3F4-7AAB-45E2-BB43-B5766434FBCE} = {7F076DBA-8691-4460-9B10-8FF2F7620A55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A517B8B9-C920-46FB-AE98-84520F38C4CF}
