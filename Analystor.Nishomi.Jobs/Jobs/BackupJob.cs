@@ -13,9 +13,10 @@ namespace Analystor.Nishomi.Jobs
         Helper helper = new Helper();
         public async void CreateBackUp()
         {
+            Console.WriteLine("DB Back up Job Started");
             Connection connection = new Connection();
             MySqlConnection con = connection.GetConnection();
-            string path = "Nishomi-Db/Nishomi-Backup-" + DateTime.Now+".sql";
+            string path = "Nishomi-Db/Nishomi-Backup_"+ DateTime.Now.ToString("dddd, dd MMMM yyyy") + ".sql";
             using (MySqlCommand cmd = new MySqlCommand())
             {
                 using (MySqlBackup mb = new MySqlBackup(cmd))
@@ -25,7 +26,9 @@ namespace Analystor.Nishomi.Jobs
                         cmd.Connection = con;
                         con.Open();
                         mb.ExportToMemoryStream(ms);
+                        Console.WriteLine("in progress....");
                         await helper.UploadFileToS3(path,ms);
+                        Console.WriteLine("DB Back up Job Finished");
                         con.Close();
                     }
                 }
@@ -34,6 +37,7 @@ namespace Analystor.Nishomi.Jobs
 
         public async void CreateResourceFileBackup()
         {
+            Console.WriteLine("Resource File Back up Job Started");
             var builder = new ConfigurationBuilder()
                                 .SetBasePath(Directory.GetCurrentDirectory())
                                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -42,10 +46,12 @@ namespace Analystor.Nishomi.Jobs
             {
                 using (ZipFile zip = new ZipFile())
                 {
-                    string path = "Nishomi-Resources/Nishomi-Resources" + DateTime.Now+".zip";
+                    string path = "Nishomi-Resources/Nishomi-Resources_"+ DateTime.Now.ToString("dddd, dd MMMM yyyy") + ".zip";
                     zip.AddDirectory(@""+resourcesPath, "Resources");
                     zip.Save(ms);
+                    Console.WriteLine("in progress....");
                     await helper.UploadFileToS3(path,ms);
+                    Console.WriteLine("Resource File Back up Job Finished");
                 }
             }
         }
