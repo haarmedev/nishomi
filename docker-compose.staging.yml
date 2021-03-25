@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  analystor.nishomi.admin:
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "8600:80"
+    build:
+      network: host
+    volumes:
+      - /home/ubuntu/nishomi/nishomi-resources:/app/wwwroot/Resources
+  analystor.nishomi.api:
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "8601:80"
+    build:
+      network: host
