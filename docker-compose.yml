@@ -5,13 +5,13 @@ services:
     image: mysql:5.7
 
   analystor.nishomi.admin:
-    image: ${DOCKER_REGISTRY-}analystornishomiadmin
+    image: analystornishomiadmin
     build:
       context: .
       dockerfile: Services/Analystor.Nishomi.Admin/Dockerfile
 
   analystor.nishomi.api:
-    image: ${DOCKER_REGISTRY-}analystornishomiapi
+    image: analystornishomiapi
     build:
       context: .
       dockerfile: Services/Analystor.Nishomi.Api/Dockerfile
