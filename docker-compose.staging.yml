@@ -7,7 +7,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Staging
       - ASPNETCORE_URLS=http://+:80
     ports:
-      - "8600:80/Admin"
+      - "8600:80"
     build:
       network: host
     volumes:
@@ -18,6 +18,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Staging
       - ASPNETCORE_URLS=http://+:80
     ports:
-      - "8600:80/Service"
+      - "8601:80"
     build:
       network: host
